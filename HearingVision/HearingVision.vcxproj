@@ -158,7 +158,18 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;
+        c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;
+        %(AdditionalIncludeDirectories)
+       </AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -175,10 +186,60 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ofxFft\libs\kiss\kiss_fft.c" />
+    <ClCompile Include="src\ofxFft\libs\kiss\kiss_fftr.c" />
+    <ClCompile Include="src\ofxFft\src\ofxEasyFft.cpp" />
+    <ClCompile Include="src\ofxFft\src\ofxFft.cpp" />
+    <ClCompile Include="src\ofxFft\src\ofxFftBasic.cpp" />
+    <ClCompile Include="src\ofxFft\src\ofxFftw.cpp" />
+    <ClCompile Include="src\ofxFft\src\ofxProcessFFT.cpp" />
+    <ClCompile Include="src\ofxMidi\libs\rtmidi\RtMidi.cpp" />
+    <ClCompile Include="src\ofxMidi\src\desktop\ofxRtMidiIn.cpp" />
+    <ClCompile Include="src\ofxMidi\src\desktop\ofxRtMidiOut.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxBaseMidi.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxMidi.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxMidiClock.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxMidiIn.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxMidiMessage.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxMidiOut.cpp" />
+    <ClCompile Include="src\ofxMidi\src\ofxMidiTimecode.cpp" />
+    <ClCompile Include="src\ofxRollingCam\src\ofxRollingCam.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ofxFft\libs\fftw\include\fftw3.h" />
+    <ClInclude Include="src\ofxFft\libs\kiss\kiss_fft.h" />
+    <ClInclude Include="src\ofxFft\libs\kiss\kiss_fftr.h" />
+    <ClInclude Include="src\ofxFft\libs\kiss\_kiss_fft_guts.h" />
+    <ClInclude Include="src\ofxFft\src\ofxEasyFft.h" />
+    <ClInclude Include="src\ofxFft\src\ofxFft.h" />
+    <ClInclude Include="src\ofxFft\src\ofxFftBasic.h" />
+    <ClInclude Include="src\ofxFft\src\ofxFftw.h" />
+    <ClInclude Include="src\ofxFft\src\ofxProcessFFT.h" />
+    <ClInclude Include="src\ofxMidi\libs\pgmidi\iOSVersionDetection.h" />
+    <ClInclude Include="src\ofxMidi\libs\pgmidi\PGArc.h" />
+    <ClInclude Include="src\ofxMidi\libs\pgmidi\PGMidi.h" />
+    <ClInclude Include="src\ofxMidi\libs\pgmidi\PGMidiAllSources.h" />
+    <ClInclude Include="src\ofxMidi\libs\pgmidi\PGMidiFind.h" />
+    <ClInclude Include="src\ofxMidi\libs\rtmidi\RtMidi.h" />
+    <ClInclude Include="src\ofxMidi\src\desktop\ofxRtMidiIn.h" />
+    <ClInclude Include="src\ofxMidi\src\desktop\ofxRtMidiOut.h" />
+    <ClInclude Include="src\ofxMidi\src\ios\ofxPGMidiContext.h" />
+    <ClInclude Include="src\ofxMidi\src\ios\ofxPGMidiDelegate.h" />
+    <ClInclude Include="src\ofxMidi\src\ios\ofxPGMidiIn.h" />
+    <ClInclude Include="src\ofxMidi\src\ios\ofxPGMidiOut.h" />
+    <ClInclude Include="src\ofxMidi\src\ios\ofxPGMidiSourceDelegate.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxBaseMidi.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidi.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiClock.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiConstants.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiIn.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiMessage.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiOut.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiTimecode.h" />
+    <ClInclude Include="src\ofxMidi\src\ofxMidiTypes.h" />
+    <ClInclude Include="src\ofxRollingCam\src\ofxRollingCam.h" />
     <ClInclude Include="src\ofApp.h" />
   </ItemGroup>
   <ItemGroup>

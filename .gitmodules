@@ -1,0 +1,9 @@
+[submodule "HearingVision/src/ofxFft"]
+	path = HearingVision/src/ofxFft
+	url = https://github.com/kylemcdonald/ofxFft
+[submodule "HearingVision/src/ofxMidi"]
+	path = HearingVision/src/ofxMidi
+	url = https://github.com/danomatika/ofxMidi
+[submodule "HearingVision/src/ofxRollingCam"]
+	path = HearingVision/src/ofxRollingCam
+	url = https://github.com/saebashi/ofxRollingCam
