@@ -186,6 +186,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\nanoKon2.cpp" />
     <ClCompile Include="src\ofxFft\libs\kiss\kiss_fft.c" />
     <ClCompile Include="src\ofxFft\libs\kiss\kiss_fftr.c" />
     <ClCompile Include="src\ofxFft\src\ofxEasyFft.cpp" />
@@ -206,8 +207,11 @@
     <ClCompile Include="src\ofxRollingCam\src\ofxRollingCam.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\scene\box\box.cpp" />
+    <ClCompile Include="src\scene\fraltal\fractal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\nanoKon2.h" />
     <ClInclude Include="src\ofxFft\libs\fftw\include\fftw3.h" />
     <ClInclude Include="src\ofxFft\libs\kiss\kiss_fft.h" />
     <ClInclude Include="src\ofxFft\libs\kiss\kiss_fftr.h" />
@@ -241,6 +245,9 @@
     <ClInclude Include="src\ofxMidi\src\ofxMidiTypes.h" />
     <ClInclude Include="src\ofxRollingCam\src\ofxRollingCam.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\scene\base_scene.h" />
+    <ClInclude Include="src\scene\box\box.h" />
+    <ClInclude Include="src\scene\fraltal\fractal.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
@@ -249,7 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc">
-        <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
     </ResourceCompile>
