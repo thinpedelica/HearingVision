@@ -19,7 +19,7 @@ public:
     void windowResized(int w, int h);
 
 private:
-    static constexpr size_t kDrawableSceneNum = 2; 
+    static constexpr size_t kDrawableSceneNum = 2;
 
     void createScenes();
     void setupScenes();
@@ -34,8 +34,20 @@ private:
     std::vector<ofFbo> scene_fbos_;
     std::vector<size_t> active_scene_lsit_;
 
+    enum class TriggerState {
+        kOff,
+        kOn,
+        kWaitForOff,
+    };
+
     struct SceneParam {
         uint8_t alpha;
+        TriggerState reset;
+
+        SceneParam() {
+            alpha = 0;
+            reset = TriggerState::kOff;
+        }
     };
     std::vector<SceneParam> scenen_params_;
 

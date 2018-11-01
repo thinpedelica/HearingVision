@@ -208,7 +208,9 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\scene\box\box.cpp" />
+    <ClCompile Include="src\scene\flash\flash.cpp" />
     <ClCompile Include="src\scene\fraltal\fractal.cpp" />
+    <ClCompile Include="src\scene\util\particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanoKon2.h" />
@@ -247,7 +249,9 @@
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\scene\base_scene.h" />
     <ClInclude Include="src\scene\box\box.h" />
+    <ClInclude Include="src\scene\flash\flash.h" />
     <ClInclude Include="src\scene\fraltal\fractal.h" />
+    <ClInclude Include="src\scene\util\particle.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

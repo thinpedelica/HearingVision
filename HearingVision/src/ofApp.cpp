@@ -2,6 +2,7 @@
 
 #include "scene/box/box.h"
 #include "scene/fraltal/fractal.h"
+#include "scene/flash/flash.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -42,6 +43,11 @@ void ofApp::update() {
     // update active scene
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
         size_t scene_index = active_scene_lsit_.at(index);
+
+        if (scenen_params_.at(index).reset == TriggerState::kOn) {
+            scene_list_.at(scene_index)->reset();
+            scenen_params_.at(index).reset = TriggerState::kWaitForOff;
+        }
         scene_list_.at(scene_index)->update();
     }
 }
@@ -51,7 +57,19 @@ void ofApp::updateSceneParam() {
         if (nano_kon_.buttonsSolo.at(index)) {
             active_scene_lsit_.at(index) = selecting_scene_no_;
         }
+
+        if (nano_kon_.buttonsRec.at(index)) {
+            if (scenen_params_.at(index).reset == TriggerState::kOff) {
+                scenen_params_.at(index).reset = TriggerState::kOn;
+            }
+        } else {
+            if (scenen_params_.at(index).reset == TriggerState::kWaitForOff) {
+                scenen_params_.at(index).reset = TriggerState::kOff;
+            }
+        }
+
         scenen_params_.at(index).alpha = nano_kon_.sliders.at(index) * 2;
+
     }
 }
 
@@ -92,6 +110,7 @@ void ofApp::windowResized(int w, int h) {
 void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<BoxScene>());
     scene_list_.push_back(std::make_unique<FractalScene>());
+    scene_list_.push_back(std::make_unique<FlashScene>());
 }
 
 void ofApp::setupScenes() {
