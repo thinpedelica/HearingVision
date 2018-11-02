@@ -3,6 +3,7 @@
 #include "scene/box/box.h"
 #include "scene/fraltal/fractal.h"
 #include "scene/flash/flash.h"
+#include "scene/lissajous/lissajous.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -82,6 +83,8 @@ void ofApp::draw() {
             scene_list_.at(active_scene_lsit_.at(index))->draw();
             scene_fbos_.at(index).end();
 
+            glEnable(GL_BLEND);
+            glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
             ofSetColor(255, 255, 255, scenen_params_.at(index).alpha);
             scene_fbos_.at(index).draw(0, 0);
         }
@@ -111,6 +114,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<BoxScene>());
     scene_list_.push_back(std::make_unique<FractalScene>());
     scene_list_.push_back(std::make_unique<FlashScene>());
+    scene_list_.push_back(std::make_unique<LissajousScene>());
 }
 
 void ofApp::setupScenes() {

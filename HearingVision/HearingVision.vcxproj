@@ -210,6 +210,7 @@
     <ClCompile Include="src\scene\box\box.cpp" />
     <ClCompile Include="src\scene\flash\flash.cpp" />
     <ClCompile Include="src\scene\fraltal\fractal.cpp" />
+    <ClCompile Include="src\scene\lissajous\lissajous.cpp" />
     <ClCompile Include="src\scene\util\particle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -251,6 +252,7 @@
     <ClInclude Include="src\scene\box\box.h" />
     <ClInclude Include="src\scene\flash\flash.h" />
     <ClInclude Include="src\scene\fraltal\fractal.h" />
+    <ClInclude Include="src\scene\lissajous\lissajous.h" />
     <ClInclude Include="src\scene\util\particle.h" />
   </ItemGroup>
   <ItemGroup>
