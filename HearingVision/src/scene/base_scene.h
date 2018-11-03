@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "scene_param.h"
 #include "ofxProcessFFT.h"
 
 class BaseScene {
@@ -12,7 +13,8 @@ public:
         pfft_      = pfft;
         win_cache_ = win_cache;
     }
-    virtual void update() = 0;
+
+    virtual void update(SceneParam scene_param) = 0;
     virtual void draw() = 0;
     virtual void reset() = 0;
 

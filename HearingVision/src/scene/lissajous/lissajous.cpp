@@ -23,7 +23,9 @@ void LissajousScene::setup(std::shared_ptr<ProcessFFT> pfft,
 }
 
 //--------------------------------------------------------------
-void LissajousScene::update() {
+void LissajousScene::update(SceneParam scene_param) {
+    threshold_ = kThreshold - (kThreshold * scene_param.level_);
+
     if (pfft_->getLowVal() > threshold_) {
         roll_cam_.setRandomScale(kScaleMin, kScaleMax);
         roll_cam_.setRandomPos(270);

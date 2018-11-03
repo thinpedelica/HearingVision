@@ -53,7 +53,11 @@ void FlashScene::createParticle(const int num) {
 }
 
 //--------------------------------------------------------------
-void FlashScene::update(){
+void FlashScene::update(SceneParam scene_param) {
+    if (scene_param.reset_ == SceneParam::TriggerState::kOn) {
+        reset();
+    }
+
     speed_    = pfft_->getLowVal()  * 70.0;
     friction_ = pfft_->getHighVal() * 3.0;
 

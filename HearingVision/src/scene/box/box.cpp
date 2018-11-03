@@ -26,7 +26,7 @@ void BoxScene::setup(std::shared_ptr<ProcessFFT> pfft,
 }
 
 //--------------------------------------------------------------
-void BoxScene::update() {
+void BoxScene::update(SceneParam scene_param) {
     roll_cam_.update();
 
     if ((ofGetFrameNum() % kEventFrameCount) == 0) {

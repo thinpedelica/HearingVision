@@ -39,45 +39,57 @@ void ofApp::setup() {
 void ofApp::update() {
     pfft_->update();
     nano_kon_.update();
-    updateSceneParam();
 
-    // update active scene
+    changeScene();
+    updateSceneParam();
+    updateScene();
+    clearSceneParam();
+}
+
+void ofApp::changeScene() {
+    for (size_t index = 0; index < kDrawableSceneNum; ++index) {
+        if (nano_kon_.buttonsSolo.at(index)) {
+            active_scene_lsit_.at(index) = selecting_scene_no_;
+        }
+    }
+}
+
+void ofApp::updateScene() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
         size_t scene_index = active_scene_lsit_.at(index);
-
-        if (scenen_params_.at(index).reset == TriggerState::kOn) {
-            scene_list_.at(scene_index)->reset();
-            scenen_params_.at(index).reset = TriggerState::kWaitForOff;
-        }
-        scene_list_.at(scene_index)->update();
+        scene_list_.at(scene_index)->update(scenen_params_.at(index));
     }
 }
 
 void ofApp::updateSceneParam() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (nano_kon_.buttonsSolo.at(index)) {
-            active_scene_lsit_.at(index) = selecting_scene_no_;
-        }
-
         if (nano_kon_.buttonsRec.at(index)) {
-            if (scenen_params_.at(index).reset == TriggerState::kOff) {
-                scenen_params_.at(index).reset = TriggerState::kOn;
+            if (scenen_params_.at(index).reset_ == SceneParam::TriggerState::kOff) {
+                scenen_params_.at(index).reset_ = SceneParam::TriggerState::kOn;
             }
         } else {
-            if (scenen_params_.at(index).reset == TriggerState::kWaitForOff) {
-                scenen_params_.at(index).reset = TriggerState::kOff;
+            if (scenen_params_.at(index).reset_ == SceneParam::TriggerState::kWaitForOff) {
+                scenen_params_.at(index).reset_ = SceneParam::TriggerState::kOff;
             }
         }
 
-        scenen_params_.at(index).alpha = nano_kon_.sliders.at(index) * 2;
+        scenen_params_.at(index).alpha_ = nano_kon_.sliders.at(index) * kControlResolution;
+        scenen_params_.at(index).level_ = nano_kon_.knobs.at(index)   * kControlResolution;
+    }
+}
 
+void ofApp::clearSceneParam() {
+    for (size_t index = 0; index < kDrawableSceneNum; ++index) {
+        if (scenen_params_.at(index).reset_ == SceneParam::TriggerState::kOn) {
+            scenen_params_.at(index).reset_ = SceneParam::TriggerState::kWaitForOff;
+        }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (scenen_params_.at(index).alpha > 0) {
+        if (scenen_params_.at(index).alpha_ > 0.f) {
             scene_fbos_.at(index).begin();
             ofClear(0);
             scene_list_.at(active_scene_lsit_.at(index))->draw();
@@ -85,7 +97,7 @@ void ofApp::draw() {
 
             glEnable(GL_BLEND);
             glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
-            ofSetColor(255, 255, 255, scenen_params_.at(index).alpha);
+            ofSetColor(255, 255, 255, 255 * scenen_params_.at(index).alpha_);
             scene_fbos_.at(index).draw(0, 0);
         }
     }

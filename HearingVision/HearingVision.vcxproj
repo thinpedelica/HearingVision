@@ -253,6 +253,7 @@
     <ClInclude Include="src\scene\flash\flash.h" />
     <ClInclude Include="src\scene\fraltal\fractal.h" />
     <ClInclude Include="src\scene\lissajous\lissajous.h" />
+    <ClInclude Include="src\scene\scene_param.h" />
     <ClInclude Include="src\scene\util\particle.h" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 #include "nanoKon2.h"
 
 #include "scene/base_scene.h"
+#include "scene/scene_param.h"
 #include <vector>
 #include <memory>
 
@@ -20,10 +21,14 @@ public:
 
 private:
     static constexpr size_t kDrawableSceneNum = 2;
+    static constexpr float  kControlResolution = 1.f / 127.f;
 
     void createScenes();
     void setupScenes();
+    void changeScene();
+    void updateScene();
     void updateSceneParam();
+    void clearSceneParam();
     bool isSceneNoValid(int scene_no);
 
     using ScenePtr  = std::unique_ptr<BaseScene>;
@@ -33,24 +38,7 @@ private:
 
     std::vector<ofFbo> scene_fbos_;
     std::vector<size_t> active_scene_lsit_;
-
-    enum class TriggerState {
-        kOff,
-        kOn,
-        kWaitForOff,
-    };
-
-    struct SceneParam {
-        uint8_t alpha;
-        TriggerState reset;
-
-        SceneParam() {
-            alpha = 0;
-            reset = TriggerState::kOff;
-        }
-    };
     std::vector<SceneParam> scenen_params_;
-
 
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofRectangle> win_cache_;

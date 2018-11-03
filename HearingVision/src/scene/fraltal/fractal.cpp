@@ -17,7 +17,7 @@ FractalScene::~FractalScene() {
 }
 
 //--------------------------------------------------------------
-void FractalScene::update() {
+void FractalScene::update(SceneParam scene_param) {
     // nop
 }
 
