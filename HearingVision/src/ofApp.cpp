@@ -89,20 +89,21 @@ void ofApp::clearSceneParam() {
 //--------------------------------------------------------------
 void ofApp::draw() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (scenen_params_.at(index).alpha_ > 0.f) {
-            scene_fbos_.at(index).begin();
-            ofClear(0);
-            scene_list_.at(active_scene_lsit_.at(index))->draw();
-            scene_fbos_.at(index).end();
+        scene_fbos_.at(index).begin();
+        ofClear(0);
+        scene_list_.at(active_scene_lsit_.at(index))->draw();
+        scene_fbos_.at(index).end();
 
-            glEnable(GL_BLEND);
-            glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
-            ofSetColor(255, 255, 255, 255 * scenen_params_.at(index).alpha_);
-            scene_fbos_.at(index).draw(0, 0);
-        }
+        glEnable(GL_BLEND);
+        glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
+        ofSetColor(255, 255, 255, 255 * scenen_params_.at(index).alpha_);
+        scene_fbos_.at(index).draw(0, 0);
     }
 }
 
+ofTexture& ofApp::getMonitor(const int index) {
+    return scene_fbos_.at(index).getTexture();
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     if ((key >= '0') && (key <= '9')) {

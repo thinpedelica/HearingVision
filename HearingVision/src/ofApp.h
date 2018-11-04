@@ -15,6 +15,7 @@ public:
     void setup();
     void update();
     void draw();
+    ofTexture& getMonitor(const int index);
 
     void keyPressed(int key);
     void windowResized(int w, int h);

@@ -187,6 +187,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\nanoKon2.cpp" />
+    <ClCompile Include="src\ofMonitor.cpp" />
     <ClCompile Include="src\ofxFft\libs\kiss\kiss_fft.c" />
     <ClCompile Include="src\ofxFft\libs\kiss\kiss_fftr.c" />
     <ClCompile Include="src\ofxFft\src\ofxEasyFft.cpp" />
@@ -215,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanoKon2.h" />
+    <ClInclude Include="src\ofMonitor.h" />
     <ClInclude Include="src\ofxFft\libs\fftw\include\fftw3.h" />
     <ClInclude Include="src\ofxFft\libs\kiss\kiss_fft.h" />
     <ClInclude Include="src\ofxFft\libs\kiss\kiss_fftr.h" />
