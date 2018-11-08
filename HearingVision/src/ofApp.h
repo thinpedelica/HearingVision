@@ -28,8 +28,14 @@ private:
     void setupScenes();
     void changeScene();
     void updateScene();
+
     void updateSceneParam();
     void clearSceneParam();
+
+    void updateTriggerState(const bool button,
+                            SceneParam::TriggerState& state);
+    void clearTriggerState(SceneParam::TriggerState& state);
+
     bool isSceneNoValid(int scene_no);
 
     using ScenePtr  = std::unique_ptr<BaseScene>;

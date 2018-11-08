@@ -3,6 +3,7 @@
 #include "scene/box/box.h"
 #include "scene/fraltal/fractal.h"
 #include "scene/flash/flash.h"
+#include "scene/grid/grid.h"
 #include "scene/lissajous/lissajous.h"
 
 //--------------------------------------------------------------
@@ -13,7 +14,7 @@ void ofApp::setup() {
 
     pfft_ = std::make_shared<ProcessFFT>();
     pfft_->setup();
-    pfft_->setNumFFTBins(128);
+    pfft_->setNumFFTBins(256);
     pfft_->setNormalize(true);
 
     win_cache_ = std::make_shared<ofRectangle>();
@@ -63,16 +64,10 @@ void ofApp::updateScene() {
 
 void ofApp::updateSceneParam() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (nano_kon_.buttonsRec.at(index)) {
-            if (scenen_params_.at(index).reset_ == SceneParam::TriggerState::kOff) {
-                scenen_params_.at(index).reset_ = SceneParam::TriggerState::kOn;
-            }
-        } else {
-            if (scenen_params_.at(index).reset_ == SceneParam::TriggerState::kWaitForOff) {
-                scenen_params_.at(index).reset_ = SceneParam::TriggerState::kOff;
-            }
-        }
-
+        updateTriggerState(nano_kon_.buttonsMute.at(index),
+                           scenen_params_.at(index).change_mode_);
+        updateTriggerState(nano_kon_.buttonsRec.at(index),
+                           scenen_params_.at(index).reset_);
         scenen_params_.at(index).alpha_ = nano_kon_.sliders.at(index) * kControlResolution;
         scenen_params_.at(index).level_ = nano_kon_.knobs.at(index)   * kControlResolution;
     }
@@ -80,9 +75,27 @@ void ofApp::updateSceneParam() {
 
 void ofApp::clearSceneParam() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (scenen_params_.at(index).reset_ == SceneParam::TriggerState::kOn) {
-            scenen_params_.at(index).reset_ = SceneParam::TriggerState::kWaitForOff;
+        clearTriggerState(scenen_params_.at(index).change_mode_);
+        clearTriggerState(scenen_params_.at(index).reset_);
+    }
+}
+
+void ofApp::updateTriggerState(const bool button,
+                               SceneParam::TriggerState& state) {
+    if (button) {
+        if (state == SceneParam::TriggerState::kOff) {
+            state = SceneParam::TriggerState::kOn;
         }
+    } else {
+        if (state == SceneParam::TriggerState::kWaitForOff) {
+            state = SceneParam::TriggerState::kOff;
+        }
+    }
+}
+
+void ofApp::clearTriggerState(SceneParam::TriggerState& state) {
+    if (state == SceneParam::TriggerState::kOn) {
+        state = SceneParam::TriggerState::kWaitForOff;
     }
 }
 
@@ -128,6 +141,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<FractalScene>());
     scene_list_.push_back(std::make_unique<FlashScene>());
     scene_list_.push_back(std::make_unique<LissajousScene>());
+    scene_list_.push_back(std::make_unique<GridScene>());
 }
 
 void ofApp::setupScenes() {
