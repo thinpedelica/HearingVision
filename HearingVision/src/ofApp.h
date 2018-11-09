@@ -21,8 +21,9 @@ public:
     void windowResized(int w, int h);
 
 private:
-    static constexpr size_t kDrawableSceneNum = 2;
-    static constexpr float  kControlResolution = 1.f / 127.f;
+    static constexpr size_t kDrawableSceneNum    = 2;
+    static constexpr size_t kSystemControlOffset = 6;
+    static constexpr float  kControlResolution   = 1.f / 127.f;
 
     void createScenes();
     void setupScenes();

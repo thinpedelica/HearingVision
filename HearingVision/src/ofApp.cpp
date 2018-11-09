@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 #include "scene/box/box.h"
+#include "scene/circle/circle.h"
 #include "scene/fraltal/fractal.h"
 #include "scene/flash/flash.h"
 #include "scene/grid/grid.h"
@@ -68,8 +69,10 @@ void ofApp::updateSceneParam() {
                            scenen_params_.at(index).change_mode_);
         updateTriggerState(nano_kon_.buttonsRec.at(index),
                            scenen_params_.at(index).reset_);
-        scenen_params_.at(index).alpha_ = nano_kon_.sliders.at(index) * kControlResolution;
-        scenen_params_.at(index).level_ = nano_kon_.knobs.at(index)   * kControlResolution;
+        scenen_params_.at(index).alpha_     = nano_kon_.sliders.at(index) * kControlResolution;
+        scenen_params_.at(index).level_     = nano_kon_.knobs.at(index)   * kControlResolution;
+        scenen_params_.at(index).color_     = nano_kon_.sliders.at(kSystemControlOffset + index) * kControlResolution;
+        scenen_params_.at(index).threshold_ = nano_kon_.knobs.at(kSystemControlOffset + index)   * kControlResolution;
     }
 }
 
@@ -142,6 +145,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<FlashScene>());
     scene_list_.push_back(std::make_unique<LissajousScene>());
     scene_list_.push_back(std::make_unique<GridScene>());
+    scene_list_.push_back(std::make_unique<CircleScene>());
 }
 
 void ofApp::setupScenes() {

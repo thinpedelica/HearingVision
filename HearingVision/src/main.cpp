@@ -4,9 +4,8 @@
 
 //========================================================================
 int main( ){
-    ofSetupOpenGL(1280, 720, OF_WINDOW);
-
     ofGLFWWindowSettings settings;
+    settings.setGLVersion(4, 3);
 
     settings.width = 1280;
     settings.height = 720;
