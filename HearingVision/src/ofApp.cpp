@@ -6,12 +6,15 @@
 #include "scene/flash/flash.h"
 #include "scene/grid/grid.h"
 #include "scene/lissajous/lissajous.h"
+#include "scene/mandala/mandala.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     ofSetBackgroundColor(0);
+    ofSetCircleResolution(64);
+    ofEnableSmoothing();
 
     pfft_ = std::make_shared<ProcessFFT>();
     pfft_->setup();
@@ -146,6 +149,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<LissajousScene>());
     scene_list_.push_back(std::make_unique<GridScene>());
     scene_list_.push_back(std::make_unique<CircleScene>());
+    scene_list_.push_back(std::make_unique<MandalaScene>());
 }
 
 void ofApp::setupScenes() {
