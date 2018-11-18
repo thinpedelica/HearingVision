@@ -14,8 +14,8 @@ public:
     virtual void reset();
 
 private:
-    static constexpr size_t kGridRow = 256;
-    static constexpr size_t kGridCol = 256;
+    static constexpr size_t kGridRow = 128;
+    static constexpr size_t kGridCol = 128;
     static constexpr size_t kGridNum = kGridRow * kGridCol;
     static constexpr float  kGridRowHalf = kGridRow / 2;
     static constexpr float  kGridColHalf = kGridCol / 2;

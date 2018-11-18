@@ -64,6 +64,10 @@ void GridScene::update(SceneParam scene_param) {
     fft_history_.push_back(pfft_->getSpectrum());
     fft_history_.erase(fft_history_.begin(), fft_history_.begin() + 1);
 
+    if (scene_param.reset_ == SceneParam::TriggerState::kOn) {
+        reset();
+    }
+
     changeMode(scene_param);
 
     for (int i = 0; i < kGridCol; ++i) {
@@ -77,7 +81,7 @@ void GridScene::update(SceneParam scene_param) {
             color_list_.at(kGridCol * i + j).set(0.5 + 0.5 * fft_val,
                                                  0.8,
                                                  1.0,
-                                                 0.2 + 0.8 * fft_val);
+                                                 0.5 + fft_val);
         }
     }
 
@@ -96,10 +100,6 @@ void GridScene::update(SceneParam scene_param) {
 
 //--------------------------------------------------------------
 void GridScene::draw() {
-    ofPushMatrix();
-    ofTranslate(win_cache_->getWidth()  * 0.5f,
-                win_cache_->getHeight() * 0.5f);
-
     cam_.begin();
     cam_.setFov(fov_);
     cam_.lookAt(target_);
@@ -118,7 +118,6 @@ void GridScene::draw() {
 
     roll_cam_.end();
     cam_.end();
-    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
@@ -137,10 +136,10 @@ void GridScene::resetCamPos(const size_t index) {
 void GridScene::initializeCamPosList() {
     cam_pos_list_.push_back(CamPose( 60.0, ofVec3f(  0.0, 0.0,   0.0)));
     cam_pos_list_.push_back(CamPose( 30.0, ofVec3f(-10.0, 0.0,   0.0)));
-    cam_pos_list_.push_back(CamPose(150.0, ofVec3f(  0.0, 0.0,   0.0)));
-    cam_pos_list_.push_back(CamPose(120.0, ofVec3f(  0.0, 0.0, 150.0)));
-    cam_pos_list_.push_back(CamPose(160.0, ofVec3f(  0.0, 0.0, 150.0)));
-    cam_pos_list_.push_back(CamPose(120.0, ofVec3f(-15.0, 0.0,   0.0)));
+    cam_pos_list_.push_back(CamPose(120.0, ofVec3f(  0.0, 0.0,   0.0)));
+    cam_pos_list_.push_back(CamPose(120.0, ofVec3f(  0.0, 0.0, 120.0)));
+    cam_pos_list_.push_back(CamPose(120.0, ofVec3f(  0.0, 0.0, 170.0)));
+    cam_pos_list_.push_back(CamPose( 90.0, ofVec3f(-30.0, 0.0,   0.0)));
     cam_pos_list_.push_back(CamPose( 90.0, ofVec3f(  0.0, 0.0,   0.0)));
 }
 
