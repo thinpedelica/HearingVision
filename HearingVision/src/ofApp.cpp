@@ -7,6 +7,7 @@
 #include "scene/grid/grid.h"
 #include "scene/lissajous/lissajous.h"
 #include "scene/mandala/mandala.h"
+#include "scene/plsphere/plsphere.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -150,6 +151,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<GridScene>());
     scene_list_.push_back(std::make_unique<CircleScene>());
     scene_list_.push_back(std::make_unique<MandalaScene>());
+    scene_list_.push_back(std::make_unique<PLSphereScene>());
 }
 
 void ofApp::setupScenes() {
