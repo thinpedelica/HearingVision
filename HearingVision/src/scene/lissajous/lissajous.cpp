@@ -1,8 +1,7 @@
 #include "lissajous.h"
 
 //--------------------------------------------------------------
-LissajousScene::LissajousScene() :
-  threshold_(kThreshold) {
+LissajousScene::LissajousScene() {
     // nop
 }
 
@@ -18,6 +17,14 @@ void LissajousScene::setup(std::shared_ptr<ProcessFFT> pfft,
     win_cache_ = win_cache;
     roll_cam_.setup();
     roll_cam_.setCamSpeed(0.1);
+
+    fbo_.allocate(win_cache_->getWidth(), win_cache_->getHeight());
+    window_num_list_.push_back(1);
+    window_num_list_.push_back(2);
+    window_num_list_.push_back(4);
+    window_num_list_.push_back(8);
+    window_num_index_ = 0;
+    setDrawInfo(window_num_list_.at(window_num_index_));
 
     lissajous_points_.resize(kLissajousPointNum);
 }
@@ -36,6 +43,14 @@ void LissajousScene::update(SceneParam scene_param) {
     }
 
     updateLissajousPoints();
+
+    if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
+        ++window_num_index_;
+        if (window_num_index_ >= window_num_list_.size()) {
+            window_num_index_ = 0;
+        }
+        setDrawInfo(window_num_list_.at(window_num_index_));
+    }
 }
 
 void LissajousScene::updateLissajousParamsUnderThreshold() {
@@ -68,6 +83,8 @@ void LissajousScene::updateLissajousPoints() {
 
 //--------------------------------------------------------------
 void LissajousScene::draw() {
+    fbo_.begin();
+    ofClear(0);
     roll_cam_.begin();
     ofBeginShape();
     ofSetColor(color_);
@@ -81,9 +98,47 @@ void LissajousScene::draw() {
     }
     ofEndShape();
     roll_cam_.end();
+    fbo_.end();
+
+    ofSetColor(255);
+    for (const auto& draw_info : draw_info_list_) {
+        fbo_.draw(draw_info.x, draw_info.y, draw_info.w, draw_info.h);
+    }
 }
 
 //--------------------------------------------------------------
 void LissajousScene::reset() {
-    // nop
+    fbo_.allocate(win_cache_->getWidth(), win_cache_->getHeight());
+    window_num_index_ = 0;
+    setDrawInfo(window_num_list_.at(window_num_index_));
+}
+
+void LissajousScene::setDrawInfo(const size_t draw_num) {
+    draw_info_list_.clear();
+    switch (draw_num) {
+        case 1:
+            draw_info_list_.push_back(DrawInfo(0, 0, win_cache_->getWidth(), win_cache_->getHeight()));
+            break;
+        case 2:
+            draw_info_list_.push_back(DrawInfo(0,                          0, win_cache_->getWidth() / 2, win_cache_->getHeight()));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() / 2, 0, win_cache_->getWidth() / 2, win_cache_->getHeight()));
+            break;
+        case 4:
+            draw_info_list_.push_back(DrawInfo(0,                          0,                           win_cache_->getWidth() / 2, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() / 2, 0,                           win_cache_->getWidth() / 2, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(0,                          win_cache_->getHeight() / 2, win_cache_->getWidth() / 2, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() / 2, win_cache_->getHeight() / 2, win_cache_->getWidth() / 2, win_cache_->getHeight() / 2));
+            break;
+        case 8:
+            draw_info_list_.push_back(DrawInfo(0,                              0, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 1 / 4, 0, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 2 / 4, 0, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 3 / 4, 0, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+
+            draw_info_list_.push_back(DrawInfo(0,                              win_cache_->getHeight() / 2, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 1 / 4, win_cache_->getHeight() / 2, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 2 / 4, win_cache_->getHeight() / 2, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 3 / 4, win_cache_->getHeight() / 2, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
+            break;
+    }
 }
