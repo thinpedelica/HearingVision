@@ -97,9 +97,13 @@ void CircleScene::update(SceneParam scene_param) {
         particle_velocity_ *= kDecelerationRatio;
     }
 
-    float hue_min = scene_param.color_ * 128.f;
-    float hue_max = hue_min + 128.f;
-    particle_color_.setHsb(ofMap(pfft_->getMidVal(), 0.0, 1.0, hue_min, hue_max), 255, 255, 128);
+    if (scene_param.color_ < 0.1f) {
+        particle_color_.set(255, 128);
+    } else {
+        float hue_min = scene_param.color_ * 128.f;
+        float hue_max = hue_min + 128.f;
+        particle_color_.setHsb(ofMap(pfft_->getMidVal(), 0.0, 1.0, hue_min, hue_max), 255, 255, 128);
+    }
     updateParticlePos(target_pos, particle_velocity_, is_move_particle);
 }
 
