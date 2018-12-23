@@ -217,6 +217,7 @@
     <ClCompile Include="src\scene\mandala\mandala.cpp" />
     <ClCompile Include="src\scene\mandala\mandala_util.cpp" />
     <ClCompile Include="src\scene\plsphere\plsphere.cpp" />
+    <ClCompile Include="src\scene\sinwave\sinwave.cpp" />
     <ClCompile Include="src\scene\util\particle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +267,7 @@
     <ClInclude Include="src\scene\mandala\mandala_util.h" />
     <ClInclude Include="src\scene\plsphere\plsphere.h" />
     <ClInclude Include="src\scene\scene_param.h" />
+    <ClInclude Include="src\scene\sinwave\sinwave.h" />
     <ClInclude Include="src\scene\util\particle.h" />
   </ItemGroup>
   <ItemGroup>
