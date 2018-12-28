@@ -154,7 +154,7 @@ void GridScene::updateFov() {
 }
 
 //--------------------------------------------------------------
-void GridScene::changeMode(SceneParam scene_param) {
+void GridScene::changeMode(const SceneParam& scene_param) {
     if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
         ++cam_pos_index_;
         if (cam_pos_index_ >= cam_pos_list_.size()) {
