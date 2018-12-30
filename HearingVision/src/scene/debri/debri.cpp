@@ -44,9 +44,8 @@ void DebriScene::setup(std::shared_ptr<ProcessFFT> pfft,
         sats_.at(i).set(r * cos(phi1)*cos(phi2), r * sin(phi1)*cos(phi2), r * sin(phi2));
     }
 
-    for (auto& color : color_list_) {
-        color.set(1.0, 1.0);
-    }
+    color_list_.assign(kDebriNum, ofFloatColor(1.0, 1.0));
+
     vbo_.setVertexData(sats_.data(), sats_.size(), GL_DYNAMIC_DRAW);
     vbo_.setColorData(color_list_.data(), color_list_.size(), GL_DYNAMIC_DRAW);
 }
@@ -72,9 +71,7 @@ void DebriScene::update(SceneParam scene_param) {
     }
 
     float alpha = ofMap(pfft_->getMidVal(), 0.0, 0.5, 0.6, 0.9);
-    for (auto& color : color_list_) {
-        color.set(1.0, alpha);
-    }
+    color_list_.assign(kDebriNum, ofFloatColor(1.0, alpha));
     vbo_.updateColorData(color_list_.data(), color_list_.size());
 }
 
