@@ -3,6 +3,7 @@
 #include "scene/box/box.h"
 #include "scene/circle/circle.h"
 #include "scene/debri/debri.h"
+#include "scene/equalizer/equalizer.h"
 #include "scene/fraltal/fractal.h"
 #include "scene/flash/flash.h"
 #include "scene/grid/grid.h"
@@ -149,6 +150,7 @@ void ofApp::windowResized(int w, int h) {
 void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<BoxScene>());
     scene_list_.push_back(std::make_unique<DebriScene>());
+    scene_list_.push_back(std::make_unique<EqualizerScene>());
     scene_list_.push_back(std::make_unique<FractalScene>());
     scene_list_.push_back(std::make_unique<FlashScene>());
     scene_list_.push_back(std::make_unique<LissajousScene>());

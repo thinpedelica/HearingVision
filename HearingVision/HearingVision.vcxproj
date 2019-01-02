@@ -211,6 +211,7 @@
     <ClCompile Include="src\scene\box\box.cpp" />
     <ClCompile Include="src\scene\circle\circle.cpp" />
     <ClCompile Include="src\scene\debri\debri.cpp" />
+    <ClCompile Include="src\scene\equalizer\equalizer.cpp" />
     <ClCompile Include="src\scene\flash\flash.cpp" />
     <ClCompile Include="src\scene\fraltal\fractal.cpp" />
     <ClCompile Include="src\scene\grid\grid.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="src\scene\box\box.h" />
     <ClInclude Include="src\scene\circle\circle.h" />
     <ClInclude Include="src\scene\debri\debri.h" />
+    <ClInclude Include="src\scene\equalizer\equalizer.h" />
     <ClInclude Include="src\scene\flash\flash.h" />
     <ClInclude Include="src\scene\fraltal\fractal.h" />
     <ClInclude Include="src\scene\grid\grid.h" />
