@@ -10,6 +10,7 @@
 #include "scene/lissajous/lissajous.h"
 #include "scene/mandala/mandala.h"
 #include "scene/plsphere/plsphere.h"
+#include "scene/psychedelica/psychedelica.h"
 #include "scene/river/river.h"
 #include "scene/sinwave/sinwave.h"
 
@@ -158,6 +159,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<CircleScene>());
     scene_list_.push_back(std::make_unique<MandalaScene>());
     scene_list_.push_back(std::make_unique<PLSphereScene>());
+    scene_list_.push_back(std::make_unique<PsychedelicaScene>());
     scene_list_.push_back(std::make_unique<RiverScene>());
     scene_list_.push_back(std::make_unique<SinWaveScene>());
 }
