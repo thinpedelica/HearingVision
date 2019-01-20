@@ -13,6 +13,7 @@
 #include "scene/psychedelica/psychedelica.h"
 #include "scene/river/river.h"
 #include "scene/sinwave/sinwave.h"
+#include "scene/walking/walking.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -162,6 +163,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<PsychedelicaScene>());
     scene_list_.push_back(std::make_unique<RiverScene>());
     scene_list_.push_back(std::make_unique<SinWaveScene>());
+    scene_list_.push_back(std::make_unique<WalkingScene>());
 }
 
 void ofApp::setupScenes() {
