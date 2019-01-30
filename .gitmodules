@@ -7,3 +7,6 @@
 [submodule "HearingVision/src/ofxRollingCam"]
 	path = HearingVision/src/ofxRollingCam
 	url = https://github.com/saebashi/ofxRollingCam
+[submodule "HearingVision/src/ofcPostGlitch"]
+	path = HearingVision/src/ofxPostGlitch
+	url = https://github.com/maxillacult/ofxPostGlitch.git
