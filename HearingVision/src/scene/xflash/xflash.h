@@ -3,10 +3,10 @@
 #include "../base_scene.h"
 #include "../util/particle.h"
 
-class FlashScene : public BaseScene {
+class XFlashScene : public BaseScene {
 public:
-    FlashScene();
-    ~FlashScene();
+    XFlashScene();
+    ~XFlashScene();
     virtual void setup(std::shared_ptr<ProcessFFT> pfft,
                        std::shared_ptr<ofRectangle> win_cache);
     virtual void update(SceneParam scene_param);

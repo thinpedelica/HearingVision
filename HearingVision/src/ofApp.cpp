@@ -6,15 +6,15 @@
 #include "scene/debri/debri.h"
 #include "scene/equalizer/equalizer.h"
 #include "scene/fractal/fractal.h"
-#include "scene/flash/flash.h"
 #include "scene/grid/grid.h"
 #include "scene/lissajous/lissajous.h"
 #include "scene/mandala/mandala.h"
-#include "scene/plsphere/plsphere.h"
 #include "scene/psychedelica/psychedelica.h"
+#include "scene/qsphere/qsphere.h"
 #include "scene/river/river.h"
 #include "scene/sinwave/sinwave.h"
 #include "scene/walking/walking.h"
+#include "scene/xflash/xflash.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -156,16 +156,16 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<DebriScene>());
     scene_list_.push_back(std::make_unique<EqualizerScene>());
     scene_list_.push_back(std::make_unique<FractalScene>());
-    scene_list_.push_back(std::make_unique<FlashScene>());
     scene_list_.push_back(std::make_unique<LissajousScene>());
     scene_list_.push_back(std::make_unique<GridScene>());
     scene_list_.push_back(std::make_unique<CircleScene>());
     scene_list_.push_back(std::make_unique<MandalaScene>());
-    scene_list_.push_back(std::make_unique<PLSphereScene>());
     scene_list_.push_back(std::make_unique<PsychedelicaScene>());
+    scene_list_.push_back(std::make_unique<QSphereScene>());
     scene_list_.push_back(std::make_unique<RiverScene>());
     scene_list_.push_back(std::make_unique<SinWaveScene>());
     scene_list_.push_back(std::make_unique<WalkingScene>());
+    scene_list_.push_back(std::make_unique<XFlashScene>());
 }
 
 void ofApp::setupScenes() {

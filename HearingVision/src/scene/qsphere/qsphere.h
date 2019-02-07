@@ -2,10 +2,10 @@
 
 #include "../base_scene.h"
 
-class PLSphereScene : public BaseScene {
+class QSphereScene : public BaseScene {
 public:
-    PLSphereScene();
-    ~PLSphereScene();
+    QSphereScene();
+    ~QSphereScene();
     virtual void setup(std::shared_ptr<ProcessFFT> pfft,
                        std::shared_ptr<ofRectangle> win_cache);
     virtual void update(SceneParam scene_param);

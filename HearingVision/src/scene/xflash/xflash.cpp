@@ -1,20 +1,20 @@
-#include "flash.h"
+#include "xflash.h"
 
 //--------------------------------------------------------------
-FlashScene::FlashScene() : 
+XFlashScene::XFlashScene() : 
     speed_(0.0f),
     friction_(0.1f) {
     // nop
 }
 
 //--------------------------------------------------------------
-FlashScene::~FlashScene() {
+XFlashScene::~XFlashScene() {
     // nop
 }
 
 //--------------------------------------------------------------
-void FlashScene::setup(std::shared_ptr<ProcessFFT> pfft,
-                       std::shared_ptr<ofRectangle> win_cache) {
+void XFlashScene::setup(std::shared_ptr<ProcessFFT> pfft,
+                        std::shared_ptr<ofRectangle> win_cache) {
 
     pfft_ = pfft;
     win_cache_ = win_cache;
@@ -23,7 +23,7 @@ void FlashScene::setup(std::shared_ptr<ProcessFFT> pfft,
     createParticle(kParticleNum);
 }
 
-void FlashScene::createBasePoint(const int num) {
+void XFlashScene::createBasePoint(const int num) {
     base_points_.resize(num);
     for (auto& point : base_points_) {
         point.x = ofRandom(win_cache_->getWidth());
@@ -31,7 +31,7 @@ void FlashScene::createBasePoint(const int num) {
     }
 }
 
-void FlashScene::createDotPoint(const int num) {
+void XFlashScene::createDotPoint(const int num) {
     dot_points_.resize(num);
     for (int i = 0; i < num; ++i) {
         int base_index = static_cast<int>(ofRandom(base_points_.size()));
@@ -40,7 +40,7 @@ void FlashScene::createDotPoint(const int num) {
     }
 }
 
-void FlashScene::createParticle(const int num) {
+void XFlashScene::createParticle(const int num) {
     particles_ptr_.reset(new Particles(num));
     ofVec2f velocity(0.f, 0.f);
     ofColor color(255);
@@ -53,7 +53,7 @@ void FlashScene::createParticle(const int num) {
 }
 
 //--------------------------------------------------------------
-void FlashScene::update(SceneParam scene_param) {
+void XFlashScene::update(SceneParam scene_param) {
     if (scene_param.reset_ == SceneParam::TriggerState::kOn) {
         reset();
     }
@@ -95,7 +95,7 @@ void FlashScene::update(SceneParam scene_param) {
 }
 
 //--------------------------------------------------------------
-void FlashScene::draw(){
+void XFlashScene::draw(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofSetColor(0, 0, 0, 70);
     ofRect(0, 0, win_cache_->getWidth(), win_cache_->getHeight());
@@ -112,7 +112,7 @@ void FlashScene::draw(){
    }
 }
 
-void FlashScene::drawLineBetweenDots(const float level_val) {
+void XFlashScene::drawLineBetweenDots(const float level_val) {
     int dot_index_max = static_cast<int>(ofMap(level_val,
                                                0.0f, 1.0f,
                                                dot_points_.size() * 0.1f, dot_points_.size() * 0.3));
@@ -123,7 +123,7 @@ void FlashScene::drawLineBetweenDots(const float level_val) {
     }
 }
 
-void FlashScene::drawCircleOnDots(const float level_val) {
+void XFlashScene::drawCircleOnDots(const float level_val) {
     int dot_size_max = static_cast<int>(ofMap(level_val,
                                               0.0f, 1.0f,
                                               1.0f, 50.0f));
@@ -138,7 +138,7 @@ void FlashScene::drawCircleOnDots(const float level_val) {
 }
 
 //--------------------------------------------------------------
-void FlashScene::reset(){
+void XFlashScene::reset(){
     createBasePoint(kBasePointNum);
     createParticle(kParticleNum);
 }

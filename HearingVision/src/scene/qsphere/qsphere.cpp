@@ -1,19 +1,19 @@
-#include "plsphere.h"
+#include "qsphere.h"
 
 
 //--------------------------------------------------------------
-PLSphereScene::PLSphereScene() {
+QSphereScene::QSphereScene() {
     // nop
 }
 
 //--------------------------------------------------------------
-PLSphereScene::~PLSphereScene() {
+QSphereScene::~QSphereScene() {
     // nop
 }
 
 //--------------------------------------------------------------
-void PLSphereScene::setup(std::shared_ptr<ProcessFFT> pfft,
-                     std::shared_ptr<ofRectangle> win_cache) {
+void QSphereScene::setup(std::shared_ptr<ProcessFFT> pfft,
+                         std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
 
@@ -35,7 +35,7 @@ void PLSphereScene::setup(std::shared_ptr<ProcessFFT> pfft,
 }
 
 //--------------------------------------------------------------
-void PLSphereScene::update(SceneParam scene_param) {
+void QSphereScene::update(SceneParam scene_param) {
     if ((ofGetFrameNum() % kEventFrameCount) == 0) {
         createTargetPoints(scene_param.level_);
     }
@@ -45,14 +45,14 @@ void PLSphereScene::update(SceneParam scene_param) {
     point_vbo_.updateColorData(color_list_.data(), kPointsNum);
 }
 
-void PLSphereScene::updatePointsPos() {
+void QSphereScene::updatePointsPos() {
     for (size_t index = 0; index < kPointsNum; ++index) {
         cur_points_.at(index) = 
             cur_points_.at(index).getInterpolated(target_points_.at(index), 0.3);
     }
 }
 
-void PLSphereScene::updatePointsColor(const float base_color) {
+void QSphereScene::updatePointsColor(const float base_color) {
     ofColor color(255, 128);
     for (size_t index = 0; index < kPointsNum; ++index) {
         if (base_color < 0.1f) {
@@ -68,7 +68,7 @@ void PLSphereScene::updatePointsColor(const float base_color) {
     }
 }
 
-void PLSphereScene::conectLines() {
+void QSphereScene::conectLines() {
     for (size_t i = 0; i < kPointsNum; ++i) {
         for (size_t j = 0; j < kLinesPerPoint; ++j) {
             size_t point = static_cast<size_t>(ofRandom(0.f, kPointsNum));
@@ -77,7 +77,7 @@ void PLSphereScene::conectLines() {
     }
 }
 
-void PLSphereScene::createTargetPoints(const float level) {
+void QSphereScene::createTargetPoints(const float level) {
     std::vector<float> spectrum = pfft_->getSpectrum();
 
     size_t index = 0;
@@ -96,7 +96,7 @@ void PLSphereScene::createTargetPoints(const float level) {
 }
 
 //--------------------------------------------------------------
-void PLSphereScene::draw() {
+void QSphereScene::draw() {
     ofTranslate(win_cache_->getWidth() * 0.5, win_cache_->getHeight() * 0.5);
     ofEnableBlendMode(OF_BLENDMODE_ADD);
 
@@ -114,6 +114,6 @@ void PLSphereScene::draw() {
 }
 
 //--------------------------------------------------------------
-void PLSphereScene::reset() {
+void QSphereScene::reset() {
     // nop
 }
