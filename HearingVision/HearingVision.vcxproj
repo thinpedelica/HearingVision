@@ -204,7 +204,7 @@
     <ClCompile Include="src\scene\debri\debri.cpp" />
     <ClCompile Include="src\scene\equalizer\equalizer.cpp" />
     <ClCompile Include="src\scene\flash\flash.cpp" />
-    <ClCompile Include="src\scene\fraltal\fractal.cpp" />
+    <ClCompile Include="src\scene\fractal\fractal.cpp" />
     <ClCompile Include="src\scene\grid\grid.cpp" />
     <ClCompile Include="src\scene\lissajous\lissajous.cpp" />
     <ClCompile Include="src\scene\mandala\mandala.cpp" />
@@ -260,7 +260,7 @@
     <ClInclude Include="src\scene\debri\debri.h" />
     <ClInclude Include="src\scene\equalizer\equalizer.h" />
     <ClInclude Include="src\scene\flash\flash.h" />
-    <ClInclude Include="src\scene\fraltal\fractal.h" />
+    <ClInclude Include="src\scene\fractal\fractal.h" />
     <ClInclude Include="src\scene\grid\grid.h" />
     <ClInclude Include="src\scene\lissajous\lissajous.h" />
     <ClInclude Include="src\scene\mandala\mandala.h" />

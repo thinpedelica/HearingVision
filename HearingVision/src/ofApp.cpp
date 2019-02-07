@@ -5,7 +5,7 @@
 #include "scene/circle/circle.h"
 #include "scene/debri/debri.h"
 #include "scene/equalizer/equalizer.h"
-#include "scene/fraltal/fractal.h"
+#include "scene/fractal/fractal.h"
 #include "scene/flash/flash.h"
 #include "scene/grid/grid.h"
 #include "scene/lissajous/lissajous.h"
