@@ -1,5 +1,6 @@
 #include "ofApp.h"
 
+#include "scene/alphabeat/alphabeat.h"
 #include "scene/box/box.h"
 #include "scene/circle/circle.h"
 #include "scene/debri/debri.h"
@@ -150,6 +151,7 @@ void ofApp::windowResized(int w, int h) {
 
 //--------------------------------------------------------------
 void ofApp::createScenes() {
+    scene_list_.push_back(std::make_unique<AlphabeatScene>());
     scene_list_.push_back(std::make_unique<BoxScene>());
     scene_list_.push_back(std::make_unique<DebriScene>());
     scene_list_.push_back(std::make_unique<EqualizerScene>());
