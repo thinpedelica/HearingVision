@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../base_scene.h"
+#include "../util/counter.h"
 #include "ofxPostGlitch.h"
 
 class AlphabeatScene : public BaseScene {
@@ -14,8 +15,6 @@ public:
     virtual void reset();
 
 private:
-    static constexpr float kStringChangeThreshold = 1.f;
-    static constexpr float kStringUpdateCount     = 0.01f;
     void setupFont();
     void updateFont();
     void setupStrings();
@@ -30,8 +29,7 @@ private:
     size_t current_string_{ 0 };
     size_t current_font_{ 0 };
 
-    float string_change_count_{0.f};
-    float string_change_threshold_{0.1f};
+    Counter counter_;
 
     ofFbo fbo_;
     ofxPostGlitch glitch_;

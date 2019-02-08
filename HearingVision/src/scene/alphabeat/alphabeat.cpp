@@ -111,7 +111,7 @@ void AlphabeatScene::update(SceneParam scene_param) {
     }
 
     level_ = scene_param.level_;
-    string_change_threshold_ = kStringChangeThreshold - scene_param.threshold_;
+    counter_.setThreshold(scene_param.threshold_);
 
     updateFont();
     updateStrings();
@@ -138,9 +138,8 @@ void AlphabeatScene::updateFont() {
 }
 
 void AlphabeatScene::updateStrings() {
-    string_change_count_ += kStringUpdateCount;
-    if (string_change_count_ > string_change_threshold_) {
-        string_change_count_ = 0.f;
+    bool ret = counter_.update();
+    if (ret) {
         if (level_ < 0.4) {
             current_string_ += 1;
             if (current_string_ == alphabet_list_.size()) {
@@ -150,7 +149,7 @@ void AlphabeatScene::updateStrings() {
             current_string_ = static_cast<size_t>(ofRandom(alphabet_list_.size() - 1));
             updateFx();
         }
-    } else if (string_change_count_ > (string_change_threshold_ * 0.3f)) {
+    } else if (counter_.isOver(0.3f)) {
         resetFx();
     }
 }
