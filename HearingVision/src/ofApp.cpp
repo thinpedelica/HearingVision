@@ -35,7 +35,6 @@ void ofApp::setup() {
     nano_kon_.setup();
 
     // setup scene
-    selecting_scene_no_ = 0;
     createScenes();
     setupScenes();
 
@@ -133,10 +132,9 @@ ofTexture& ofApp::getMonitor(const int index) {
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-    if ((key >= '0') && (key <= '9')) {
-        int scene_no = key - 0x30;
-        if (isSceneNoValid(scene_no)) {
-            selecting_scene_no_ = scene_no;
+    if ((key >= 'a') && (key <= 'z')) {
+        if (key_vs_scene_no_.count(key)) {
+            selecting_scene_no_ = key_vs_scene_no_.at(key);
         }
     }
 }
@@ -152,20 +150,49 @@ void ofApp::windowResized(int w, int h) {
 //--------------------------------------------------------------
 void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<AlphabeatScene>());
+    key_vs_scene_no_.emplace('a', scene_list_.size() -1);
+
     scene_list_.push_back(std::make_unique<BoxScene>());
-    scene_list_.push_back(std::make_unique<DebriScene>());
-    scene_list_.push_back(std::make_unique<EqualizerScene>());
-    scene_list_.push_back(std::make_unique<FractalScene>());
-    scene_list_.push_back(std::make_unique<LissajousScene>());
-    scene_list_.push_back(std::make_unique<GridScene>());
+    key_vs_scene_no_.emplace('b', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<CircleScene>());
+    key_vs_scene_no_.emplace('c', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<DebriScene>());
+    key_vs_scene_no_.emplace('d', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<EqualizerScene>());
+    key_vs_scene_no_.emplace('e', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<FractalScene>());
+    key_vs_scene_no_.emplace('f', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<GridScene>());
+    key_vs_scene_no_.emplace('g', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<LissajousScene>());
+    key_vs_scene_no_.emplace('l', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<MandalaScene>());
+    key_vs_scene_no_.emplace('m', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<PsychedelicaScene>());
+    key_vs_scene_no_.emplace('p', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<QSphereScene>());
+    key_vs_scene_no_.emplace('q', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<RiverScene>());
+    key_vs_scene_no_.emplace('r', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<SinWaveScene>());
+    key_vs_scene_no_.emplace('s', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<WalkingScene>());
+    key_vs_scene_no_.emplace('w', scene_list_.size() - 1);
+
     scene_list_.push_back(std::make_unique<XFlashScene>());
+    key_vs_scene_no_.emplace('x', scene_list_.size() - 1);
 }
 
 void ofApp::setupScenes() {
@@ -174,11 +201,3 @@ void ofApp::setupScenes() {
     }
 }
 
-bool ofApp::isSceneNoValid(int scene_no) {
-    if ((scene_no >= 0) &&
-        (scene_no < scene_list_.size())) {
-        return true;
-    } else {
-        return false;
-    }
-}

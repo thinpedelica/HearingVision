@@ -6,6 +6,7 @@
 
 #include "scene/base_scene.h"
 #include "scene/scene_param.h"
+#include <map>
 #include <vector>
 #include <memory>
 
@@ -37,12 +38,12 @@ private:
                             SceneParam::TriggerState& state);
     void clearTriggerState(SceneParam::TriggerState& state);
 
-    bool isSceneNoValid(int scene_no);
-
     using ScenePtr  = std::unique_ptr<BaseScene>;
     using SceneList = std::vector<ScenePtr>;
+    using KeyVsSceneNo = std::map<int, int>;
     SceneList scene_list_;
-    int selecting_scene_no_;
+    KeyVsSceneNo  key_vs_scene_no_;
+    int selecting_scene_no_{0};
 
     std::vector<ofFbo> scene_fbos_;
     std::vector<size_t> active_scene_lsit_;
