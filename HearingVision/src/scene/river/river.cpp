@@ -51,7 +51,8 @@ void RiverScene::update(SceneParam scene_param) {
     }
 
     translateCamPos(scene_param);
-    base_color_ = 255. * scene_param.color_;
+    base_color_h_ = 255. * scene_param.color_;
+    color_s_      = 255. * pfft_->getMidVal();
 
     for (int i = 0; i < kGridCol; ++i) {
         for (int j = 0; j < kGridRow; ++j) {
@@ -92,7 +93,7 @@ void RiverScene::draw() {
 
     ofEnableAlphaBlending();
     for (int i = 0; i < kGridRow; ++i) {
-        ofSetColor(ofColor::fromHsb(base_color_ + i / 4., 255, 255, 160));
+        ofSetColor(ofColor::fromHsb(base_color_h_ + i / 4., 64 + color_s_, 255, 160));
         pline_row_.at(i).draw();
     }
 
@@ -114,11 +115,8 @@ void RiverScene::resetCamPos(const size_t index) {
 }
 
 void RiverScene::initializeCamPosList() {
-    cam_pos_list_.push_back(CamPose( 60.0, ofVec3f(   0.0,    0.0,   0.0)));
-    cam_pos_list_.push_back(CamPose(110.0, ofVec3f(-145.0,  -30.0,   0.0)));
-    cam_pos_list_.push_back(CamPose( 60.0, ofVec3f(-145.0, -145.0,   0.0)));
-    cam_pos_list_.push_back(CamPose( 60.0, ofVec3f(   0.0,    0.0, 140.0)));
-    cam_pos_list_.push_back(CamPose( 45.0, ofVec3f(  20.0,    0.0,  65.0)));
+    cam_pos_list_.push_back(CamPose(45.0, ofVec3f(  20.0,    0.0,  65.0)));
+    cam_pos_list_.push_back(CamPose(60.0, ofVec3f(-145.0, -145.0,   0.0)));
 }
 
 void RiverScene::translateCamPos(const SceneParam& scene_param) {

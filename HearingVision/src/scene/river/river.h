@@ -25,7 +25,7 @@ private:
 
     static constexpr float kFOVBase = 60.f;
     static constexpr float kCamPosBaseX = 0.f;
-    static constexpr float kCamPosBaseY = -15.f;
+    static constexpr float kCamPosBaseY = -30.f;
     static constexpr float kCamPosBaseZ = 0.f;
 
     static constexpr float kTransCamSpeed = 1.f;
@@ -57,5 +57,6 @@ private:
     std::vector<CamPose> cam_pos_list_;
     size_t cam_pos_index_;
 
-    float base_color_{0.};
+    float base_color_h_{ 0. };
+    float color_s_{ 0. };
 };
