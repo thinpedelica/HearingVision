@@ -81,7 +81,7 @@ void GridScene::update(SceneParam scene_param) {
             color_list_.at(kGridCol * i + j).set(0.5 + 0.5 * fft_val,
                                                  0.8,
                                                  1.0,
-                                                 0.5 + fft_val);
+                                                 0.7 + fft_val);
         }
     }
 
