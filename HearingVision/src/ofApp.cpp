@@ -13,6 +13,7 @@
 #include "scene/qsphere/qsphere.h"
 #include "scene/river/river.h"
 #include "scene/sinwave/sinwave.h"
+#include "scene/tousle/tousle.h"
 #include "scene/walking/walking.h"
 #include "scene/xflash/xflash.h"
 
@@ -187,6 +188,9 @@ void ofApp::createScenes() {
 
     scene_list_.push_back(std::make_unique<SinWaveScene>());
     key_vs_scene_no_.emplace('s', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<TousleScene>());
+    key_vs_scene_no_.emplace('t', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<WalkingScene>());
     key_vs_scene_no_.emplace('w', scene_list_.size() - 1);
