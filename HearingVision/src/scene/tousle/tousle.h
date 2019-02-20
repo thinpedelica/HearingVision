@@ -33,4 +33,6 @@ private:
     CircleList circle_list_; 
 
     Counter counter_;
+
+    float sampling_step_{10.f};
 };

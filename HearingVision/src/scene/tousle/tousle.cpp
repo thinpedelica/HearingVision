@@ -27,19 +27,21 @@ void TousleScene::update(SceneParam scene_param) {
         addCircleList();
     }
 
+    sampling_step_ = 10.f - (9.f * scene_param.level_);
+
     updateCircleList();
 }
 
 void TousleScene::addCircleList() {
     std::vector<float> values = pfft_->getSpectrum();
-    for (const float value : values) {
-        if (value > 0.2) {
+    for (size_t i = 0; i < values.size(); i += sampling_step_) {
+        if (values.at(i) > 0.2) {
             float speed_direct = 1.0;
             if (ofRandomf() > 0.5) speed_direct = -1.0;
             Circle circle(ofVec2f(win_cache_->getWidth() * 0.5,
                                   win_cache_->getHeight() * 0.75 + ofRandomf() * 100.f),
-                          ofMap(value, 0.1f, 0.5f, 50.f, 200.f),
-                          10.f * value * speed_direct);
+                          ofMap(values.at(i), 0.1f, 0.5f, 50.f, 200.f),
+                          10.f * values.at(i) * speed_direct);
             circle_list_.push_back(circle);
         }
     }
