@@ -23,6 +23,8 @@ void TousleScene::setup(std::shared_ptr<ProcessFFT> pfft,
 
 //--------------------------------------------------------------
 void TousleScene::update(SceneParam scene_param) {
+    changeMode(scene_param.change_mode_);
+
     counter_.setThreshold(scene_param.threshold_);
     bool ret = counter_.update();
     if (ret) {

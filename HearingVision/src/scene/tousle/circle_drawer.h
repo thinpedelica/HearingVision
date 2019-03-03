@@ -57,6 +57,7 @@ public:
                    const float level) override;
 
 private:
+    std::vector<float> createDrawPosXList() const;
 
     CircleList circle_list_;
     std::shared_ptr<ofRectangle> win_cache_;
