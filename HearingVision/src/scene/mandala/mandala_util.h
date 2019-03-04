@@ -36,6 +36,8 @@ public:
                      const float saturation,
                      const float brightness,
                      const float alpha);
+    void changeColor(const float alpha);
+
     void changeSize(const float width, 
                     const float height, 
                     const float stroke_weight);
