@@ -3,7 +3,6 @@
 constexpr float    BoxScene::kCamSpeed;
 constexpr size_t   BoxScene::kBoxNum;
 constexpr float    BoxScene::kBoxSizeBase;
-constexpr uint32_t BoxScene::kEventFrameCount;
 
 //--------------------------------------------------------------
 BoxScene::BoxScene() {
@@ -29,7 +28,9 @@ void BoxScene::setup(std::shared_ptr<ProcessFFT> pfft,
 void BoxScene::update(SceneParam scene_param) {
     roll_cam_.update();
 
-    if ((ofGetFrameNum() % kEventFrameCount) == 0) {
+    counter_.setThreshold(scene_param.threshold_);
+    bool ret = counter_.update();
+    if (ret) {
         updateBoxSize();
         updateCamPos();
     }
