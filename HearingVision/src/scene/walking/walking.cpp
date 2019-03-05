@@ -210,7 +210,7 @@ std::vector<size_t> WalkingScene::getDrawIndexes() {
 }
 
 //--------------------------------------------------------------
-void WalkingScene::reset() {
+void WalkingScene::resize() {
     time_ = 0.f;
     for (int i = 0; i < kAreaNum; ++i) {
         resetBuildings(i);

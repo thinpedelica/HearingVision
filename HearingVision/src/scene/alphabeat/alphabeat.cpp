@@ -106,10 +106,6 @@ void AlphabeatScene::setupStrings() {
 
 //--------------------------------------------------------------
 void AlphabeatScene::update(SceneParam scene_param) {
-    if (scene_param.reset_ == SceneParam::TriggerState::kOn) {
-        reset();
-    }
-
     level_ = scene_param.level_;
     counter_.setThreshold(scene_param.threshold_);
 
@@ -194,7 +190,7 @@ void AlphabeatScene::draw() {
 }
 
 //--------------------------------------------------------------
-void AlphabeatScene::reset() {
+void AlphabeatScene::resize() {
     fbo_.allocate(win_cache_->getWidth(), win_cache_->getHeight());
     glitch_.setup(&fbo_);
 }

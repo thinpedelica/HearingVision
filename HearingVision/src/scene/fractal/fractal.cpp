@@ -64,6 +64,3 @@ void FractalScene::divideRect(float x, float y, float w, float h, int n) {
 }
 
 //--------------------------------------------------------------
-void FractalScene::reset() {
-    // nop
-}

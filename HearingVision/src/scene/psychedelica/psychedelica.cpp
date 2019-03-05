@@ -56,6 +56,3 @@ void PsychedelicaScene::draw() {
 }
 
 //--------------------------------------------------------------
-void PsychedelicaScene::reset() {
-    // nop
-}

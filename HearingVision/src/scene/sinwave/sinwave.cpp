@@ -54,6 +54,3 @@ void SinWaveScene::draw() {
 }
 
 //--------------------------------------------------------------
-void SinWaveScene::reset() {
-    // nop
-}

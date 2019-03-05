@@ -140,6 +140,6 @@ void RiverScene::updateFov() {
 }
 
 //--------------------------------------------------------------
-void RiverScene::reset() {
+void RiverScene::resize() {
     resetCamPos(cam_pos_index_);
 }

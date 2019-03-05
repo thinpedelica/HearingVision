@@ -114,6 +114,3 @@ void QSphereScene::draw() {
 }
 
 //--------------------------------------------------------------
-void QSphereScene::reset() {
-    // nop
-}

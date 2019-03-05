@@ -138,7 +138,7 @@ void XFlashScene::drawCircleOnDots(const float level_val) {
 }
 
 //--------------------------------------------------------------
-void XFlashScene::reset(){
+void XFlashScene::resize(){
     createBasePoint(kBasePointNum);
     createParticle(kParticleNum);
 }

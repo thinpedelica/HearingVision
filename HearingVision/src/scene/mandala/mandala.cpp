@@ -37,6 +37,3 @@ void MandalaScene::draw() {
 }
 
 //--------------------------------------------------------------
-void MandalaScene::reset() {
-    // nop
-}

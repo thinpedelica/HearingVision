@@ -41,11 +41,6 @@ void TousleScene::draw() {
 }
 
 //--------------------------------------------------------------
-void TousleScene::reset() {
-    // nop
-}
-
-//--------------------------------------------------------------
 void TousleScene::changeMode(const SceneParam::TriggerState is_change) {
     if (is_change == SceneParam::TriggerState::kOn) {
         if (mode_ == TousleMode::kMove) {

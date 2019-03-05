@@ -65,6 +65,3 @@ void EqualizerScene::draw() {
 }
 
 //--------------------------------------------------------------
-void EqualizerScene::reset() {
-    // nop
-}

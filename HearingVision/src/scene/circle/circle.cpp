@@ -153,6 +153,3 @@ void CircleScene::drawParticle(const ofColor& color) {
 }
 
 //--------------------------------------------------------------
-void CircleScene::reset(){ 
-    // nop
-}

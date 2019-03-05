@@ -143,6 +143,7 @@ void ofApp::keyPressed(int key) {
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h) {
     win_cache_->setSize(w, h);
+    resizeScenes();
     for (auto& scene_fbo : scene_fbos_) {
         scene_fbo.allocate(win_cache_->getWidth(), win_cache_->getHeight());
     }
@@ -205,3 +206,8 @@ void ofApp::setupScenes() {
     }
 }
 
+void ofApp::resizeScenes() {
+    for (auto& scene : scene_list_) {
+        scene->resize();
+    }
+}

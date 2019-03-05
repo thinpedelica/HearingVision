@@ -107,7 +107,7 @@ void LissajousScene::draw() {
 }
 
 //--------------------------------------------------------------
-void LissajousScene::reset() {
+void LissajousScene::resize() {
     fbo_.allocate(win_cache_->getWidth(), win_cache_->getHeight());
     window_num_index_ = 0;
     setDrawInfo(window_num_list_.at(window_num_index_));

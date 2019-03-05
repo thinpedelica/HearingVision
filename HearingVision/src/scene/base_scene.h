@@ -16,7 +16,8 @@ public:
 
     virtual void update(SceneParam scene_param) = 0;
     virtual void draw() = 0;
-    virtual void reset() = 0;
+    virtual void reset() {}
+    virtual void resize() {}
 
 protected:
     std::shared_ptr<ProcessFFT> pfft_;

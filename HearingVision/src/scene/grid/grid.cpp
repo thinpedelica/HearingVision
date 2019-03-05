@@ -64,10 +64,6 @@ void GridScene::update(SceneParam scene_param) {
     fft_history_.push_back(pfft_->getSpectrum());
     fft_history_.erase(fft_history_.begin(), fft_history_.begin() + 1);
 
-    if (scene_param.reset_ == SceneParam::TriggerState::kOn) {
-        reset();
-    }
-
     changeMode(scene_param);
 
     for (int i = 0; i < kGridCol; ++i) {
@@ -171,6 +167,6 @@ void GridScene::changeMode(const SceneParam& scene_param) {
 }
 
 //--------------------------------------------------------------
-void GridScene::reset() {
+void GridScene::resize() {
     resetCamPos(cam_pos_index_);
 }

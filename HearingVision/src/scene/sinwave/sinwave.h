@@ -10,7 +10,6 @@ public:
                        std::shared_ptr<ofRectangle> win_cache);
     virtual void update(SceneParam scene_param);
     virtual void draw();
-    virtual void reset();
 
 private:
     static constexpr float kBaseScale = 0.5f;

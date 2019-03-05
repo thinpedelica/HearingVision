@@ -28,6 +28,7 @@ private:
 
     void createScenes();
     void setupScenes();
+    void resizeScenes();
     void changeScene();
     void updateScene();
 
