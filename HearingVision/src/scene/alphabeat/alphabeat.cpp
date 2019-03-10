@@ -123,7 +123,6 @@ void AlphabeatScene::update(SceneParam scene_param) {
 
     fbo_.end();
 
-    glitch_.setFx(OFXPOSTGLITCH_GLOW, true);
     glitch_.generateFx();
 }
 
@@ -166,7 +165,6 @@ void AlphabeatScene::updateFx() {
     } else {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
         glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
-        glitch_.setFx(OFXPOSTGLITCH_GLOW, true);
     }
 }
 
