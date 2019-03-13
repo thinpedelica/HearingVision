@@ -34,16 +34,26 @@ void EqualizerScene::setup(std::shared_ptr<ProcessFFT> pfft,
 
 //--------------------------------------------------------------
 void EqualizerScene::update(SceneParam scene_param) {
+    if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
+        if (bar_direction_ == kOutDirection) {
+            bar_direction_ = kInDirection;
+            bar_radius_    = kInDirectRadius;
+        } else {
+            bar_direction_ = kOutDirection;
+            bar_radius_ = kOutDirectRadius;
+        }
+    }
+
     std::vector<float> vals = pfft_->getSpectrum();
     float rad_step = 2.f * PI / 256;
 
     for (int i = 0; i < 256; ++i) {
-        float x1 = kRadius * sin(rad_step * i);
-        float x2 = kRadius * sin(rad_step * (i + 1));
-        float y1 = kRadius * cos(rad_step * i);
-        float y2 = kRadius * cos(rad_step * (i+1));
+        float x1 = bar_radius_ * sin(rad_step * i);
+        float x2 = bar_radius_ * sin(rad_step * (i + 1));
+        float y1 = bar_radius_ * cos(rad_step * i);
+        float y2 = bar_radius_ * cos(rad_step * (i+1));
         float z1 = 0.f;
-        float z2 = kBarHeight * vals.at(i);
+        float z2 = bar_direction_ * kBarHeight * vals.at(i);
 
         vertexes_.at(6 * i + 0).set(x1, y1, z1);
         vertexes_.at(6 * i + 1).set(x2, y2, z1);
