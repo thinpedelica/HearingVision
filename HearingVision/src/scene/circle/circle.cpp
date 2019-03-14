@@ -84,7 +84,7 @@ void CircleScene::update(SceneParam scene_param) {
                         ofRandom(target_pos_low, target_pos_high) };
 
     float threshold = 0.2f - scene_param.threshold_ * 0.1f;
-    bool is_move_particle;
+    bool is_move_particle = false;
     if (pfft_->getLowVal() > threshold) {
         is_move_particle = true;
     } else if (pfft_->getMidVal() > threshold) {
@@ -102,7 +102,7 @@ void CircleScene::update(SceneParam scene_param) {
     } else {
         float hue_min = scene_param.color_ * 128.f;
         float hue_max = hue_min + 128.f;
-        particle_color_.setHsb(ofMap(pfft_->getMidVal(), 0.0, 1.0, hue_min, hue_max), 255, 255, 128);
+        particle_color_.setHsb(ofMap(pfft_->getMidVal(), 0.0, 1.0, hue_min, hue_max), 180, 255, 128);
     }
     updateParticlePos(target_pos, particle_velocity_, is_move_particle);
 }

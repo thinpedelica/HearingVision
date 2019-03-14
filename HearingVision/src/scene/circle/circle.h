@@ -18,9 +18,9 @@ public:
 private:
     static constexpr size_t kParticleNum = 1000000;
     static constexpr float  kRadius = 400.f;
-    static constexpr float  kMovingVelocity = 10.f;
+    static constexpr float  kMovingVelocity = 7.f;
     static constexpr float  kDecelerationRatio = 0.98f;
-    static constexpr float  kBaseTargetPos = 2.0f;
+    static constexpr float  kBaseTargetPos = 3.0f;
 
     void setupPingPongBuffer(const size_t texture_resolution);
     void setupParticleMesh(const size_t texture_resolution);
