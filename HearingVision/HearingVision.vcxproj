@@ -205,6 +205,7 @@
     <ClCompile Include="src\scene\equalizer\equalizer.cpp" />
     <ClCompile Include="src\scene\fractal\fractal.cpp" />
     <ClCompile Include="src\scene\grid\grid.cpp" />
+    <ClCompile Include="src\scene\humanpose\humanpose.cpp" />
     <ClCompile Include="src\scene\lissajous\lissajous.cpp" />
     <ClCompile Include="src\scene\mandala\mandala.cpp" />
     <ClCompile Include="src\scene\mandala\mandala_util.cpp" />
@@ -263,6 +264,7 @@
     <ClInclude Include="src\scene\equalizer\equalizer.h" />
     <ClInclude Include="src\scene\fractal\fractal.h" />
     <ClInclude Include="src\scene\grid\grid.h" />
+    <ClInclude Include="src\scene\humanpose\humanpose.h" />
     <ClInclude Include="src\scene\lissajous\lissajous.h" />
     <ClInclude Include="src\scene\mandala\mandala.h" />
     <ClInclude Include="src\scene\mandala\mandala_util.h" />

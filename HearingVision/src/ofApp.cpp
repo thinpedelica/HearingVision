@@ -7,6 +7,7 @@
 #include "scene/equalizer/equalizer.h"
 #include "scene/fractal/fractal.h"
 #include "scene/grid/grid.h"
+#include "scene/humanpose/humanpose.h"
 #include "scene/lissajous/lissajous.h"
 #include "scene/mandala/mandala.h"
 #include "scene/psychedelica/psychedelica.h"
@@ -20,7 +21,7 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetVerticalSync(true);
-    ofSetFrameRate(60);
+    ofSetFrameRate(30);
     ofSetBackgroundColor(0);
     ofSetCircleResolution(64);
     ofEnableSmoothing();
@@ -151,8 +152,9 @@ void ofApp::windowResized(int w, int h) {
 
 //--------------------------------------------------------------
 void ofApp::createScenes() {
+
     scene_list_.push_back(std::make_unique<AlphabeatScene>());
-    key_vs_scene_no_.emplace('a', scene_list_.size() -1);
+    key_vs_scene_no_.emplace('a', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<BoxScene>());
     key_vs_scene_no_.emplace('b', scene_list_.size() - 1);
@@ -171,6 +173,9 @@ void ofApp::createScenes() {
 
     scene_list_.push_back(std::make_unique<GridScene>());
     key_vs_scene_no_.emplace('g', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<HumanPoseScene>());
+    key_vs_scene_no_.emplace('h', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<LissajousScene>());
     key_vs_scene_no_.emplace('l', scene_list_.size() - 1);
