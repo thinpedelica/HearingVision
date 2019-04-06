@@ -40,8 +40,8 @@ void WalkingScene::updateBuildings(const int index) {
 
 //--------------------------------------------------------------
 void WalkingScene::update(SceneParam scene_param) {
-    time_step_     = ofMap(scene_param.level_, 0.f, 1.f, kTimeStepBase, kTimeStepBase * 10.f);
-    draw_interval_ = time_step_ * 50.f;
+    time_step_      = ofMap(scene_param.level_,     0.f, 1.f, kTimeStepBase,      kTimeStepBase * 10.f);
+    time_draw_step_ = ofMap(scene_param.threshold_, 0.f, 1.f, kTimeDrawStepBase, kTimeDrawStepBase * 10.f);
 
     color_level_ = scene_param.color_;
 
@@ -61,8 +61,8 @@ void WalkingScene::updateTimeToShift() {
 }
 
 void WalkingScene::updateTimeToDraw() {
-    time_to_draw_ += time_step_;
-    if (time_to_draw_ > draw_interval_) {
+    time_to_draw_ += time_draw_step_;
+    if (time_to_draw_ > kDrawInterval) {
         time_to_draw_ = 0.f;
         updateBuildings(draw_index_);
     }

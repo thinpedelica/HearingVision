@@ -17,6 +17,9 @@ private:
     static constexpr float kTimeStepBase = 0.001f;
     static constexpr float kShiftInterval = (2.f * PI) / static_cast<float>(kAreaNum);
 
+    static constexpr float kTimeDrawStepBase = 1.5f; // max 4time per sec
+    static constexpr float kDrawInterval     = 60.f;
+
     static constexpr float kDrawRadiusMin = 250.f;
 
     void resetBuildings(const int index);
@@ -45,6 +48,7 @@ private:
 
     float time_{0.f};
     float time_step_{ 0.f };
+    float time_draw_step_{ 0.f };
     float time_to_draw_{ 0.f };
     float time_to_shift_{ 0.f };
 
