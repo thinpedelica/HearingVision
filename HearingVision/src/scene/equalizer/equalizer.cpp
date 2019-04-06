@@ -16,62 +16,33 @@ void EqualizerScene::setup(std::shared_ptr<ProcessFFT> pfft,
     pfft_      = pfft;
     win_cache_ = win_cache;
 
-    vertexes_.resize(kPointNum);
-    color_list_.resize(kPointNum);
-
-    float hue_step = 1.f / static_cast<float>(kBarNum);
-    for (size_t i = 0; i < kBarNum; ++i) {
-        ofFloatColor color;
-        color.setHsb(hue_step * i, 1.f, 1.f, 0.8f);
-        for (size_t j = 0; j < 6; ++j) {
-            color_list_.at(6 * i + j).set(color);
-        }
+    drawer_prt_list_.push_back(std::make_unique<CircularEqualizerDrawer>());
+    drawer_prt_list_.push_back(std::make_unique<BoxEqualizerDrawer>());
+    for (auto& drawer : drawer_prt_list_) {
+        drawer->setup(win_cache);
     }
-
-    vbo_.setVertexData(vertexes_.data(), kPointNum, GL_DYNAMIC_DRAW);
-    vbo_.setColorData(color_list_.data(), kPointNum, GL_DYNAMIC_DRAW);
 }
 
 //--------------------------------------------------------------
 void EqualizerScene::update(SceneParam scene_param) {
     if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
-        if (bar_direction_ == kOutDirection) {
-            bar_direction_ = kInDirection;
-            bar_radius_    = kInDirectRadius;
-        } else {
-            bar_direction_ = kOutDirection;
-            bar_radius_ = kOutDirectRadius;
+        ++draw_list_index_;
+        if (draw_list_index_ == drawer_prt_list_.size()) {
+            draw_list_index_ = 0;
         }
     }
 
-    std::vector<float> vals = pfft_->getSpectrum();
-    float rad_step = 2.f * PI / 256;
-
-    for (int i = 0; i < 256; ++i) {
-        float x1 = bar_radius_ * sin(rad_step * i);
-        float x2 = bar_radius_ * sin(rad_step * (i + 1));
-        float y1 = bar_radius_ * cos(rad_step * i);
-        float y2 = bar_radius_ * cos(rad_step * (i+1));
-        float z1 = 0.f;
-        float z2 = bar_direction_ * kBarHeight * vals.at(i);
-
-        vertexes_.at(6 * i + 0).set(x1, y1, z1);
-        vertexes_.at(6 * i + 1).set(x2, y2, z1);
-        vertexes_.at(6 * i + 2).set(x2, y2, z2);
-        vertexes_.at(6 * i + 3).set(x1, y1, z1);
-        vertexes_.at(6 * i + 4).set(x2, y2, z2);
-        vertexes_.at(6 * i + 5).set(x1, y1, z2);
-    }
-    vbo_.updateVertexData(vertexes_.data(), kPointNum);
-
-    time_ += 0.1f;
+    std::vector<float> spectrum = pfft_->getSpectrum();
+    drawer_prt_list_.at(draw_list_index_)->update(spectrum);
 }
 //--------------------------------------------------------------
 void EqualizerScene::draw() {
-    cam_.begin();
-    ofRotate(time_, 0.f, 0.f, 1.f);
-    vbo_.draw(GL_TRIANGLES, 0, kPointNum);
-    cam_.end();
+    drawer_prt_list_.at(draw_list_index_)->draw();
 }
 
+void EqualizerScene::resize() {
+    for (auto& drawer : drawer_prt_list_) {
+        drawer->resize();
+    }
+}
 //--------------------------------------------------------------

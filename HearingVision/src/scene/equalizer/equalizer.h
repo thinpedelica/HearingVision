@@ -1,6 +1,9 @@
 #pragma once
 
 #include "../base_scene.h"
+#include <memory>
+
+#include "equalizer_drawer.h"
 
 class EqualizerScene : public BaseScene {
 public:
@@ -10,22 +13,9 @@ public:
                        std::shared_ptr<ofRectangle> win_cache);
     virtual void update(SceneParam scene_param);
     virtual void draw();
+    virtual void resize() override;
 
 private:
-    static constexpr size_t kBarNum = 256;
-    static constexpr size_t kPointNum = 3 * 2 * kBarNum;
-    static constexpr float kOutDirection    =  1.f;
-    static constexpr float kInDirection     = -1.f;
-    static constexpr float kOutDirectRadius = 200.f;
-    static constexpr float kInDirectRadius  = 400.f;
-    static constexpr float kBarHeight       = 1000.f;
-
-    ofVbo vbo_;
-    std::vector<ofVec3f> vertexes_;
-    std::vector<ofFloatColor> color_list_;
-    float time_{0.f};
-    ofEasyCam cam_;
-
-    float bar_direction_{ kOutDirection };
-    float bar_radius_{ kOutDirectRadius };
+    std::vector<std::unique_ptr<EqualizerDrawer>> drawer_prt_list_;
+    size_t draw_list_index_{0};
 };
