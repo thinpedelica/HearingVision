@@ -151,20 +151,21 @@ void AlphabeatScene::updateStrings() {
 
 void AlphabeatScene::updateFx() {
     float coin = ofRandomf();
-    if (coin < 0.2f) {
-        glitch_.setFx(OFXPOSTGLITCH_INVERT, true);
-    } else if (coin < 0.4f) {
+    if (coin < 0.3f) {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
         glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
-    } else if (coin < 0.6f) {
+    } else if (coin < 0.5f) {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
         glitch_.setFx(OFXPOSTGLITCH_CUTSLIDER, true);
-    } else if (coin < 0.8f) {
+    } else if (coin < 0.7f) {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
         glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
     } else {
-        glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
-        glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
+        if (counter_.getThreshold() > 0.75) {
+            glitch_.setFx(OFXPOSTGLITCH_INVERT, true);
+            glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
+            glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
+        }
     }
 }
 

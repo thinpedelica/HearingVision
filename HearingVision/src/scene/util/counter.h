@@ -10,6 +10,8 @@ public:
         threshold_ = kThreshold - val;
     }
 
+    float getThreshold() { return threshold_; }
+
     bool update() {
         count_ += kUpdateCount;
         if (count_ > threshold_) {
