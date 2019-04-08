@@ -65,3 +65,28 @@ private:
     std::shared_ptr<ofRectangle> win_cache_;
 
 };
+
+class GridEqualizerDrawer : public EqualizerDrawer {
+public:
+    GridEqualizerDrawer() = default;
+    ~GridEqualizerDrawer() = default;
+    virtual void setup(std::shared_ptr<ofRectangle> win_cache) override;
+    virtual void update(const std::vector<float>& spectrum) override;
+    virtual void draw() override;
+
+private:
+    static constexpr size_t kGridRow = 16;
+    static constexpr size_t kGridCol = 32;
+    static constexpr size_t kGridNum = kGridRow * kGridCol;
+    static constexpr size_t kLayerNum = 4;
+
+    std::vector<ofVbo> vbo_list_;
+    std::vector<ofVec3f> vertexes_;
+    std::vector<std::vector<ofFloatColor>> colors_list_;
+
+    size_t update_index_{0};
+
+    ofEasyCam cam_;
+    std::shared_ptr<ofRectangle> win_cache_;
+
+};

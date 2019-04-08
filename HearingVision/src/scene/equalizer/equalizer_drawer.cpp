@@ -149,3 +149,107 @@ void BoxEqualizerDrawer::draw() {
 void BoxEqualizerDrawer::resize() {
     initializeVertex();
 }
+
+//--------------------------------------------------------------
+void GridEqualizerDrawer::setup(std::shared_ptr<ofRectangle> win_cache) {
+    win_cache_ = win_cache;
+
+    vertexes_.resize(kGridNum);
+    for (int i = 0; i < kGridRow; ++i) {
+        for (int j = 0; j < kGridCol; ++j) {
+            float x = static_cast<float>(i);
+            float y = static_cast<float>(j);
+            vertexes_.at(kGridCol * i + j).set(x, y);
+        }
+    }
+
+    float base_hue = 0.0;
+    colors_list_.resize(kLayerNum);
+    for (auto& colors : colors_list_) {
+        colors.resize(kGridNum);
+        for (auto& color : colors) {
+            color.setHsb(base_hue, 0.8, 1.0, 0.9);
+        }
+        base_hue += 0.1;
+    }
+
+    size_t color_index = 0;
+    vbo_list_.resize(kLayerNum);
+    for (auto& vbo : vbo_list_) {
+        vbo.setVertexData(vertexes_.data(), kGridNum, GL_DYNAMIC_DRAW);
+        vbo.setColorData(colors_list_.at(color_index).data(), kGridNum, GL_STATIC_DRAW);
+        ++color_index;
+    }
+}
+
+//--------------------------------------------------------------
+void GridEqualizerDrawer::update(const std::vector<float>& spectrum) {
+    size_t spectrum_step = 2;
+
+    for (int i = 0; i < kGridRow; ++i) {
+        size_t spectrum_index = 3;
+        size_t index_update_count = 0;
+
+        for (int j = 0; j < kGridCol; ++j) {
+            float x = static_cast<float>(i);
+            float y = static_cast<float>(j);
+            float z = ofMap(spectrum.at(spectrum_index), 0.f, 0.4f, 0.f, 3.f, true);;
+            if (i != update_index_) {
+                float e = 0.f;
+                if (i > update_index_) {
+                    e = i - update_index_;
+                } else {
+                    e = update_index_ - i;
+                }
+
+                z = z - (e * e * 0.3);
+                if (z < 0.f) {
+                    z = 0.f;
+                }
+            }
+            vertexes_.at(kGridCol * i + j).set(x, y, z);
+
+            ++index_update_count;
+            if (index_update_count == 2) {
+                spectrum_index += spectrum_step;
+                index_update_count = 0;
+            }
+        }
+    }
+
+    for (auto& vbo : vbo_list_) {
+        vbo.updateVertexData(vertexes_.data(), kGridNum);
+    }
+
+    ++update_index_;
+    if (update_index_ == kGridRow) {
+        update_index_ = 0;
+    }
+}
+
+//--------------------------------------------------------------
+void GridEqualizerDrawer::draw() {
+    cam_.begin();
+    cam_.setFov(25.f);
+    cam_.lookAt(ofVec3f(32, 16, 0), ofVec3f(0, 0, 1));
+    cam_.setPosition(ofVec3f(64, -64, 32));
+
+    glPointSize(2);
+    ofPushMatrix();
+
+    for (size_t i = 0; i < 4; ++i) {
+        ofPushMatrix();
+        ofTranslate(0, 0, 10);
+
+        for (const auto& vbo : vbo_list_) {
+            vbo.draw(GL_POINTS, 0, kGridNum);
+            ofTranslate(0, 0, -4);
+        }
+
+        ofPopMatrix();
+        ofTranslate(16, 0, 0);
+    }
+
+    ofPopMatrix();
+    cam_.end();
+}

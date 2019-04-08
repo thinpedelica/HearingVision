@@ -18,6 +18,7 @@ void EqualizerScene::setup(std::shared_ptr<ProcessFFT> pfft,
 
     drawer_prt_list_.push_back(std::make_unique<CircularEqualizerDrawer>());
     drawer_prt_list_.push_back(std::make_unique<BoxEqualizerDrawer>());
+    drawer_prt_list_.push_back(std::make_unique<GridEqualizerDrawer>());
     for (auto& drawer : drawer_prt_list_) {
         drawer->setup(win_cache);
     }
