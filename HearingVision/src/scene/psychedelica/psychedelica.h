@@ -16,10 +16,12 @@ private:
     static constexpr float kLevelMax = 10.f;
     static constexpr size_t kHistoryMax = 100;
 
-    ofShader shader_;
+    std::vector<ofShader> shader_;
     float time_{0.f};
     float level_{kLevelMin};
     std::vector<float> high_;
     std::vector<float> mid_;
     std::vector<float> low_;
+
+    size_t shader_index_{0};
 };

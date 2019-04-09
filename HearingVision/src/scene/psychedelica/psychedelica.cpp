@@ -18,7 +18,8 @@ void PsychedelicaScene::setup(std::shared_ptr<ProcessFFT> pfft,
     pfft_      = pfft;
     win_cache_ = win_cache;
 
-    shader_.load("shader/psychedelica/draw");
+    shader_.resize(1);
+    shader_.at(0).load("shader/psychedelica/crystal/draw");
 }
 
 //--------------------------------------------------------------
@@ -39,20 +40,27 @@ void PsychedelicaScene::update(SceneParam scene_param) {
     } else {
         level_ = kLevelMin;
     }
+
+    if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
+        ++shader_index_;
+        if (shader_index_ == shader_.size()) {
+            shader_index_ = 0;
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void PsychedelicaScene::draw() {
 
-    shader_.begin();
-    shader_.setUniform1f("time",  time_);
-    shader_.setUniform1f("level", level_);
-    shader_.setUniform1f("high",  std::accumulate(high_.begin(), high_.end(), 0.f) / static_cast<float>(high_.size()));
-    shader_.setUniform1f("mid",   std::accumulate(mid_.begin(),  mid_.end(), 0.f)  / static_cast<float>(mid_.size()));
-    shader_.setUniform1f("low",   std::accumulate(low_.begin(),  low_.end(), 0.f)  / static_cast<float>(low_.size()));
-    shader_.setUniform2f("resolution", win_cache_->getWidth(), win_cache_->getHeight());
+    shader_.at(shader_index_).begin();
+    shader_.at(shader_index_).setUniform1f("time",  time_);
+    shader_.at(shader_index_).setUniform1f("level", level_);
+    shader_.at(shader_index_).setUniform1f("high",  std::accumulate(high_.begin(), high_.end(), 0.f) / static_cast<float>(high_.size()));
+    shader_.at(shader_index_).setUniform1f("mid",   std::accumulate(mid_.begin(),  mid_.end(), 0.f)  / static_cast<float>(mid_.size()));
+    shader_.at(shader_index_).setUniform1f("low",   std::accumulate(low_.begin(),  low_.end(), 0.f)  / static_cast<float>(low_.size()));
+    shader_.at(shader_index_).setUniform2f("resolution", win_cache_->getWidth(), win_cache_->getHeight());
     ofDrawRectangle(0, 0, win_cache_->getWidth(), win_cache_->getHeight());
-    shader_.end();
+    shader_.at(shader_index_).end();
 }
 
 //--------------------------------------------------------------
