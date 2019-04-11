@@ -18,10 +18,11 @@ void PsychedelicaScene::setup(std::shared_ptr<ProcessFFT> pfft,
     pfft_      = pfft;
     win_cache_ = win_cache;
 
-    shader_.resize(3);
+    shader_.resize(4);
     shader_.at(0).load("shader/psychedelica/crystal/draw");
     shader_.at(1).load("shader/psychedelica/mandala/draw");
     shader_.at(2).load("shader/psychedelica/voronoi/draw");
+    shader_.at(3).load("shader/psychedelica/cocoon/draw");
 }
 
 //--------------------------------------------------------------
