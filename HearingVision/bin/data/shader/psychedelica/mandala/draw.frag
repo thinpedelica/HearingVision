@@ -4,6 +4,7 @@
 
 uniform float time;
 uniform float level;
+uniform float color;
 uniform float high;
 uniform float mid;
 uniform float low;
@@ -11,7 +12,7 @@ uniform vec2 resolution;
 
 out vec4 outputColor;
 
-float Pi= 3.14159265;
+const float Pi= 3.14159265;
 
 vec3 hsv2rgb(vec3 c) {
     c = vec3(c.x, clamp(c.yz, 0.0, 1.0));
@@ -21,7 +22,7 @@ vec3 hsv2rgb(vec3 c) {
 }
 
 void main(void) {
-    vec4 in_val = vec4(vec2(mid, low) * resolution, resolution);
+    vec4 in_val = vec4(vec2(mid + level, low + level) * resolution, resolution);
     vec2 p = gl_FragCoord.xy * 1.;
     vec2 q = ((p) + (p) - (in_val.ba)) / (in_val.b);
 
@@ -30,5 +31,5 @@ void main(void) {
         if (length(q) > .1 && length(q) < .125) break;
     }
 
-    outputColor = vec4(hsv2rgb((vec3(q, q.x / q.y).xyz) + vec3(sin(time * 8.) / 50., .9, .5)), 1.0);
+    outputColor = vec4(hsv2rgb((vec3(q, q.x / q.y).xyz) + vec3(sin(time * 8.) / 50., color, .5)), 1.0);
 }

@@ -8,6 +8,7 @@
 
 uniform float time;
 uniform float level;
+uniform float color;
 uniform float high;
 uniform float mid;
 uniform float low;
@@ -43,11 +44,14 @@ void main( void ) {
     vec2 uv = ( gl_FragCoord.xy / resolution.xy ) * 2.0 - 1.0;
     uv.x *= resolution.x / resolution.y;
 
-    float offset = voronoi(uv * 10.0 + vec2(time));
-    float t = 1.0 / abs(((uv.x + sin(uv.y + time)) + offset) * 30.0 * 10.0 * high);
+    float trans_level = ceil(10.f * level);
+    float color_level = ceil(10.f * color);
 
-    float r = voronoi( uv * 1.0 ) * 10.0;
-    vec3 finalColor = vec3(10.0 * uv.y, 20.0 * mid, 1.0 * r) * t;
+    float offset = voronoi(uv * 10.0 + vec2(time)) * 2.0 * mid;
+    float t = 1.0 / abs(((uv.x + sin(uv.y + time * trans_level)) + offset) * 30.0);
+
+    float r = voronoi( uv * 1.0 ) * color_level;
+    vec3 finalColor = vec3(10.0 * uv.y, 2.0, 1.0 * r) * t;
 
     outputColor = vec4(finalColor, 1.0);
 }

@@ -2,6 +2,7 @@
 
 uniform float time;
 uniform float level;
+uniform float color;
 uniform float high;
 uniform float mid;
 uniform float low;
@@ -19,10 +20,13 @@ void main() {
     float r = kRBase + high;
     float b = kBBase + mid;
     float g = kGBase + low;
+
+    float loop_cnt = 1. + ceil(10. * level);
+
     for (int i = 0; i < kLoopMax; i++) {
         vec3 result = vec3(r, g, b) * abs((abs(p) / dot(p, p)) - vec3(0.7, 0.4, cos(time * 0.2) * 0.4));
-        p = step(level, float(i+.1)) * p
-             + step(float(i+.1), level) * result.xzy;
+        p = step(loop_cnt, float(i+.1)) * p
+             + step(float(i+.1), loop_cnt) * result.xzy;
     }
     outputColor = vec4(p, 1.0);
 }

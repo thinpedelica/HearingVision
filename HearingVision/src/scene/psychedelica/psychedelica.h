@@ -12,16 +12,18 @@ public:
     virtual void draw();
 
 private:
-    static constexpr float kLevelMin =  1.f;
-    static constexpr float kLevelMax = 10.f;
     static constexpr size_t kHistoryMax = 100;
+    static constexpr size_t kHistoryMin = 5;
 
     std::vector<ofShader> shader_;
     float time_{0.f};
-    float level_{kLevelMin};
+    float level_{0.f};
+    float color_{0.f};
+
     std::vector<float> high_;
     std::vector<float> mid_;
     std::vector<float> low_;
+    size_t history_size_{kHistoryMax};
 
     size_t shader_index_{0};
 };
