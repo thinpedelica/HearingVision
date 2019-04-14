@@ -17,6 +17,7 @@
 #include "scene/tousle/tousle.h"
 #include "scene/walking/walking.h"
 #include "scene/xflash/xflash.h"
+#include "scene/zcoming/zcoming.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -152,7 +153,6 @@ void ofApp::windowResized(int w, int h) {
 
 //--------------------------------------------------------------
 void ofApp::createScenes() {
-
     scene_list_.push_back(std::make_unique<AlphabeatScene>());
     key_vs_scene_no_.emplace('a', scene_list_.size() - 1);
 
@@ -203,6 +203,10 @@ void ofApp::createScenes() {
 
     scene_list_.push_back(std::make_unique<XFlashScene>());
     key_vs_scene_no_.emplace('x', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<ZcomingScene>());
+    key_vs_scene_no_.emplace('z', scene_list_.size() - 1);
+
 }
 
 void ofApp::setupScenes() {

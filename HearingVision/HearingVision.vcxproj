@@ -219,6 +219,7 @@
     <ClCompile Include="src\scene\util\particle.cpp" />
     <ClCompile Include="src\scene\walking\walking.cpp" />
     <ClCompile Include="src\scene\xflash\xflash.cpp" />
+    <ClCompile Include="src\scene\zcoming\zcoming.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanoKon2.h" />
@@ -281,6 +282,7 @@
     <ClInclude Include="src\scene\util\particle.h" />
     <ClInclude Include="src\scene\walking\walking.h" />
     <ClInclude Include="src\scene\xflash\xflash.h" />
+    <ClInclude Include="src\scene\zcoming\zcoming.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
