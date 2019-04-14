@@ -59,20 +59,34 @@ void DebriScene::update(SceneParam scene_param) {
     }
 
     if (normal_mode_) {
-        point_size_ = ofMap(pfft_->getLowVal(), 0.0, 0.3, 1.f, 2.f);
+        point_size_ = ofMap(pfft_->getLowVal(), 0.0, 0.3, 1.f, 2.f, true);
     } else {
         point_size_ = 1.f;
     }
 
     if (normal_mode_) {
-        scale_ = ofMap(pfft_->getLowVal(), 0.0, 0.3, 0.0, kFloatingDist);
+        scale_ = ofMap(pfft_->getLowVal(), 0.0, 0.3, 0.0, kSparkDist * scene_param.level_, true);
     } else {
         scale_ = kFloatingDist;
     }
 
-    float alpha = ofMap(pfft_->getMidVal(), 0.0, 0.5, 0.6, 0.9);
-    color_list_.assign(kDebriNum, ofFloatColor(1.0, alpha));
+    float alpha = ofMap(pfft_->getMidVal(), 0.0, 0.5, 0.6, 0.9, true);
+    if (normal_mode_ && (pfft_->getLowVal() > 0.15f)) {
+        ofFloatColor c;
+        c.setHsb(0.95f, 0.8f, 0.7f, alpha);
+        color_list_.assign(kDebriNum, c);
+    } else {
+        color_list_.assign(kDebriNum, ofFloatColor(1.0, alpha));
+    }
     vbo_.updateColorData(color_list_.data(), color_list_.size());
+
+    if (normal_mode_ && (scene_param.level_ > 0.3f)) {
+        cam_pos_.set(ofRandom(-20.f, 20.f) * scene_param.level_,
+                     ofRandom(-20.f, 20.f) * scene_param.level_,
+                     -400.f);
+    } else {
+        cam_pos_.set(0, 0, -400.f);
+    }
 }
 
 //--------------------------------------------------------------
@@ -81,8 +95,8 @@ void DebriScene::draw() {
     ofEnableDepthTest();
 
     cam_.begin();
-    cam_.setFov(120);
-    cam_.setPosition(0, 0, -400);
+    cam_.setFov(90);
+    cam_.setPosition(cam_pos_);
     cam_.lookAt(ofVec3f(0, 0, 0));
 
     // model Matrix
@@ -116,7 +130,7 @@ void DebriScene::draw() {
 
     vbo_mesh_ = sphere_.getMesh();
     for (int i = 0; i<vbo_mesh_.getVertices().size(); ++i) {
-        vbo_mesh_.addColor(ofColor(255, 200));
+        vbo_mesh_.addColor(ofColor(255, 160));
     }
     vbo_mesh_.drawWireframe();
 

@@ -13,8 +13,9 @@ public:
 
 private:
     static constexpr size_t kDebriNum = 6000;
-    static constexpr float  kEarthRadius = 256.f;
-    static constexpr float  kFloatingDist = 30.f;
+    static constexpr float  kEarthRadius  = 256.f;
+    static constexpr float  kFloatingDist =  30.f;
+    static constexpr float  kSparkDist    = 100.f;
     static constexpr float  kGeoStationaryDistMin = 500.f;
     static constexpr float  kGeoStationaryDistMax = 550.f;
     static constexpr float  kGeoStationaryBand    =  15.f;
@@ -36,4 +37,5 @@ private:
     ofVbo vbo_;
 
     ofEasyCam cam_;
+    ofVec3f cam_pos_;
 };
