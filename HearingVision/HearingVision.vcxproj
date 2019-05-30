@@ -210,6 +210,7 @@
     <ClCompile Include="src\scene\lissajous\lissajous.cpp" />
     <ClCompile Include="src\scene\mandala\mandala.cpp" />
     <ClCompile Include="src\scene\mandala\mandala_util.cpp" />
+    <ClCompile Include="src\scene\orb\orb.cpp" />
     <ClCompile Include="src\scene\psychedelica\psychedelica.cpp" />
     <ClCompile Include="src\scene\qsphere\qsphere.cpp" />
     <ClCompile Include="src\scene\river\river.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="src\scene\lissajous\lissajous.h" />
     <ClInclude Include="src\scene\mandala\mandala.h" />
     <ClInclude Include="src\scene\mandala\mandala_util.h" />
+    <ClInclude Include="src\scene\orb\orb.h" />
     <ClInclude Include="src\scene\psychedelica\psychedelica.h" />
     <ClInclude Include="src\scene\qsphere\qsphere.h" />
     <ClInclude Include="src\scene\river\river.h" />

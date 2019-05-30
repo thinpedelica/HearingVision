@@ -11,6 +11,7 @@
 #include "scene/lissajous/lissajous.h"
 #include "scene/mandala/mandala.h"
 #include "scene/psychedelica/psychedelica.h"
+#include "scene/orb/orb.h"
 #include "scene/qsphere/qsphere.h"
 #include "scene/river/river.h"
 #include "scene/sinwave/sinwave.h"
@@ -182,6 +183,9 @@ void ofApp::createScenes() {
 
     scene_list_.push_back(std::make_unique<MandalaScene>());
     key_vs_scene_no_.emplace('m', scene_list_.size() - 1);
+
+    scene_list_.push_back(std::make_unique<OrbScene>());
+    key_vs_scene_no_.emplace('o', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<PsychedelicaScene>());
     key_vs_scene_no_.emplace('p', scene_list_.size() - 1);
