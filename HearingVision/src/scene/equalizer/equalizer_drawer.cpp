@@ -1,3 +1,5 @@
+#include <numeric>
+
 #include "equalizer_drawer.h"
 
 //--------------------------------------------------------------
@@ -251,5 +253,100 @@ void GridEqualizerDrawer::draw() {
     }
 
     ofPopMatrix();
+    cam_.end();
+}
+
+//--------------------------------------------------------------
+void CylinderEqualizerDrawer::setup(std::shared_ptr<ofRectangle> win_cache) {
+    win_cache_ = win_cache;
+
+    for (size_t i = 0; i < 255; ++i) {
+        while (true) {
+            ofVec3f position(ofRandom(-kAreaMax, kAreaMax),
+                             0.f,
+                             ofRandom(-kAreaMax, kAreaMax));
+            float radius = ofRandom(kRadiusMin, kRadiusMax);
+            if (!isOverrap(cylinders_, position, radius)) {
+                ofCylinderPrimitive cp;
+                cp.setPosition(position);
+                cp.setRadius(radius);
+                cp.setResolutionRadius(32);
+                cylinders_.emplace_back(cp);
+                break;
+            }
+        }
+    }
+
+    point_light_.setDiffuseColor(ofColor(0.f, 255.f, 0.f));
+    point_light_.setSpecularColor(ofColor(255.f, 255.f, 255.f));
+    point_light_.setPosition(0.f, 0.f, 0.f);
+
+    light_color_.setBrightness(255.f);
+    light_color_.setSaturation(180.f);
+    material_color_.setBrightness(255.f);
+    material_color_.setSaturation(180.f);
+    material_.setShininess(32);
+
+}
+
+bool CylinderEqualizerDrawer::isOverrap(const std::vector<ofCylinderPrimitive>& cylinders,
+                                        ofVec3f& pos,
+                                        float radius) const {
+    for (const auto& cylinder : cylinders) {
+        ofVec3f cylinder_pos = cylinder.getPosition();
+        float   cylinder_radius = cylinder.getRadius();
+        float dist = ofDist(cylinder_pos.x, cylinder_pos.y, cylinder_pos.z,
+                            pos.x,          pos.y,          pos.z);
+        float threshold = cylinder_radius + radius;
+
+        if (dist < threshold) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+//--------------------------------------------------------------
+void CylinderEqualizerDrawer::update(const std::vector<float>& spectrum) {
+    float hue = color_ * 255.f;
+    light_color_.setHue(hue);
+    point_light_.setDiffuseColor(light_color_);
+
+    material_color_.setHue(hue);
+    material_.setSpecularColor(material_color_);
+
+    for (size_t i = 0; i < cylinders_.size(); ++i) {
+        float height = ofMap(spectrum.at(i), 0.1f, 0.3f, kHeightMin, kHeightMax, true);
+        cylinders_.at(i).setHeight(height);
+
+        ofVec3f pos = cylinders_.at(i).getPosition();
+        pos.y = height / 2.f;
+        cylinders_.at(i).setPosition(pos);
+    }
+}
+
+//--------------------------------------------------------------
+void CylinderEqualizerDrawer::draw() {
+    cam_.begin();
+    cam_.setFov(45.f);
+    cam_.lookAt(ofVec3f(0, 0, 0), ofVec3f(0, 1, 0));
+    cam_.setPosition(ofVec3f(100, 800, 100));
+
+    ofEnableDepthTest();
+    ofEnableLighting();
+
+    point_light_.enable();
+    material_.begin();
+
+    for (const auto& cylinder : cylinders_) {
+        cylinder.draw();
+    }
+
+    point_light_.disable();
+    material_.end();
+
+    ofDisableLighting();
+    ofDisableDepthTest();
     cam_.end();
 }

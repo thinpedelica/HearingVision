@@ -18,7 +18,8 @@ void EqualizerScene::setup(std::shared_ptr<ProcessFFT> pfft,
 
     drawer_prt_list_.push_back(std::make_unique<CircularEqualizerDrawer>());
     drawer_prt_list_.push_back(std::make_unique<BoxEqualizerDrawer>());
-    drawer_prt_list_.push_back(std::make_unique<GridEqualizerDrawer>());
+    //drawer_prt_list_.push_back(std::make_unique<GridEqualizerDrawer>());
+    drawer_prt_list_.push_back(std::make_unique<CylinderEqualizerDrawer>());
     for (auto& drawer : drawer_prt_list_) {
         drawer->setup(win_cache);
     }
@@ -32,6 +33,9 @@ void EqualizerScene::update(SceneParam scene_param) {
             draw_list_index_ = 0;
         }
     }
+
+    drawer_prt_list_.at(draw_list_index_)->setColor(scene_param.color_);
+    drawer_prt_list_.at(draw_list_index_)->setLevel(scene_param.level_);
 
     std::vector<float> spectrum = pfft_->getSpectrum();
     drawer_prt_list_.at(draw_list_index_)->update(spectrum);

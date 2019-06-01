@@ -13,6 +13,15 @@ public:
     virtual void update(const std::vector<float>& spectrum) = 0;
     virtual void draw() = 0;
     virtual void resize() {}
+
+    virtual void setColor(const float color) { color_ = color; }
+    virtual void setLevel(const float level) { level_ = level; }
+
+protected:
+    std::shared_ptr<ofRectangle> win_cache_;
+    float color_{0.f};
+    float level_{0.f};
+
 };
 
 class CircularEqualizerDrawer : public EqualizerDrawer {
@@ -35,7 +44,6 @@ private:
     float time_{0.f};
 
     ofEasyCam cam_;
-    std::shared_ptr<ofRectangle> win_cache_;
 
 };
 
@@ -62,8 +70,6 @@ private:
     std::vector<ofVec3f> vertexes_;
     std::vector<ofFloatColor> color_list_;
 
-    std::shared_ptr<ofRectangle> win_cache_;
-
 };
 
 class GridEqualizerDrawer : public EqualizerDrawer {
@@ -87,6 +93,34 @@ private:
     size_t update_index_{0};
 
     ofEasyCam cam_;
-    std::shared_ptr<ofRectangle> win_cache_;
+
+};
+
+class CylinderEqualizerDrawer : public EqualizerDrawer {
+public:
+    CylinderEqualizerDrawer() = default;
+    ~CylinderEqualizerDrawer() = default;
+    virtual void setup(std::shared_ptr<ofRectangle> win_cache) override;
+    virtual void update(const std::vector<float>& spectrum) override;
+    virtual void draw() override;
+
+private:
+    static constexpr float kAreaMax   = 500.f;
+    static constexpr float kRadiusMax =  30.f;
+    static constexpr float kRadiusMin =   5.f;
+    static constexpr float kHeightMax = 500.f;
+    static constexpr float kHeightMin = 200.f;
+
+    std::vector<ofCylinderPrimitive> cylinders_;
+
+    bool isOverrap(const std::vector<ofCylinderPrimitive>& cylinders, ofVec3f& pos, float radius) const;
+
+    ofLight point_light_;
+    ofMaterial material_;
+
+    ofColor light_color_;
+    ofColor material_color_;
+
+    ofEasyCam cam_;
 
 };
