@@ -5,7 +5,6 @@
 #include "scene/circle/circle.h"
 #include "scene/debri/debri.h"
 #include "scene/equalizer/equalizer.h"
-#include "scene/fractal/fractal.h"
 #include "scene/grid/grid.h"
 #include "scene/humanpose/humanpose.h"
 #include "scene/lissajous/lissajous.h"
@@ -14,7 +13,7 @@
 #include "scene/orb/orb.h"
 #include "scene/qsphere/qsphere.h"
 #include "scene/river/river.h"
-#include "scene/sinwave/sinwave.h"
+#include "scene/stripes/stripes.h"
 #include "scene/tousle/tousle.h"
 #include "scene/walking/walking.h"
 #include "scene/xflash/xflash.h"
@@ -169,9 +168,6 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<EqualizerScene>());
     key_vs_scene_no_.emplace('e', scene_list_.size() - 1);
 
-    scene_list_.push_back(std::make_unique<FractalScene>());
-    key_vs_scene_no_.emplace('f', scene_list_.size() - 1);
-
     scene_list_.push_back(std::make_unique<GridScene>());
     key_vs_scene_no_.emplace('g', scene_list_.size() - 1);
 
@@ -196,7 +192,7 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<RiverScene>());
     key_vs_scene_no_.emplace('r', scene_list_.size() - 1);
 
-    scene_list_.push_back(std::make_unique<SinWaveScene>());
+    scene_list_.push_back(std::make_unique<StripesScene>());
     key_vs_scene_no_.emplace('s', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<TousleScene>());

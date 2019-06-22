@@ -13,13 +13,13 @@ int main( ){
     settings.resizable = true;
     shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
 
-    settings.width = 320;
-    settings.height = 240;
+    settings.width = 800;
+    settings.height = 600;
     settings.resizable = false;
     settings.shareContextWith = mainWindow;
-    settings.setPosition(ofVec2f(300, 720));
+    settings.setPosition(ofVec2f(100, 500));
     shared_ptr<ofAppBaseWindow> monitorWindow1 = ofCreateWindow(settings);
-    settings.setPosition(ofVec2f(620, 720));
+    settings.setPosition(ofVec2f(900, 500));
     shared_ptr<ofAppBaseWindow> monitorWindow2 = ofCreateWindow(settings);
 
     shared_ptr<ofApp> mainApp(new ofApp);

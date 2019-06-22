@@ -214,7 +214,8 @@
     <ClCompile Include="src\scene\psychedelica\psychedelica.cpp" />
     <ClCompile Include="src\scene\qsphere\qsphere.cpp" />
     <ClCompile Include="src\scene\river\river.cpp" />
-    <ClCompile Include="src\scene\sinwave\sinwave.cpp" />
+    <ClCompile Include="src\scene\stripes\stripes.cpp" />
+    <ClCompile Include="src\scene\stripes\stripes_drawer.cpp" />
     <ClCompile Include="src\scene\tousle\circle_drawer.cpp" />
     <ClCompile Include="src\scene\tousle\tousle.cpp" />
     <ClCompile Include="src\scene\util\particle.cpp" />
@@ -277,7 +278,8 @@
     <ClInclude Include="src\scene\qsphere\qsphere.h" />
     <ClInclude Include="src\scene\river\river.h" />
     <ClInclude Include="src\scene\scene_param.h" />
-    <ClInclude Include="src\scene\sinwave\sinwave.h" />
+    <ClInclude Include="src\scene\stripes\stripes.h" />
+    <ClInclude Include="src\scene\stripes\stripes_drawer.h" />
     <ClInclude Include="src\scene\tousle\circle_drawer.h" />
     <ClInclude Include="src\scene\tousle\tousle.h" />
     <ClInclude Include="src\scene\util\counter.h" />
