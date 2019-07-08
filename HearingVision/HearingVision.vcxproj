@@ -204,6 +204,7 @@
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\scene\alphabeat\alphabeat.cpp" />
     <ClCompile Include="src\scene\box\box.cpp" />
+    <ClCompile Include="src\scene\box\box_drawer.cpp" />
     <ClCompile Include="src\scene\circle\circle.cpp" />
     <ClCompile Include="src\scene\debri\debri.cpp" />
     <ClCompile Include="src\scene\equalizer\equalizer.cpp" />
@@ -274,6 +275,7 @@
     <ClInclude Include="src\scene\alphabeat\alphabeat.h" />
     <ClInclude Include="src\scene\base_scene.h" />
     <ClInclude Include="src\scene\box\box.h" />
+    <ClInclude Include="src\scene\box\box_drawer.h" />
     <ClInclude Include="src\scene\circle\circle.h" />
     <ClInclude Include="src\scene\debri\debri.h" />
     <ClInclude Include="src\scene\equalizer\equalizer.h" />

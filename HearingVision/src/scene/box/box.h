@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../base_scene.h"
-#include "../util/counter.h"
+#include <memory>
 
-#include "ofxRollingCam.h"
+#include "../base_scene.h"
+#include "box_drawer.h"
 
 class BoxScene : public BaseScene {
 public:
@@ -15,16 +15,7 @@ public:
     virtual void draw();
 
 private:
-    static constexpr float    kCamSpeed = 0.1f;
-    static constexpr size_t   kBoxNum = 100;
-    static constexpr float    kBoxSizeBase = 500.0;
-
-    void updateBoxSize();
-    void updateCamPos();
-
-    std::vector<ofBoxPrimitive> boxes_;
-    ofxRollingCam roll_cam_;
-
-    Counter counter_;
+    std::vector<std::unique_ptr<BoxDrawer>> drawer_prt_list_;
+    size_t draw_list_index_{0};
 
 };
