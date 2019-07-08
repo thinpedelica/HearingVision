@@ -158,7 +158,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxPostGlitch\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxPostGlitch\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -168,8 +168,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
     </PostBuildEvent>
@@ -177,6 +177,10 @@
   <ItemGroup>
     <ClCompile Include="src\nanoKon2.cpp" />
     <ClCompile Include="src\ofMonitor.cpp" />
+    <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
+    <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
+    <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
+    <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpTexture.cpp" />
     <ClCompile Include="src\ofxFft\libs\kiss\kiss_fft.c" />
     <ClCompile Include="src\ofxFft\libs\kiss\kiss_fftr.c" />
     <ClCompile Include="src\ofxFft\src\ofxEasyFft.cpp" />
@@ -207,6 +211,8 @@
     <ClCompile Include="src\scene\fractal\fractal.cpp" />
     <ClCompile Include="src\scene\grid\grid.cpp" />
     <ClCompile Include="src\scene\humanpose\humanpose.cpp" />
+    <ClCompile Include="src\scene\idol\idol.cpp" />
+    <ClCompile Include="src\scene\idol\idol_drawer.cpp" />
     <ClCompile Include="src\scene\lissajous\lissajous.cpp" />
     <ClCompile Include="src\scene\mandala\mandala.cpp" />
     <ClCompile Include="src\scene\mandala\mandala_util.cpp" />
@@ -226,6 +232,11 @@
   <ItemGroup>
     <ClInclude Include="src\nanoKon2.h" />
     <ClInclude Include="src\ofMonitor.h" />
+    <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
+    <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
+    <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpModelLoader.h" />
+    <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpTexture.h" />
+    <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpUtils.h" />
     <ClInclude Include="src\ofxFft\libs\fftw\include\fftw3.h" />
     <ClInclude Include="src\ofxFft\libs\kiss\kiss_fft.h" />
     <ClInclude Include="src\ofxFft\libs\kiss\kiss_fftr.h" />
@@ -270,6 +281,8 @@
     <ClInclude Include="src\scene\fractal\fractal.h" />
     <ClInclude Include="src\scene\grid\grid.h" />
     <ClInclude Include="src\scene\humanpose\humanpose.h" />
+    <ClInclude Include="src\scene\idol\idol.h" />
+    <ClInclude Include="src\scene\idol\idol_drawer.h" />
     <ClInclude Include="src\scene\lissajous\lissajous.h" />
     <ClInclude Include="src\scene\mandala\mandala.h" />
     <ClInclude Include="src\scene\mandala\mandala_util.h" />
