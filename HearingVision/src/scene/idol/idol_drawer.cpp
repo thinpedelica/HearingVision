@@ -93,34 +93,64 @@ void IdolDrawer::lightBegin(const float color) {
         case DrawColorMode::kShadow:
             ofEnableDepthTest();
             ofEnableLighting();
-            point_light_.setDiffuseColor(ofColor(64.f));
-            point_light_.setSpecularColor(ofColor(64.f));
-            point_light_.setPosition(1500.f, 100.f, 500.f);
+            point_light_1_.setDiffuseColor(ofColor(64.f));
+            point_light_1_.setSpecularColor(ofColor(64.f));
+            point_light_1_.setPosition(1500.f, 100.f, 500.f);
             material_.setShininess(128);
             material_.setDiffuseColor(ofColor(128.f));
             material_.setSpecularColor(ofColor(128.f));
-            point_light_.enable();
+            point_light_1_.enable();
             material_.begin();
             model_loader_->disableMaterials();
             break;
         case DrawColorMode::kShadow2:
             ofEnableDepthTest();
             ofEnableLighting();
-            point_light_.setDiffuseColor(ofColor(255.f));
-            point_light_.setSpecularColor(ofColor(255.f));
-            point_light_.setPosition(1500.f, 100.f, 500.f);
+            point_light_1_.setDiffuseColor(ofColor(255.f));
+            point_light_1_.setSpecularColor(ofColor(255.f));
+            point_light_1_.setPosition(1500.f, 100.f, 500.f);
             material_.setShininess(0);
             material_.setDiffuseColor(ofColor(255.f));
             material_.setSpecularColor(ofColor(255.f));
-            point_light_.enable();
+            point_light_1_.enable();
             material_.begin();
             model_loader_->disableMaterials();
+            break;
+        case DrawColorMode::kColor:
+            ofEnableDepthTest();
+            ofEnableLighting();
+
+            ofSetSmoothLighting(true);
+            point_light_1_.setDiffuseColor(ofFloatColor(.85, .85, .55));
+            point_light_1_.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
+
+            point_light_2_.setDiffuseColor(ofFloatColor(238.f / 255.f, 57.f / 255.f, 135.f / 255.f));
+            point_light_2_.setSpecularColor(ofFloatColor(.8f, .8f, .9f));
+            point_light_2_.setPosition(cos(ofGetElapsedTimef() * 1.5f) * win_cache_->getWidth() * .5f,
+                                       sin(ofGetElapsedTimef() * 1.5f) * win_cache_->getWidth() * .5f,
+                                       pfft_->getMidVal() * 500.f);
+
+            point_light_3_.setDiffuseColor(ofFloatColor( 19.f / 255.f,  94.f / 255.f,  77.f / 255.f));
+            point_light_3_.setSpecularColor(ofFloatColor(18.f / 255.f, 150.f / 255.f, 135.f / 255.f));
+            point_light_3_.setPosition(win_cache_->getWidth()  * .5f + cos(ofGetElapsedTimef() * .15f) * (win_cache_->getWidth()*.3f),
+                                       win_cache_->getHeight() * .5f + sin(ofGetElapsedTimef() * .7f)  * (win_cache_->getHeight()),
+                                       cos(ofGetElapsedTimef() * .5f) * win_cache_->getWidth());
+
+            material_.setShininess(120);
+            material_.setSpecularColor(ofColor(255, 255, 255, 255));
+
+            point_light_1_.enable();
+            point_light_2_.enable();
+            point_light_3_.enable();
+            material_.begin();
             break;
     }
 }
 
 void IdolDrawer::lightEnd() {
-    point_light_.disable();
+    point_light_1_.disable();
+    point_light_2_.disable();
+    point_light_3_.disable();
     material_.end();
 
     ofDisableLighting();
@@ -142,18 +172,23 @@ void IdolDrawer::drawIdol(const float color) {
         case DrawColorMode::kShadow2:
             model_loader_->drawFaces();
             break;
+        case DrawColorMode::kColor:
+            model_loader_->drawFaces();
+            break;
     }
 }
 
 IdolDrawer::DrawColorMode IdolDrawer::drawColorMode(const float color) {
     if (color < 0.1f) {
         return DrawColorMode::kNoLight;
-    } else if (color < 0.4f) {
+    } else if (color < 0.3f) {
         return DrawColorMode::kWhite;
-    } else if (color < 0.8f) {
+    } else if (color < 0.6f) {
         return DrawColorMode::kShadow;
-    } else {
+    } else if (color < 0.8f) {
         return DrawColorMode::kShadow2;
+    } else {
+        return DrawColorMode::kColor;
     }
 }
 

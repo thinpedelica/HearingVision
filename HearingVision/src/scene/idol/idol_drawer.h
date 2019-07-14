@@ -54,7 +54,9 @@ protected:
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofxAssimpModelLoader> model_loader_;
 
-    ofLight point_light_;
+    ofLight point_light_1_;
+    ofLight point_light_2_;
+    ofLight point_light_3_;
     ofMaterial material_;
     ofEasyCam cam_;
 
@@ -68,6 +70,7 @@ private:
         kWhite,
         kShadow,
         kShadow2,
+        kColor,
     };
 
     DrawColorMode drawColorMode(const float color);
