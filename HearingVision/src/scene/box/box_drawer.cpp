@@ -28,6 +28,8 @@ void RollingBoxDrawer::update() {
         updateBoxSize();
         updateCamPos();
     }
+
+    updateColor();
 }
 
 void RollingBoxDrawer::updateBoxSize() {
@@ -48,11 +50,20 @@ void RollingBoxDrawer::updateCamPos() {
     roll_cam_.setRandomPos(270);
 }
 
+void RollingBoxDrawer::updateColor() {
+    float input = ofMap(pfft_->getMidVal(), 0.0, 1.0, 128, 255);
+    if (color_ < 0.1f) {
+        box_color_.set(255.f, input);
+    } else {
+        float hue = color_ * 255.f;
+        box_color_.setHsb(hue, input, input, input);
+    }
+}
 
 void RollingBoxDrawer::draw() {
     roll_cam_.begin();
 
-    ofSetColor(255, ofMap(pfft_->getMidVal(), 0.0, 1.0, 64, 255));
+    ofSetColor(box_color_);
     ofSetLineWidth(ofMap(pfft_->getLowVal(), 0.0, 1.0, 1.0, 10.0));
     for (auto& box : boxes_) {
         box.drawWireframe();

@@ -50,9 +50,11 @@ private:
 
     void updateBoxSize();
     void updateCamPos();
+    void updateColor();
 
     std::vector<ofBoxPrimitive> boxes_;
     ofxRollingCam roll_cam_;
 
+    ofColor box_color_;
     Counter counter_;
 };
