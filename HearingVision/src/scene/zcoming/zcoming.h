@@ -15,16 +15,17 @@ private:
     static constexpr float kBaseZStep     = 100.f;
     static constexpr float kBaseThreshold = 0.15f;
     static constexpr float kDepthInterval = 5.f;
+    static constexpr float kAdditionalZ   = 3000.f;
 
     static constexpr uint32_t kBaseGenCnt = 30;
 
     void updateZpos();
     void eraseOvers();
-    void createTriangle(const float exp_ratio, const float angle);
-    void createSquare(const float exp_ratio, const float angle);
-    void createDepthLine(const float exp_ratio, const float angle);
-    void createDepthCircle(const float exp_ratio, const float angle);
-    void createDepthScrew(const float exp_ratio, const float angle);
+    void createTriangle(const float exp_ratio, const float angle, const float level);
+    void createSquare(const float exp_ratio, const float angle, const float level);
+    void createDepthLine(const float exp_ratio, const float angle, const float level);
+    void createDepthCircle(const float exp_ratio, const float angle, const float level);
+    void createDepthScrew(const float exp_ratio, const float angle, const float level);
 
     std::vector<ofVec3f> line_points_;
     std::vector<ofFloatColor> line_colors_;
