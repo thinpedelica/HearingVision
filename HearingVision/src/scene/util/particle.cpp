@@ -67,6 +67,7 @@ void Particles::draw() {
         mesh.addVertex(ofVec3f(positions.at(i).x, positions.at(i).y));
         mesh.addColor(ofFloatColor(1.0, 1.0, 1.0));
     }
+    glPointSize(0.4f);
     mesh.draw();
 }
 
