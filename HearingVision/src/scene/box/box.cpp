@@ -17,6 +17,7 @@ void BoxScene::setup(std::shared_ptr<ProcessFFT> pfft,
     win_cache_ = win_cache;
 
     drawer_prt_list_.push_back(std::make_unique<RollingBoxDrawer>());
+    drawer_prt_list_.push_back(std::make_unique<EmptyBoxDrawer>());
     for (auto& drawer : drawer_prt_list_) {
         drawer->initialize(win_cache, pfft);
         drawer->setup();

@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "box_drawer.h"
 
 //--------------------------------------------------------------
@@ -70,6 +72,86 @@ void RollingBoxDrawer::draw() {
     }
 
     roll_cam_.end();
+}
+
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+void EmptyBoxDrawer::setup() {
+    // none
+}
+
+void EmptyBoxDrawer::update() {
+    // line, face alpha by fft
+
+    updateColor();
+    updateRotateAngle(level_);
+    updateTranslateDistance(level_);
+    updateBoxSize();
+}
+
+void EmptyBoxDrawer::updateColor() {
+    color_.set(255.f, 200.f);
+}
+
+void EmptyBoxDrawer::updateRotateAngle(const float level) {
+    float ratio   = 0.05f * (level + 0.5f);
+    rotate_angle_ = std::fmod(ofGetElapsedTimeMillis() * ratio, 360.f);
+}
+
+void EmptyBoxDrawer::updateTranslateDistance(const float level) {
+    float angle_deg = std::fmod(360.f * translate_count_, 360.f);
+    float angle_rad = ofDegToRad(angle_deg);
+    float distance_ratio = (sin(angle_rad) + 1.0f) * 0.5f;
+
+    translate_distance_ = kBoxDistanceBase - kBoxDistanceBase * distance_ratio;
+    updateTranslateCount(level);
+}
+
+void EmptyBoxDrawer::updateTranslateCount(const float level) {
+    float ratio = level + 0.5f;
+    float threshold = kBoxDistanceBase * 0.5f;
+    if (translate_distance_ > threshold) {
+        float ratio_2 = ofMap(translate_distance_, threshold, kBoxDistanceBase, 1.0f, 0.4f);
+        ratio *= ratio_2;
+    }
+
+    translate_count_ += (kTranslateCountBase * ratio);
+}
+
+void EmptyBoxDrawer::updateBoxSize() {
+    float ratio = 1.0f;
+    float threshold = kBoxDistanceBase * 0.4f;
+    if (translate_distance_ < threshold) {
+        float ratio_2 = ofMap(translate_distance_, 0.f, threshold, 0.9f, 1.0f);
+        ratio *= ratio_2;
+    }
+
+    box_size_ = (kBoxSize * ratio);
+}
+
+void EmptyBoxDrawer::draw() {
+    cam_.begin();
+
+    ofSetColor(color_);
+    ofNoFill();
+
+    ofPushMatrix();
+    ofTranslate(-translate_distance_, 0.f, 0.f);
+
+    for (size_t i = 0; i < kBoxNum; ++i) {
+        drawRotateBox();
+        ofTranslate(translate_distance_, 0.f, 0.f);
+    }
+
+    ofPopMatrix();
+    cam_.end();
+}
+
+void EmptyBoxDrawer::drawRotateBox() {
+    ofPushMatrix();
+    ofRotate(rotate_angle_, 1.f, 1.f, 1.f);
+    ofDrawBox(box_size_);
+    ofPopMatrix();
 }
 
 //--------------------------------------------------------------

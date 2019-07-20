@@ -58,3 +58,37 @@ private:
     ofColor box_color_;
     Counter counter_;
 };
+
+class EmptyBoxDrawer : public BoxDrawer {
+public:
+    EmptyBoxDrawer() = default;
+    virtual ~EmptyBoxDrawer() = default;
+
+    virtual void setup();
+    virtual void update();
+    virtual void draw();
+
+private:
+    static constexpr size_t   kBoxNum  = 3;
+    static constexpr float    kBoxSize = 420.0;
+    static constexpr float    kBoxDistanceBase = kBoxSize * 0.7f;
+
+
+    static constexpr float kTranslateCountBase = (1.0f / 30.f) * 0.1f;
+
+    void updateColor();
+    void updateRotateAngle(const float level);
+    void updateTranslateDistance(const float level);
+    void updateTranslateCount(const float level);
+    void updateBoxSize();
+
+    void drawRotateBox();
+
+    float rotate_angle_{0.f};
+    float translate_distance_{0.f};
+    float translate_count_{0.f};
+    float box_size_{ kBoxSize };
+
+    ofEasyCam cam_;
+    ofColor color_;
+};
