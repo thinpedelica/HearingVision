@@ -49,3 +49,6 @@ void BoxScene::draw() {
 }
 
 //--------------------------------------------------------------
+NextScene& BoxScene::getNextScene() {
+    return drawer_prt_list_.at(draw_list_index_)->getNextScene();
+}

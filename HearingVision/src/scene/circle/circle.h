@@ -29,6 +29,8 @@ private:
     void updateParticlePos(const ofVec2f& target_pos, const float velocity, const bool is_move);
     void drawParticle(const ofColor& color);
 
+    void setupNextScene();
+
     ofEasyCam cam_;
 
     PingPongBuffer ping_pong_buffer_;

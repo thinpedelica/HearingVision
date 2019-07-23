@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "scene_param.h"
+#include "util/next_scene.h"
 #include "ofxProcessFFT.h"
 
 class BaseScene {
@@ -19,7 +20,10 @@ public:
     virtual void reset() {}
     virtual void resize() {}
 
+    virtual NextScene& getNextScene() { return next_scene_; };
+
 protected:
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofRectangle> win_cache_;
+    NextScene next_scene_;
 };

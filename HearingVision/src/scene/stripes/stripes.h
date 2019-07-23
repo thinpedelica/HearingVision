@@ -17,6 +17,8 @@ public:
     virtual void resize() override;
 
 private:
+    void setupNextScene();
+
     std::vector<std::unique_ptr<StripesDrawer>> drawer_prt_list_;
     size_t draw_list_index_{0};
 };

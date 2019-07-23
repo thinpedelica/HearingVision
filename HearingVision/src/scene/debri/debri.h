@@ -22,6 +22,8 @@ private:
     static constexpr float  kLeoDistMin = 300.f;
     static constexpr float  kLeoDistMax = 350.f;
 
+    void setupNextScene();
+
     float time_{0.f};
     float scale_{ kFloatingDist };
     float point_size_{1.f};

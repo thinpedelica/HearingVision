@@ -209,7 +209,6 @@
     <ClCompile Include="src\scene\debri\debri.cpp" />
     <ClCompile Include="src\scene\equalizer\equalizer.cpp" />
     <ClCompile Include="src\scene\equalizer\equalizer_drawer.cpp" />
-    <ClCompile Include="src\scene\fractal\fractal.cpp" />
     <ClCompile Include="src\scene\grid\grid.cpp" />
     <ClCompile Include="src\scene\humanpose\humanpose.cpp" />
     <ClCompile Include="src\scene\idol\idol.cpp" />
@@ -220,11 +219,11 @@
     <ClCompile Include="src\scene\orb\orb.cpp" />
     <ClCompile Include="src\scene\psychedelica\psychedelica.cpp" />
     <ClCompile Include="src\scene\qsphere\qsphere.cpp" />
-    <ClCompile Include="src\scene\river\river.cpp" />
     <ClCompile Include="src\scene\stripes\stripes.cpp" />
     <ClCompile Include="src\scene\stripes\stripes_drawer.cpp" />
     <ClCompile Include="src\scene\tousle\circle_drawer.cpp" />
     <ClCompile Include="src\scene\tousle\tousle.cpp" />
+    <ClCompile Include="src\scene\util\next_scene.cpp" />
     <ClCompile Include="src\scene\util\particle.cpp" />
     <ClCompile Include="src\scene\walking\walking.cpp" />
     <ClCompile Include="src\scene\xflash\xflash.cpp" />
@@ -280,7 +279,6 @@
     <ClInclude Include="src\scene\debri\debri.h" />
     <ClInclude Include="src\scene\equalizer\equalizer.h" />
     <ClInclude Include="src\scene\equalizer\equalizer_drawer.h" />
-    <ClInclude Include="src\scene\fractal\fractal.h" />
     <ClInclude Include="src\scene\grid\grid.h" />
     <ClInclude Include="src\scene\humanpose\humanpose.h" />
     <ClInclude Include="src\scene\idol\idol.h" />
@@ -291,13 +289,13 @@
     <ClInclude Include="src\scene\orb\orb.h" />
     <ClInclude Include="src\scene\psychedelica\psychedelica.h" />
     <ClInclude Include="src\scene\qsphere\qsphere.h" />
-    <ClInclude Include="src\scene\river\river.h" />
     <ClInclude Include="src\scene\scene_param.h" />
     <ClInclude Include="src\scene\stripes\stripes.h" />
     <ClInclude Include="src\scene\stripes\stripes_drawer.h" />
     <ClInclude Include="src\scene\tousle\circle_drawer.h" />
     <ClInclude Include="src\scene\tousle\tousle.h" />
     <ClInclude Include="src\scene\util\counter.h" />
+    <ClInclude Include="src\scene\util\next_scene.h" />
     <ClInclude Include="src\scene\util\particle.h" />
     <ClInclude Include="src\scene\walking\walking.h" />
     <ClInclude Include="src\scene\xflash\xflash.h" />

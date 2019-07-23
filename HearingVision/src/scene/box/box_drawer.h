@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "../util/counter.h"
+#include "../util/next_scene.h"
 
 class BoxDrawer {
 public:
@@ -25,10 +26,15 @@ public:
     virtual void setColor(const float color) { color_ = color; }
     virtual void setLevel(const float level) { level_ = level; }
     virtual void setThreshold(const float threshold) { threshold_ = threshold; }
-protected:
+    virtual NextScene& getNextScene();
 
+protected:
     std::shared_ptr<ofRectangle> win_cache_;
     std::shared_ptr<ProcessFFT> pfft_;
+    NextScene next_scene_;
+
+    virtual void setupNextScene() = 0;
+
     float color_{0.f};
     float level_{0.f};
     float threshold_{0.f};
@@ -51,6 +57,8 @@ private:
     void updateBoxSize();
     void updateCamPos();
     void updateColor();
+
+    virtual void setupNextScene() override;
 
     std::vector<ofBoxPrimitive> boxes_;
     ofxRollingCam roll_cam_;
@@ -83,6 +91,8 @@ private:
     void updateBoxSize();
 
     void drawRotateBox();
+
+    virtual void setupNextScene() override;
 
     float rotate_angle_{0.f};
     float translate_distance_{0.f};

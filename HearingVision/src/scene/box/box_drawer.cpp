@@ -17,9 +17,13 @@ void BoxDrawer::resize() {
     // non
 }
 
+NextScene& BoxDrawer::getNextScene() {
+    return next_scene_;
+}
+
 //--------------------------------------------------------------
 void RollingBoxDrawer::setup() {
-    // none
+    setupNextScene();
 }
 
 void RollingBoxDrawer::update() {
@@ -75,9 +79,21 @@ void RollingBoxDrawer::draw() {
 }
 
 //--------------------------------------------------------------
+void RollingBoxDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("I4");
+    next_scene_list.push_back("I5");
+    next_scene_list.push_back("Q");
+    next_scene_list.push_back("S");
+    next_scene_list.push_back("X");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}
+
+//--------------------------------------------------------------
 //--------------------------------------------------------------
 void EmptyBoxDrawer::setup() {
-    // none
+    setupNextScene();
 }
 
 void EmptyBoxDrawer::update() {
@@ -152,6 +168,11 @@ void EmptyBoxDrawer::drawRotateBox() {
     ofRotate(rotate_angle_, 1.f, 1.f, 1.f);
     ofDrawBox(box_size_);
     ofPopMatrix();
+}
+
+//--------------------------------------------------------------
+void EmptyBoxDrawer::setupNextScene() {
+    // TODO
 }
 
 //--------------------------------------------------------------

@@ -50,4 +50,10 @@ void EqualizerScene::resize() {
         drawer->resize();
     }
 }
+
+//--------------------------------------------------------------
+NextScene& EqualizerScene::getNextScene() {
+    return drawer_prt_list_.at(draw_list_index_)->getNextScene();
+}
+
 //--------------------------------------------------------------

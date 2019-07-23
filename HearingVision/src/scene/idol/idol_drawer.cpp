@@ -192,9 +192,13 @@ IdolDrawer::DrawColorMode IdolDrawer::drawColorMode(const float color) {
     }
 }
 
+NextScene& IdolDrawer::getNextScene() {
+    return next_scene_;
+}
+
 //--------------------------------------------------------------
 void SoloIdolDrawer::setup() {
-    // none
+    setupNextScene();
 }
 
 void SoloIdolDrawer::update() {
@@ -222,9 +226,16 @@ void SoloIdolDrawer::draw() {
     cam_.end();
 }
 
+void SoloIdolDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("P5");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}
+
 //--------------------------------------------------------------
 void TrioIdolDrawer::setup() {
-    // none
+    setupNextScene();
 }
 
 void TrioIdolDrawer::update() {
@@ -259,8 +270,16 @@ void TrioIdolDrawer::draw() {
     cam_.end();
 }
 
+void TrioIdolDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("P5");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}
+
 //--------------------------------------------------------------
 void MoveIdolDrawer::setup() {
+    setupNextScene();
     initializePositionList();
 }
 
@@ -314,8 +333,16 @@ void MoveIdolDrawer::updatePositionList() {
     }
 }
 
+void MoveIdolDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("B1");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}
+
 //--------------------------------------------------------------
 void MultiAngleIdolDrawer::setup() {
+    setupNextScene();
     initializeAngleList();
 }
 
@@ -360,4 +387,11 @@ void MultiAngleIdolDrawer::drawIdol(const uint32_t angle_no, const float color) 
 
     lightEnd();
     cam_.end();
+}
+
+void MultiAngleIdolDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("B1");
+
+    next_scene_.setNextSceneList(next_scene_list);
 }

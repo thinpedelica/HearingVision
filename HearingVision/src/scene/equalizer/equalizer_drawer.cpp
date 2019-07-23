@@ -3,8 +3,15 @@
 #include "equalizer_drawer.h"
 
 //--------------------------------------------------------------
+NextScene& EqualizerDrawer::getNextScene() {
+    return next_scene_;
+}
+
+//--------------------------------------------------------------
 void CircularEqualizerDrawer::setup(std::shared_ptr<ofRectangle> win_cache) {
     win_cache_ = win_cache;
+    setupNextScene();
+
     vertexes_.resize(kPointNum);
     color_list_.resize(kPointNum);
 
@@ -54,8 +61,17 @@ void CircularEqualizerDrawer::draw() {
 }
 
 //--------------------------------------------------------------
+void CircularEqualizerDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("P1");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}
+
+//--------------------------------------------------------------
 void BoxEqualizerDrawer::setup(std::shared_ptr<ofRectangle> win_cache) {
     win_cache_ = win_cache;
+    setupNextScene();
 
     initializeVertex();
     initializeColor();
@@ -153,8 +169,14 @@ void BoxEqualizerDrawer::resize() {
 }
 
 //--------------------------------------------------------------
+void BoxEqualizerDrawer::setupNextScene() {
+    // nop
+}
+
+//--------------------------------------------------------------
 void GridEqualizerDrawer::setup(std::shared_ptr<ofRectangle> win_cache) {
     win_cache_ = win_cache;
+    setupNextScene();
 
     vertexes_.resize(kGridNum);
     for (int i = 0; i < kGridRow; ++i) {
@@ -256,9 +278,14 @@ void GridEqualizerDrawer::draw() {
     cam_.end();
 }
 
+void GridEqualizerDrawer::setupNextScene() {
+    // nop
+}
+
 //--------------------------------------------------------------
 void CylinderEqualizerDrawer::setup(std::shared_ptr<ofRectangle> win_cache) {
     win_cache_ = win_cache;
+    setupNextScene();
 
     for (size_t i = 0; i < 255; ++i) {
         while (true) {
@@ -349,4 +376,12 @@ void CylinderEqualizerDrawer::draw() {
     ofDisableLighting();
     ofDisableDepthTest();
     cam_.end();
+}
+
+void CylinderEqualizerDrawer::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("M");
+    next_scene_list.push_back("P1");
+
+    next_scene_.setNextSceneList(next_scene_list);
 }

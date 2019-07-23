@@ -13,6 +13,7 @@ void CircleScene::setup(std::shared_ptr<ProcessFFT> pfft,
                         std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     update_shader_.load("shader/circle/update");
     draw_shader_.load("shader/circle/draw");
@@ -150,6 +151,16 @@ void CircleScene::drawParticle(const ofColor& color) {
 
     ofDisablePointSprites();
     ofPopStyle();
+}
+
+//--------------------------------------------------------------
+void CircleScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("M");
+    next_scene_list.push_back("P4");
+    next_scene_list.push_back("Q");
+
+    next_scene_.setNextSceneList(next_scene_list);
 }
 
 //--------------------------------------------------------------

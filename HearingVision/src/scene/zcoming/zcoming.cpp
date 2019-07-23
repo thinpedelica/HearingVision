@@ -15,6 +15,7 @@ void ZcomingScene::setup(std::shared_ptr<ProcessFFT> pfft,
                      std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     cur_color_.set(1.0, 0.6);
 }
@@ -202,3 +203,12 @@ void ZcomingScene::draw() {
     cam_.end();
 }
 
+//--------------------------------------------------------------
+void ZcomingScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("E2");
+    next_scene_list.push_back("P5");
+    next_scene_list.push_back("X");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}

@@ -8,6 +8,7 @@
 
 #include "ofxAssimpModelLoader.h"
 #include "../util/counter.h"
+#include "../util/next_scene.h"
 
 class IdolDrawer {
 public:
@@ -26,6 +27,7 @@ public:
     virtual void setColor(const float color) { color_ = color; }
     virtual void setLevel(const float level) { level_ = level; }
     virtual void setThreshold(const float threshold) { threshold_ = threshold; }
+    virtual NextScene& getNextScene();
 
 protected:
     static constexpr int kRotateForBaseX = 0;
@@ -53,6 +55,7 @@ protected:
     std::shared_ptr<ofRectangle> win_cache_;
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofxAssimpModelLoader> model_loader_;
+    NextScene next_scene_;
 
     ofLight point_light_1_;
     ofLight point_light_2_;
@@ -74,6 +77,7 @@ private:
     };
 
     DrawColorMode drawColorMode(const float color);
+    virtual void setupNextScene() = 0;
 };
 
 class SoloIdolDrawer : public IdolDrawer {
@@ -85,6 +89,8 @@ public:
     virtual void update() override;
     virtual void draw() override;
 private:
+    virtual void setupNextScene() override;
+
     float rorate_count_{0.f};
 };
 
@@ -97,6 +103,8 @@ public:
     virtual void update() override;
     virtual void draw() override;
 private:
+    virtual void setupNextScene() override;
+
     float rorate_count_{0.f};
 };
 
@@ -118,6 +126,8 @@ private:
 
     void initializePositionList();
     void updatePositionList();
+
+    virtual void setupNextScene() override;
 };
 
 class MultiAngleIdolDrawer : public IdolDrawer {
@@ -133,6 +143,8 @@ private:
 
     void initializeAngleList();
     void drawIdol(const uint32_t angle_no, const float color);
+
+    virtual void setupNextScene() override;
 
     Counter counter_;
     uint32_t angle_{0};

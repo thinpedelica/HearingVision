@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 
+#include "../util/next_scene.h"
+
 class EqualizerDrawer {
 public:
     EqualizerDrawer() = default;
@@ -16,9 +18,14 @@ public:
 
     virtual void setColor(const float color) { color_ = color; }
     virtual void setLevel(const float level) { level_ = level; }
+    virtual NextScene& getNextScene();
 
 protected:
     std::shared_ptr<ofRectangle> win_cache_;
+    NextScene next_scene_;
+
+    virtual void setupNextScene() = 0;
+
     float color_{0.f};
     float level_{0.f};
 
@@ -37,6 +44,8 @@ private:
     static constexpr size_t kPointNum = 3 * 2 * kBarNum;
     static constexpr float kOutDirectRadius = 200.f;
     static constexpr float kBarHeight       = 1000.f;
+
+    virtual void setupNextScene() override;
 
     ofVbo vbo_;
     std::vector<ofVec3f> vertexes_;
@@ -66,6 +75,8 @@ private:
     void initializeVertex();
     void initializeColor();
 
+    virtual void setupNextScene() override;
+
     ofVbo vbo_;
     std::vector<ofVec3f> vertexes_;
     std::vector<ofFloatColor> color_list_;
@@ -85,6 +96,8 @@ private:
     static constexpr size_t kGridCol = 32;
     static constexpr size_t kGridNum = kGridRow * kGridCol;
     static constexpr size_t kLayerNum = 4;
+
+    virtual void setupNextScene() override;
 
     std::vector<ofVbo> vbo_list_;
     std::vector<ofVec3f> vertexes_;
@@ -114,6 +127,8 @@ private:
     std::vector<ofCylinderPrimitive> cylinders_;
 
     bool isOverrap(const std::vector<ofCylinderPrimitive>& cylinders, ofVec3f& pos, float radius) const;
+
+    virtual void setupNextScene() override;
 
     ofLight point_light_;
     ofMaterial material_;

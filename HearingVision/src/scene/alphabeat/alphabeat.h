@@ -13,7 +13,6 @@ public:
     virtual void update(SceneParam scene_param);
     virtual void draw();
     virtual void resize() override;
-
 private:
     void setupFont();
     void updateFont();
@@ -22,6 +21,8 @@ private:
     void updateFx();
     void resetFx();
     void drawString(const ofTrueTypeFont& font, const std::string& str) const;
+
+    void setupNextScene();
 
     std::vector<ofTrueTypeFont> font_list_;
     std::vector<std::string> alphabet_list_;

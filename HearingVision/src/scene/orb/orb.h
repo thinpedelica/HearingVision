@@ -61,6 +61,8 @@ private:
 
     void updateCamPosition();
 
+    void setupNextScene();
+
     ofLight point_light_;
     ofMaterial material_;
 

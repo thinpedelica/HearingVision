@@ -13,5 +13,7 @@ public:
     virtual void draw();
 
 private:
+    void setupNextScene();
+
     MandalaDrawer mandala_drawer_;
 };

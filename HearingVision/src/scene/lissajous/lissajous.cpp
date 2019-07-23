@@ -15,6 +15,7 @@ void LissajousScene::setup(std::shared_ptr<ProcessFFT> pfft,
                            std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
     roll_cam_.setup();
     roll_cam_.setCamSpeed(0.1);
 
@@ -141,4 +142,9 @@ void LissajousScene::setDrawInfo(const size_t draw_num) {
             draw_info_list_.push_back(DrawInfo(win_cache_->getWidth() * 3 / 4, win_cache_->getHeight() / 2, win_cache_->getWidth() / 4, win_cache_->getHeight() / 2));
             break;
     }
+}
+
+//--------------------------------------------------------------
+void LissajousScene::setupNextScene() {
+    // nop
 }

@@ -1,4 +1,5 @@
 #include "alphabeat.h"
+#include "../util/next_scene.h"
 
 //--------------------------------------------------------------
 AlphabeatScene::AlphabeatScene() {
@@ -15,7 +16,7 @@ void AlphabeatScene::setup(std::shared_ptr<ProcessFFT> pfft,
                      std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
-
+    setupNextScene();
     setupFont();
     setupStrings();
 
@@ -192,4 +193,13 @@ void AlphabeatScene::draw() {
 void AlphabeatScene::resize() {
     fbo_.allocate(win_cache_->getWidth(), win_cache_->getHeight());
     glitch_.setup(&fbo_);
+}
+
+//--------------------------------------------------------------
+void AlphabeatScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("A");
+    next_scene_list.push_back("B1");
+
+    next_scene_.setNextSceneList(next_scene_list);
 }

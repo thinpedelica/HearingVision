@@ -15,6 +15,8 @@ private:
     static constexpr size_t kHistoryMax = 100;
     static constexpr size_t kHistoryMin = 5;
 
+    void setupNextScene();
+
     std::vector<ofShader> shader_;
     float time_{0.f};
     float level_{0.f};

@@ -13,6 +13,7 @@ void MandalaScene::setup(std::shared_ptr<ProcessFFT> pfft,
                          std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     mandala_drawer_.setup(win_cache_);
 }
@@ -34,6 +35,16 @@ void MandalaScene::update(SceneParam scene_param) {
 //--------------------------------------------------------------
 void MandalaScene::draw() {
     mandala_drawer_.draw();
+}
+
+//--------------------------------------------------------------
+void MandalaScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("C");
+    next_scene_list.push_back("E3");
+    next_scene_list.push_back("Q");
+
+    next_scene_.setNextSceneList(next_scene_list);
 }
 
 //--------------------------------------------------------------

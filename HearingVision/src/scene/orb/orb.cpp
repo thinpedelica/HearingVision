@@ -15,6 +15,7 @@ void OrbScene::setup(std::shared_ptr<ProcessFFT> pfft,
                      std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     ofSetSmoothLighting(true);
     ofSetSphereResolution(64);
@@ -221,6 +222,16 @@ void OrbScene::draw() {
     ofDisableDepthTest();
 
     cam_.end();
+}
+
+//--------------------------------------------------------------
+void OrbScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("D");
+    next_scene_list.push_back("E3");
+    next_scene_list.push_back("X");
+
+    next_scene_.setNextSceneList(next_scene_list);
 }
 
 //--------------------------------------------------------------

@@ -15,9 +15,9 @@ XFlashScene::~XFlashScene() {
 //--------------------------------------------------------------
 void XFlashScene::setup(std::shared_ptr<ProcessFFT> pfft,
                         std::shared_ptr<ofRectangle> win_cache) {
-
     pfft_ = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     createBasePoint(kBasePointNum);
     createParticle(kParticleNum);
@@ -143,3 +143,12 @@ void XFlashScene::resize(){
     createParticle(kParticleNum);
 }
 
+//--------------------------------------------------------------
+void XFlashScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("B1");
+    next_scene_list.push_back("O");
+    next_scene_list.push_back("S");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}

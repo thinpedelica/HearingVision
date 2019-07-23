@@ -25,6 +25,8 @@ private:
     void conectLines();
     void createTargetPoints(const float level);
 
+    void setupNextScene();
+
     using ConnectPoints = std::vector<size_t>;
     using ConnectPointsList = std::vector<ConnectPoints>;
 

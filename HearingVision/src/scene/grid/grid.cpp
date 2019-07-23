@@ -170,3 +170,8 @@ void GridScene::changeMode(const SceneParam& scene_param) {
 void GridScene::resize() {
     resetCamPos(cam_pos_index_);
 }
+
+//--------------------------------------------------------------
+void GridScene::setupNextScene() {
+    // nop
+}

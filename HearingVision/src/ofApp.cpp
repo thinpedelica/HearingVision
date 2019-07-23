@@ -13,7 +13,6 @@
 #include "scene/psychedelica/psychedelica.h"
 #include "scene/orb/orb.h"
 #include "scene/qsphere/qsphere.h"
-#include "scene/river/river.h"
 #include "scene/stripes/stripes.h"
 #include "scene/tousle/tousle.h"
 #include "scene/walking/walking.h"
@@ -134,6 +133,11 @@ void ofApp::draw() {
 ofTexture& ofApp::getMonitor(const int index) {
     return scene_fbos_.at(index).getTexture();
 }
+
+NextScene& ofApp::getNextScene(const int index) {
+    return scene_list_.at(active_scene_lsit_.at(index))->getNextScene();
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     if ((key >= 'a') && (key <= 'z')) {
@@ -192,9 +196,6 @@ void ofApp::createScenes() {
 
     scene_list_.push_back(std::make_unique<QSphereScene>());
     key_vs_scene_no_.emplace('q', scene_list_.size() - 1);
-
-    scene_list_.push_back(std::make_unique<RiverScene>());
-    key_vs_scene_no_.emplace('r', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<StripesScene>());
     key_vs_scene_no_.emplace('s', scene_list_.size() - 1);

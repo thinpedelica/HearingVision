@@ -6,6 +6,7 @@
 
 #include "scene/base_scene.h"
 #include "scene/scene_param.h"
+#include "scene/util/next_scene.h"
 #include <map>
 #include <vector>
 #include <memory>
@@ -17,6 +18,7 @@ public:
     void update();
     void draw();
     ofTexture& getMonitor(const int index);
+    NextScene& getNextScene(const int index);
 
     void keyPressed(int key);
     void windowResized(int w, int h);

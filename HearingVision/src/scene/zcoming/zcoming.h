@@ -27,6 +27,8 @@ private:
     void createDepthCircle(const float exp_ratio, const float angle, const float level);
     void createDepthScrew(const float exp_ratio, const float angle, const float level);
 
+    void setupNextScene();
+
     std::vector<ofVec3f> line_points_;
     std::vector<ofFloatColor> line_colors_;
     ofVbo vbo_line_;

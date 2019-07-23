@@ -18,6 +18,8 @@ public:
     virtual void draw();
     virtual void resize() override;
 
+    virtual NextScene& getNextScene() override;
+
 private:
     bool setupModel();
 

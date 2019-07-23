@@ -15,6 +15,7 @@ void StripesScene::setup(std::shared_ptr<ProcessFFT> pfft,
                          std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     std::shared_ptr<BloomLineDrawer> bloom_line_drawer_ptr = std::make_shared<BloomLineDrawer>();
     bloom_line_drawer_ptr->setup();
@@ -61,4 +62,15 @@ void StripesScene::resize() {
         drawer->resize();
     }
 }
+
 //--------------------------------------------------------------
+void StripesScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("A");
+    next_scene_list.push_back("B1");
+    next_scene_list.push_back("B2");
+    next_scene_list.push_back("G");
+    next_scene_list.push_back("X");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}

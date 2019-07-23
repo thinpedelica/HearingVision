@@ -80,4 +80,8 @@ void IdolScene::resize() {
         drawer->resize();
     }
 }
+
 //--------------------------------------------------------------
+NextScene& IdolScene::getNextScene() {
+    return drawer_prt_list_.at(draw_list_index_)->getNextScene();
+}

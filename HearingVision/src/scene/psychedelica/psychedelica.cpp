@@ -17,6 +17,7 @@ void PsychedelicaScene::setup(std::shared_ptr<ProcessFFT> pfft,
                      std::shared_ptr<ofRectangle> win_cache) {
     pfft_      = pfft;
     win_cache_ = win_cache;
+    setupNextScene();
 
     shader_.resize(5);
     shader_.at(0).load("shader/psychedelica/crystal/draw");
@@ -72,3 +73,22 @@ void PsychedelicaScene::draw() {
 }
 
 //--------------------------------------------------------------
+void PsychedelicaScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("E1");
+    next_scene_list.push_back("E3");
+
+    next_scene_list.push_back("/");
+
+    next_scene_list.push_back("/");
+
+    next_scene_list.push_back("/");
+    next_scene_list.push_back("C");
+
+    next_scene_list.push_back("/");
+    next_scene_list.push_back("C");
+    next_scene_list.push_back("I1");
+    next_scene_list.push_back("I2");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}

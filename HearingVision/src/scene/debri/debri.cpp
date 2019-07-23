@@ -153,3 +153,12 @@ void DebriScene::draw() {
 }
 
 //--------------------------------------------------------------
+void DebriScene::setupNextScene() {
+    NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("O");
+    next_scene_list.push_back("Q");
+
+    next_scene_.setNextSceneList(next_scene_list);
+}
+
+//--------------------------------------------------------------

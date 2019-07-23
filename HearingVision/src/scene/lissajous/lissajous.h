@@ -28,6 +28,8 @@ private:
     void updateLissajousParamsOverThreshold();
     void updateLissajousPoints();
 
+    void setupNextScene();
+
     ofxRollingCam roll_cam_;
 
     float threshold_{kThreshold};

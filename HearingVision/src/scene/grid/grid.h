@@ -37,6 +37,8 @@ private:
     void updateFov();
     void changeMode(const SceneParam& scene_param);
 
+    void setupNextScene();
+
     vector<vector<float> > fft_history_;
 
     std::vector<ofVbo> vbo_list_;

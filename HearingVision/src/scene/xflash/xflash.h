@@ -24,6 +24,8 @@ private:
     void drawLineBetweenDots(const float level_val);
     void drawCircleOnDots(const float level_val);
 
+    void setupNextScene();
+
     vector<ofVec2f> base_points_;
     vector<ofVec2f> dot_points_;
     std::unique_ptr<Particles> particles_ptr_;

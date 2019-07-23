@@ -28,4 +28,5 @@ void ofMonitor::draw() {
     main_app_->getMonitor(monitor_index_).draw(0, 0,
                                               win_cache_.getWidth(),
                                               win_cache_.getHeight());
+    main_app_->getNextScene(monitor_index_).draw();
 }
