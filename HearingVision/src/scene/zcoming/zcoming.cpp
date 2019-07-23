@@ -190,7 +190,7 @@ void ZcomingScene::draw() {
     cam_.begin();
     ofPushMatrix();
 
-    cam_.setPosition(ofVec3f(0.f, 10.f, -200.f));
+    cam_.setPosition(ofVec3f(0.f, 0.f, -200.f));
     cam_.lookAt(ofVec3f(0.f, 0.f, 0.f));
     cam_.setFov(20.f);
 
@@ -206,7 +206,10 @@ void ZcomingScene::draw() {
 //--------------------------------------------------------------
 void ZcomingScene::setupNextScene() {
     NextScene::NextSceneList next_scene_list;
+    next_scene_list.push_back("E1");
     next_scene_list.push_back("E2");
+    next_scene_list.push_back("P1");
+    next_scene_list.push_back("P2");
     next_scene_list.push_back("P5");
     next_scene_list.push_back("X");
 
