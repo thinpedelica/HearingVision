@@ -15,6 +15,7 @@ public:
     virtual void resize() override;
 private:
     void setupFont();
+    void updateMode();
     void updateFont();
     void setupStrings();
     void updateStrings();
@@ -27,6 +28,7 @@ private:
     std::vector<ofTrueTypeFont> font_list_;
     std::vector<std::string> alphabet_list_;
     std::vector<std::string> message_list_;
+    std::string title_;
     size_t current_string_{ 0 };
     size_t current_font_{ 0 };
 
@@ -37,4 +39,5 @@ private:
 
     float level_{0.f};
     bool is_fx_{false};
+    bool is_title_only_{false};
 };

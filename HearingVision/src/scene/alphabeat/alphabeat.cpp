@@ -103,6 +103,8 @@ void AlphabeatScene::setupStrings() {
     message_list_.push_back("XXX");
     message_list_.push_back("Yeah");
     message_list_.push_back("Zeal");
+
+    title_ = "SUAVE";
 }
 
 //--------------------------------------------------------------
@@ -110,21 +112,33 @@ void AlphabeatScene::update(SceneParam scene_param) {
     level_ = scene_param.level_;
     counter_.setThreshold(scene_param.threshold_);
 
+    if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
+        updateMode();
+    }
+
     updateFont();
     updateStrings();
 
     fbo_.begin();
     ofClear(0, 0, 0, 255);
 
-    if (level_ < 0.6) {
-        drawString(font_list_.at(current_font_), alphabet_list_.at(current_string_));
+    if (is_title_only_) {
+        drawString(font_list_.at(current_font_), title_);
     } else {
-        drawString(font_list_.at(current_font_), message_list_.at(current_string_));
+        if (level_ < 0.6) {
+            drawString(font_list_.at(current_font_), alphabet_list_.at(current_string_));
+        } else {
+            drawString(font_list_.at(current_font_), message_list_.at(current_string_));
+        }
     }
 
     fbo_.end();
 
     glitch_.generateFx();
+}
+
+void AlphabeatScene::updateMode() {
+    is_title_only_ = !is_title_only_;
 }
 
 void AlphabeatScene::updateFont() {
