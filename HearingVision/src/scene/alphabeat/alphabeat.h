@@ -19,9 +19,12 @@ private:
     void updateFont();
     void setupStrings();
     void updateStrings();
-    void updateFx();
-    void resetFx();
+    void updateFbo();
     void drawString(const ofTrueTypeFont& font, const std::string& str) const;
+
+    void updateFx();
+    void setFx();
+    void resetFx();
 
     void setupNextScene();
 
@@ -32,7 +35,8 @@ private:
     size_t current_string_{ 0 };
     size_t current_font_{ 0 };
 
-    Counter counter_;
+    Counter string_counter_;
+    Counter fx_counter_;
 
     ofFbo fbo_;
     ofxPostGlitch glitch_;

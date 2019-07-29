@@ -110,7 +110,8 @@ void AlphabeatScene::setupStrings() {
 //--------------------------------------------------------------
 void AlphabeatScene::update(SceneParam scene_param) {
     level_ = scene_param.level_;
-    counter_.setThreshold(scene_param.threshold_);
+    string_counter_.setThreshold(scene_param.threshold_);
+    fx_counter_.setThreshold(scene_param.threshold_);
 
     if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
         updateMode();
@@ -118,22 +119,9 @@ void AlphabeatScene::update(SceneParam scene_param) {
 
     updateFont();
     updateStrings();
+    updateFbo();
 
-    fbo_.begin();
-    ofClear(0, 0, 0, 255);
-
-    if (is_title_only_) {
-        drawString(font_list_.at(current_font_), title_);
-    } else {
-        if (level_ < 0.6) {
-            drawString(font_list_.at(current_font_), alphabet_list_.at(current_string_));
-        } else {
-            drawString(font_list_.at(current_font_), message_list_.at(current_string_));
-        }
-    }
-
-    fbo_.end();
-
+    updateFx();
     glitch_.generateFx();
 }
 
@@ -148,7 +136,7 @@ void AlphabeatScene::updateFont() {
 }
 
 void AlphabeatScene::updateStrings() {
-    bool ret = counter_.update();
+    bool ret = string_counter_.update();
     if (ret) {
         if (level_ < 0.4) {
             current_string_ += 1;
@@ -159,12 +147,23 @@ void AlphabeatScene::updateStrings() {
             current_string_ = static_cast<size_t>(ofRandom(alphabet_list_.size() - 1));
             updateFx();
         }
-    } else if (counter_.isOver(0.3f)) {
+    } else if (string_counter_.isOver(0.3f)) {
         resetFx();
     }
 }
 
 void AlphabeatScene::updateFx() {
+    bool ret = fx_counter_.update();
+    if (ret) {
+        if (level_ > 0.4) {
+            setFx();
+        }
+    } else if (fx_counter_.isOver(0.3f)) {
+        resetFx();
+    }
+}
+
+void AlphabeatScene::setFx() {
     float coin = ofRandomf();
     if (coin < 0.3f) {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
@@ -177,7 +176,7 @@ void AlphabeatScene::updateFx() {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
         glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
     } else {
-        if (counter_.getThreshold() > 0.75) {
+        if (fx_counter_.getThreshold() > 0.75) {
             glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
             glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
         }
@@ -188,6 +187,23 @@ void AlphabeatScene::resetFx() {
     for (size_t i = 0; i < GLITCH_NUM; ++i) {
         glitch_.setFx(static_cast<ofxPostGlitchType>(i), false);
     }
+}
+
+void AlphabeatScene::updateFbo() {
+    fbo_.begin();
+    ofClear(0, 0, 0, 255);
+
+    if (is_title_only_) {
+        drawString(font_list_.at(current_font_), title_);
+    } else {
+        if (level_ < 0.6) {
+            drawString(font_list_.at(current_font_), alphabet_list_.at(current_string_));
+        } else {
+            drawString(font_list_.at(current_font_), message_list_.at(current_string_));
+        }
+    }
+
+    fbo_.end();
 }
 
 void AlphabeatScene::drawString(const ofTrueTypeFont& font, const std::string& str) const {
