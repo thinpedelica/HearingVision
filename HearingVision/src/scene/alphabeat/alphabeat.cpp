@@ -159,13 +159,13 @@ void AlphabeatScene::updateFx() {
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
         glitch_.setFx(OFXPOSTGLITCH_CUTSLIDER, true);
     } else if (coin < 0.7f) {
+        glitch_.setFx(OFXPOSTGLITCH_INVERT, true);
         glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
-        glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
+        glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
     } else {
         if (counter_.getThreshold() > 0.75) {
-            glitch_.setFx(OFXPOSTGLITCH_INVERT, true);
             glitch_.setFx(OFXPOSTGLITCH_CONVERGENCE, true);
-            glitch_.setFx(OFXPOSTGLITCH_SHAKER, true);
+            glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
         }
     }
 }
