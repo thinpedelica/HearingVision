@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxProcessFFT.h"
-#include "nanoKon2.h"
+#include "ofxNanokon2.h"
 
 #include "scene/base_scene.h"
 #include "scene/scene_param.h"
@@ -54,5 +54,5 @@ private:
 
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofRectangle> win_cache_;
-    NanoKon2 nano_kon_;
+    ofxNanokon2 nano_kon_;
 };

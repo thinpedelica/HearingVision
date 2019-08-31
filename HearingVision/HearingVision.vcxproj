@@ -158,7 +158,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxPostGlitch\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxSpout2\libs\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxSpout2\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxPostGlitch\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxSpout2\libs\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxSpout2\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs\oscpack;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs\oscpack\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs\oscpack\src\ip;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs\oscpack\src\ip\posix;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs\oscpack\src\ip\win32;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\libs\oscpack\src\osc;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxOsc\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxNanokon2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -175,7 +175,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\nanoKon2.cpp" />
     <ClCompile Include="src\ofMonitor.cpp" />
     <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
@@ -198,6 +197,22 @@
     <ClCompile Include="src\ofxMidi\src\ofxMidiMessage.cpp" />
     <ClCompile Include="src\ofxMidi\src\ofxMidiOut.cpp" />
     <ClCompile Include="src\ofxMidi\src\ofxMidiTimecode.cpp" />
+    <ClCompile Include="src\ofxNanokon2\nanokon2_items.cpp" />
+    <ClCompile Include="src\ofxNanokon2\nanokon2_midi.cpp" />
+    <ClCompile Include="src\ofxNanokon2\nanokon2_osc.cpp" />
+    <ClCompile Include="src\ofxNanokon2\ofxNanokon2.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
+    <ClCompile Include="src\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
+    <ClCompile Include="src\ofxOsc\src\ofxOscBundle.cpp" />
+    <ClCompile Include="src\ofxOsc\src\ofxOscMessage.cpp" />
+    <ClCompile Include="src\ofxOsc\src\ofxOscParameterSync.cpp" />
+    <ClCompile Include="src\ofxOsc\src\ofxOscReceiver.cpp" />
+    <ClCompile Include="src\ofxOsc\src\ofxOscSender.cpp" />
     <ClCompile Include="src\ofxPostGlitch\src\ofxPostGlitch.cpp" />
     <ClCompile Include="src\ofxRollingCam\src\ofxRollingCam.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -245,7 +260,6 @@
     <ClCompile Include="src\scene\zcoming\zcoming.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\nanoKon2.h" />
     <ClInclude Include="src\ofMonitor.h" />
     <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
@@ -283,6 +297,31 @@
     <ClInclude Include="src\ofxMidi\src\ofxMidiOut.h" />
     <ClInclude Include="src\ofxMidi\src\ofxMidiTimecode.h" />
     <ClInclude Include="src\ofxMidi\src\ofxMidiTypes.h" />
+    <ClInclude Include="src\ofxNanokon2\nanokon2_base.h" />
+    <ClInclude Include="src\ofxNanokon2\nanokon2_items.h" />
+    <ClInclude Include="src\ofxNanokon2\nanokon2_midi.h" />
+    <ClInclude Include="src\ofxNanokon2\nanokon2_osc.h" />
+    <ClInclude Include="src\ofxNanokon2\ofxNanokon2.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\ip\PacketListener.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\ip\TimerListener.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\ip\UdpSocket.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscException.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
+    <ClInclude Include="src\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOsc.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOscArg.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOscBundle.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOscMessage.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOscParameterSync.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOscReceiver.h" />
+    <ClInclude Include="src\ofxOsc\src\ofxOscSender.h" />
     <ClInclude Include="src\ofxPostGlitch\src\ofxPostGlitch.h" />
     <ClInclude Include="src\ofxRollingCam\src\ofxRollingCam.h" />
     <ClInclude Include="src\ofApp.h" />

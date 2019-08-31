@@ -35,7 +35,7 @@ void ofApp::setup() {
     win_cache_ = std::make_shared<ofRectangle>();
     win_cache_->setSize(ofGetWidth(), ofGetHeight());
 
-    nano_kon_.setup();
+    nano_kon_.setup(true);
 
     // setup scene
     createScenes();
@@ -63,7 +63,7 @@ void ofApp::update() {
 
 void ofApp::changeScene() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (nano_kon_.buttonsSolo.at(index)) {
+        if (nano_kon_.nanokon2_items.buttonsSolo.at(index)) {
             active_scene_lsit_.at(index) = selecting_scene_no_;
         }
     }
@@ -78,14 +78,14 @@ void ofApp::updateScene() {
 
 void ofApp::updateSceneParam() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        updateTriggerState(nano_kon_.buttonsMute.at(index),
+        updateTriggerState(nano_kon_.nanokon2_items.buttonsMute.at(index),
                            scenen_params_.at(index).change_mode_);
-        updateTriggerState(nano_kon_.buttonsRec.at(index),
+        updateTriggerState(nano_kon_.nanokon2_items.buttonsRec.at(index),
                            scenen_params_.at(index).reset_);
-        scenen_params_.at(index).alpha_     = nano_kon_.sliders.at(index) * kControlResolution;
-        scenen_params_.at(index).level_     = nano_kon_.knobs.at(index)   * kControlResolution;
-        scenen_params_.at(index).color_     = nano_kon_.sliders.at(kSystemControlOffset + index) * kControlResolution;
-        scenen_params_.at(index).threshold_ = nano_kon_.knobs.at(kSystemControlOffset + index)   * kControlResolution;
+        scenen_params_.at(index).alpha_     = nano_kon_.nanokon2_items.sliders.at(index) * kControlResolution;
+        scenen_params_.at(index).level_     = nano_kon_.nanokon2_items.knobs.at(index)   * kControlResolution;
+        scenen_params_.at(index).color_     = nano_kon_.nanokon2_items.sliders.at(kSystemControlOffset + index) * kControlResolution;
+        scenen_params_.at(index).threshold_ = nano_kon_.nanokon2_items.knobs.at(kSystemControlOffset + index)   * kControlResolution;
     }
 }
 
