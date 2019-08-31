@@ -158,7 +158,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxPostGlitch\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\fftw\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxFft\libs\kiss;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\desktop;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\src\ios;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\pgmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxMidi\libs\rtmidi;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxPostGlitch\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxRollingCam\src;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxSpout2\libs\include;c:\openframeworks\apps\HearingVision\HearingVision\src\ofxSpout2\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -202,6 +202,20 @@
     <ClCompile Include="src\ofxRollingCam\src\ofxRollingCam.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutControls.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutCopy.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutDirectX.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutGLDXinterop.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutGLextensions.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutMemoryShare.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutReceiver.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutSDK.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutSender.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutSenderMemory.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutSenderNames.cpp" />
+    <ClCompile Include="src\ofxSpout2\libs\src\SpoutSharedMemory.cpp" />
+    <ClCompile Include="src\ofxSpout2\src\ofxSpout2Receiver.cpp" />
+    <ClCompile Include="src\ofxSpout2\src\ofxSpout2Sender.cpp" />
     <ClCompile Include="src\scene\alphabeat\alphabeat.cpp" />
     <ClCompile Include="src\scene\box\box.cpp" />
     <ClCompile Include="src\scene\box\box_drawer.cpp" />
@@ -221,6 +235,7 @@
     <ClCompile Include="src\scene\qsphere\qsphere.cpp" />
     <ClCompile Include="src\scene\stripes\stripes.cpp" />
     <ClCompile Include="src\scene\stripes\stripes_drawer.cpp" />
+    <ClCompile Include="src\scene\touchdesigner\touchdesigner.cpp" />
     <ClCompile Include="src\scene\tousle\circle_drawer.cpp" />
     <ClCompile Include="src\scene\tousle\tousle.cpp" />
     <ClCompile Include="src\scene\util\next_scene.cpp" />
@@ -271,6 +286,22 @@
     <ClInclude Include="src\ofxPostGlitch\src\ofxPostGlitch.h" />
     <ClInclude Include="src\ofxRollingCam\src\ofxRollingCam.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\Spout.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutCommon.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutControls.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutCopy.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutDirectX.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutGLDXinterop.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutGLextensions.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutMemoryShare.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutReceiver.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutSDK.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutSender.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutSenderMemory.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutSenderNames.h" />
+    <ClInclude Include="src\ofxSpout2\libs\include\SpoutSharedMemory.h" />
+    <ClInclude Include="src\ofxSpout2\src\ofxSpout2Receiver.h" />
+    <ClInclude Include="src\ofxSpout2\src\ofxSpout2Sender.h" />
     <ClInclude Include="src\scene\alphabeat\alphabeat.h" />
     <ClInclude Include="src\scene\base_scene.h" />
     <ClInclude Include="src\scene\box\box.h" />
@@ -292,6 +323,7 @@
     <ClInclude Include="src\scene\scene_param.h" />
     <ClInclude Include="src\scene\stripes\stripes.h" />
     <ClInclude Include="src\scene\stripes\stripes_drawer.h" />
+    <ClInclude Include="src\scene\touchdesigner\touchdesigner.h" />
     <ClInclude Include="src\scene\tousle\circle_drawer.h" />
     <ClInclude Include="src\scene\tousle\tousle.h" />
     <ClInclude Include="src\scene\util\counter.h" />
