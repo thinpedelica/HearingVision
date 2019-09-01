@@ -94,7 +94,7 @@ void Nanokon2osc::getValue(const ofxOscMessage& msg,
                            std::vector<int>& item)
 {
     int index = msg.getArgAsInt32(0);
-    item.at(index) = msg.getArgAsInt32(1); 
+    item.at(index) = static_cast<int>(msg.getArgAsFloat(1));
 }
 
 //--------------------------------------------------------------
@@ -102,7 +102,7 @@ void Nanokon2osc::getValue(const ofxOscMessage& msg,
                            std::vector<bool>& item)
 {
     int index = msg.getArgAsInt32(0);
-    item.at(index) = getBoolValue(msg.getArgAsInt32(1));
+    item.at(index) = getBoolValue(static_cast<int>(msg.getArgAsFloat(1)));
 }
 
 //--------------------------------------------------------------
