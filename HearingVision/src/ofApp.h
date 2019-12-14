@@ -4,6 +4,7 @@
 #include "ofxProcessFFT.h"
 #include "ofxNanokon2.h"
 #include "ofxOsc.h"
+#include "ofxSpout2Sender.h"
 
 #include "scene/base_scene.h"
 #include "scene/scene_param.h"
@@ -66,4 +67,6 @@ private:
     ofxNanokon2 nano_kon_;
     ofxOscReceiver osc_receiver_;
     std::map<int, int> key_map_;
+
+    std::map<std::string, std::unique_ptr<ofxSpout2::Sender>> name_vs_spout_sender_;
 };

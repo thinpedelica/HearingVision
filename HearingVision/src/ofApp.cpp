@@ -1,5 +1,7 @@
 #include "ofApp.h"
 
+#include <sstream>
+
 #include "scene/alphabeat/alphabeat.h"
 #include "scene/box/box.h"
 #include "scene/circle/circle.h"
@@ -14,7 +16,7 @@
 #include "scene/orb/orb.h"
 #include "scene/qsphere/qsphere.h"
 #include "scene/stripes/stripes.h"
-#include "scene/touchdesigner/touchdesigner.h"
+// #include "scene/touchdesigner/touchdesigner.h"
 #include "scene/walking/walking.h"
 #include "scene/xflash/xflash.h"
 #include "scene/zcoming/zcoming.h"
@@ -51,6 +53,12 @@ void ofApp::setup() {
 
     active_scene_lsit_.resize(kDrawableSceneNum);
     scenen_params_.resize(kDrawableSceneNum);
+
+    for (int index = 0; index < kDrawableSceneNum; ++index) {
+        std::stringstream ss;
+        ss << "OFSyphonSpoutOut" << index;
+        name_vs_spout_sender_[ss.str()] = std::make_unique<ofxSpout2::Sender>();
+    }
 }
 
 //--------------------------------------------------------------
@@ -127,10 +135,15 @@ void ofApp::draw() {
         scene_list_.at(active_scene_lsit_.at(index))->draw();
         scene_fbos_.at(index).end();
 
-        glEnable(GL_BLEND);
-        glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
-        ofSetColor(255, 255, 255, 255 * scenen_params_.at(index).alpha_);
-        scene_fbos_.at(index).draw(0, 0);
+        //glEnable(GL_BLEND);
+        //glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
+        //ofSetColor(255, 255, 255, 255 * scenen_params_.at(index).alpha_);
+        //scene_fbos_.at(index).draw(0, 0);
+
+        std::stringstream ss;
+        ss << "OFSyphonSpoutOut" << index;
+        name_vs_spout_sender_.at(ss.str())->sendTexture(scene_fbos_.at(index).getTexture(), ss.str());
+
     }
 }
 
@@ -204,8 +217,8 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<StripesScene>());
     key_vs_scene_no_.emplace('s', scene_list_.size() - 1);
 
-    scene_list_.push_back(std::make_unique<TouchDesignerScene>());
-    key_vs_scene_no_.emplace('t', scene_list_.size() - 1);
+    //scene_list_.push_back(std::make_unique<TouchDesignerScene>());
+    //key_vs_scene_no_.emplace('t', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<WalkingScene>());
     key_vs_scene_no_.emplace('w', scene_list_.size() - 1);
