@@ -19,6 +19,8 @@
 #include "scene/xflash/xflash.h"
 #include "scene/zcoming/zcoming.h"
 
+const std::string ofApp::kLabelKeyBoard = "/KeyBoard";
+
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetVerticalSync(true);
@@ -36,6 +38,7 @@ void ofApp::setup() {
     win_cache_->setSize(ofGetWidth(), ofGetHeight());
 
     nano_kon_.setup(true);
+    setupOsc();
 
     // setup scene
     createScenes();
@@ -54,6 +57,7 @@ void ofApp::setup() {
 void ofApp::update() {
     pfft_->update();
     nano_kon_.update();
+    updateOsc();
 
     changeScene();
     updateSceneParam();
@@ -223,5 +227,30 @@ void ofApp::setupScenes() {
 void ofApp::resizeScenes() {
     for (auto& scene : scene_list_) {
         scene->resize();
+    }
+}
+
+void ofApp::setupOsc() {
+    osc_receiver_.setup(kOscListenPort);
+    setupKeyMap();
+}
+
+void ofApp::setupKeyMap() {
+    int key = 'a';
+    for (int i = 0; i < 26; ++i) {
+        key_map_[i] = key;
+        ++key;
+    }
+}
+
+void ofApp::updateOsc() {
+    while (osc_receiver_.hasWaitingMessages()) {
+        ofxOscMessage msg;
+        osc_receiver_.getNextMessage(msg);
+        std::string addr = msg.getAddress();
+        if (addr == kLabelKeyBoard) {
+            int key_index = msg.getArgAsInt32(0);
+            keyPressed(key_map_.at(key_index));
+        }
     }
 }

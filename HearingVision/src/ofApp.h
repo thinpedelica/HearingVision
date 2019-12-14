@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxProcessFFT.h"
 #include "ofxNanokon2.h"
+#include "ofxOsc.h"
 
 #include "scene/base_scene.h"
 #include "scene/scene_param.h"
@@ -28,6 +29,10 @@ private:
     static constexpr size_t kSystemControlOffset = 6;
     static constexpr float  kControlResolution   = 1.f / 127.f;
 
+    static constexpr int kOscListenPort = 8889;
+    static const std::string kLabelKeyBoard;
+
+
     void createScenes();
     void setupScenes();
     void resizeScenes();
@@ -40,6 +45,10 @@ private:
     void updateTriggerState(const bool button,
                             SceneParam::TriggerState& state);
     void clearTriggerState(SceneParam::TriggerState& state);
+
+    void setupOsc();
+    void setupKeyMap();
+    void updateOsc();
 
     using ScenePtr  = std::unique_ptr<BaseScene>;
     using SceneList = std::vector<ScenePtr>;
@@ -55,4 +64,6 @@ private:
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofRectangle> win_cache_;
     ofxNanokon2 nano_kon_;
+    ofxOscReceiver osc_receiver_;
+    std::map<int, int> key_map_;
 };
