@@ -175,6 +175,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\colorController\color_controller.cpp" />
     <ClCompile Include="src\ofMonitor.cpp" />
     <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="src\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
@@ -260,6 +261,7 @@
     <ClCompile Include="src\scene\zcoming\zcoming.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\colorController\color_controller.h" />
     <ClInclude Include="src\ofMonitor.h" />
     <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="src\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />

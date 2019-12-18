@@ -20,7 +20,7 @@ void MandalaScene::setup(std::shared_ptr<ProcessFFT> pfft,
 
 //--------------------------------------------------------------
 void MandalaScene::update(SceneParam scene_param) {
-    float base_color      = scene_param.color_ * 255.f;
+    float base_color      = scene_param.color_;
     float brightness_min  = 32.f  + pfft_->getLowVal() * 128.f;
     float brightness_max  = 128.f + pfft_->getMidVal() * 256.f;
     float stroke_weight   = 0.2f  + pfft_->getLowVal() * 2.0f;

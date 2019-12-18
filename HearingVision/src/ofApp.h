@@ -9,6 +9,7 @@
 #include "scene/base_scene.h"
 #include "scene/scene_param.h"
 #include "scene/util/next_scene.h"
+#include "colorController/color_controller.h"
 #include <map>
 #include <vector>
 #include <memory>
@@ -28,7 +29,8 @@ public:
 private:
     static constexpr size_t kDrawableSceneNum    = 2;
     static constexpr size_t kSystemControlOffset = 6;
-    static constexpr float  kControlResolution   = 1.f / 127.f;
+    static constexpr float  kControlResolution = 1.f / 127.f;
+    static constexpr float  kColorResolution   = 1.f / 255.f;
 
     static constexpr int kOscListenPort = 8889;
     static const std::string kLabelKeyBoard;
@@ -65,6 +67,7 @@ private:
     std::shared_ptr<ProcessFFT> pfft_;
     std::shared_ptr<ofRectangle> win_cache_;
     ofxNanokon2 nano_kon_;
+    ColorController color_controller_;
     ofxOscReceiver osc_receiver_;
     std::map<int, int> key_map_;
 

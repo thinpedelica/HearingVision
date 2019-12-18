@@ -40,6 +40,7 @@ void ofApp::setup() {
     win_cache_->setSize(ofGetWidth(), ofGetHeight());
 
     nano_kon_.setup(true);
+    color_controller_.setup();
     setupOsc();
 
     // setup scene
@@ -65,6 +66,7 @@ void ofApp::setup() {
 void ofApp::update() {
     pfft_->update();
     nano_kon_.update();
+    color_controller_.update();
     updateOsc();
 
     changeScene();
@@ -96,7 +98,8 @@ void ofApp::updateSceneParam() {
                            scenen_params_.at(index).reset_);
         scenen_params_.at(index).alpha_     = nano_kon_.nanokon2_items.sliders.at(index) * kControlResolution;
         scenen_params_.at(index).level_     = nano_kon_.nanokon2_items.knobs.at(index)   * kControlResolution;
-        scenen_params_.at(index).color_     = nano_kon_.nanokon2_items.sliders.at(kSystemControlOffset + index) * kControlResolution;
+        // scenen_params_.at(index).color_     = nano_kon_.nanokon2_items.sliders.at(kSystemControlOffset + index) * kControlResolution;
+        scenen_params_.at(index).color_     = color_controller_.get().getHue() * kColorResolution;
         scenen_params_.at(index).threshold_ = nano_kon_.nanokon2_items.knobs.at(kSystemControlOffset + index)   * kControlResolution;
     }
 }
