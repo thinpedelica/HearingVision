@@ -24,6 +24,7 @@ public:
     NextScene& getNextScene(const int index);
 
     void keyPressed(int key);
+    void sceneSelect(const int key, const int scene_index);
     void windowResized(int w, int h);
 
 private:

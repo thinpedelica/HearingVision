@@ -69,7 +69,7 @@ void ofApp::update() {
     color_controller_.update();
     updateOsc();
 
-    changeScene();
+    // changeScene();
     updateSceneParam();
     updateScene();
     clearSceneParam();
@@ -163,6 +163,14 @@ void ofApp::keyPressed(int key) {
     if ((key >= 'a') && (key <= 'z')) {
         if (key_vs_scene_no_.count(key)) {
             selecting_scene_no_ = key_vs_scene_no_.at(key);
+        }
+    }
+}
+
+void ofApp::sceneSelect(const int key, const int scene_index) {
+    if ((key >= 'a') && (key <= 'z') && (scene_index < kDrawableSceneNum)) {
+        if (key_vs_scene_no_.count(key)) {
+            active_scene_lsit_.at(scene_index) = key_vs_scene_no_.at(key);
         }
     }
 }
@@ -265,8 +273,9 @@ void ofApp::updateOsc() {
         osc_receiver_.getNextMessage(msg);
         std::string addr = msg.getAddress();
         if (addr == kLabelKeyBoard) {
-            int key_index = msg.getArgAsInt32(0);
-            keyPressed(key_map_.at(key_index));
+            int key_index   = msg.getArgAsInt32(0);
+            int scene_index = msg.getArgAsInt32(1);
+            sceneSelect(key_map_.at(key_index), scene_index);
         }
     }
 }
