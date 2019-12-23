@@ -29,7 +29,7 @@ void main(void) {
     float b = 0.5 + cos(uv.y * Pi * 8.0) * 0.3;
     float c = 0.5 + cos(uv.z * Pi * 6.0) * 0.5;
     float f = color;
-    vec3 color1 = mix(vec3(1.0, 0.8, 1.0 - f), vec3(0.5 * f, 0, 0), pow(a, 0.2)) * 3.;
+    vec3 color1 = mix(vec3(1.0, 0.5, f), vec3(0.5 * f, 0, 0), pow(a, 0.2)) * 3.;
     color1 += mix(vec3(0.8, 0.9, 1.0), vec3(0.1, 0.1, 0.2),  pow(b, 0.1)) * 0.75;
     color1 += mix(vec3(0.9, 0.8, 1.0), vec3(0.1, 0.2, 0.2),  pow(c, 0.1)) * 0.75;
 

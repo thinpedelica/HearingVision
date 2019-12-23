@@ -59,7 +59,7 @@ void DebriScene::update(SceneParam scene_param) {
     }
 
     if (normal_mode_) {
-        point_size_ = ofMap(pfft_->getLowVal(), 0.0, 0.3, 1.f, 2.f, true);
+        point_size_ = ofMap(pfft_->getLowVal(), 0.0, 0.2, 1.f, 2.f, true);
     } else {
         point_size_ = 1.f;
     }
@@ -70,7 +70,7 @@ void DebriScene::update(SceneParam scene_param) {
         scale_ = kFloatingDist;
     }
 
-    float alpha = ofMap(pfft_->getMidVal(), 0.0, 0.5, 0.6, 0.9, true);
+    float alpha = ofMap(pfft_->getMidVal(), 0.0, 0.2, 0.6, 0.9, true);
     if (normal_mode_ && (pfft_->getLowVal() > 0.15f)) {
         ofFloatColor c;
         c.setHsb(0.95f, 0.8f, 0.7f, alpha);
@@ -130,7 +130,7 @@ void DebriScene::draw() {
 
     vbo_mesh_ = sphere_.getMesh();
     for (int i = 0; i<vbo_mesh_.getVertices().size(); ++i) {
-        vbo_mesh_.addColor(ofColor(255, 160));
+        vbo_mesh_.addColor(ofColor(255, 220));
     }
     vbo_mesh_.drawWireframe();
 

@@ -57,7 +57,7 @@ void RollingBoxDrawer::updateCamPos() {
 }
 
 void RollingBoxDrawer::updateColor() {
-    float input = ofMap(pfft_->getMidVal(), 0.0, 1.0, 128, 255);
+    float input = ofMap(pfft_->getMidVal(), 0.0, 0.3, 200, 255, true);
     if (color_ < 0.1f) {
         box_color_.set(255.f, input);
     } else {
@@ -70,7 +70,7 @@ void RollingBoxDrawer::draw() {
     roll_cam_.begin();
 
     ofSetColor(box_color_);
-    ofSetLineWidth(ofMap(pfft_->getLowVal(), 0.0, 1.0, 1.0, 10.0));
+    ofSetLineWidth(ofMap(pfft_->getLowVal(), 0.0, 0.5, 1.0, 10.0, true));
     for (auto& box : boxes_) {
         box.drawWireframe();
     }
