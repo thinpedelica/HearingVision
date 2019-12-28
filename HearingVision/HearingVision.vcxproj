@@ -232,6 +232,7 @@
     <ClCompile Include="src\ofxSpout2\libs\src\SpoutSharedMemory.cpp" />
     <ClCompile Include="src\ofxSpout2\src\ofxSpout2Receiver.cpp" />
     <ClCompile Include="src\ofxSpout2\src\ofxSpout2Sender.cpp" />
+    <ClCompile Include="src\paramController\param_controller.cpp" />
     <ClCompile Include="src\scene\alphabeat\alphabeat.cpp" />
     <ClCompile Include="src\scene\box\box.cpp" />
     <ClCompile Include="src\scene\box\box_drawer.cpp" />
@@ -343,6 +344,7 @@
     <ClInclude Include="src\ofxSpout2\libs\include\SpoutSharedMemory.h" />
     <ClInclude Include="src\ofxSpout2\src\ofxSpout2Receiver.h" />
     <ClInclude Include="src\ofxSpout2\src\ofxSpout2Sender.h" />
+    <ClInclude Include="src\paramController\param_controller.h" />
     <ClInclude Include="src\scene\alphabeat\alphabeat.h" />
     <ClInclude Include="src\scene\base_scene.h" />
     <ClInclude Include="src\scene\box\box.h" />

@@ -37,8 +37,8 @@ void PsychedelicaScene::update(SceneParam scene_param) {
     mid_.push_back(pfft_->getMidVal());
     low_.push_back(pfft_->getLowVal());
 
-    if (scene_param.threshold_ > 0.1f) {
-        history_size_ = kHistoryMax * scene_param.threshold_;
+    if (scene_param.gain_ > 0.1f) {
+        history_size_ = kHistoryMax * scene_param.gain_;
     } else {
         history_size_ = kHistoryMin;
     }

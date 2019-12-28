@@ -24,7 +24,7 @@ void ZcomingScene::setup(std::shared_ptr<ProcessFFT> pfft,
 void ZcomingScene::update(SceneParam scene_param) {
     z_step_      = kBaseZStep + kBaseZStep * scene_param.level_;
     gen_cnt_     = kBaseGenCnt - kBaseGenCnt * scene_param.level_ * 0.9;
-    threshold_   = kBaseThreshold + scene_param.threshold_;
+    threshold_   = kBaseThreshold + scene_param.gain_;
 
     float alpha = ofMap(pfft_->getLowVal(), 0.f, 0.2f, 0.6f, 1.0f, true);
     if (scene_param.color_ < 0.1f) {

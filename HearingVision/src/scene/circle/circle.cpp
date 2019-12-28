@@ -84,7 +84,7 @@ void CircleScene::update(SceneParam scene_param) {
     ofVec2f target_pos{ ofRandom(target_pos_low, target_pos_high), 
                         ofRandom(target_pos_low, target_pos_high) };
 
-    float threshold = 0.2f - scene_param.threshold_ * 0.1f;
+    float threshold = 0.2f - scene_param.gain_ * 0.1f;
     bool is_move_particle = false;
     if (pfft_->getLowVal() > threshold) {
         is_move_particle = true;

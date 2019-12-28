@@ -110,8 +110,8 @@ void AlphabeatScene::setupStrings() {
 //--------------------------------------------------------------
 void AlphabeatScene::update(SceneParam scene_param) {
     level_ = scene_param.level_;
-    string_counter_.setThreshold(scene_param.threshold_);
-    fx_counter_.setThreshold(scene_param.threshold_);
+    string_counter_.setThreshold(scene_param.gain_);
+    fx_counter_.setThreshold(scene_param.gain_);
 
     if (scene_param.change_mode_ == SceneParam::TriggerState::kOn) {
         updateMode();

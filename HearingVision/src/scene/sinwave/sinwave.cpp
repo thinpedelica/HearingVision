@@ -23,8 +23,8 @@ void SinWaveScene::setup(std::shared_ptr<ProcessFFT> pfft,
 void SinWaveScene::update(SceneParam scene_param) {
     time_ += 0.01;
 
-    scale_ = kBaseScale + kMaxScale * scene_param.threshold_;
-    waves_ = kBaseWaves + kBaseWaves * scene_param.threshold_;
+    scale_ = kBaseScale + kMaxScale * scene_param.gain_;
+    waves_ = kBaseWaves + kBaseWaves * scene_param.gain_;
     speed_ = kBaseSpeed + kMaxSpeed * scene_param.level_;
 
     float hue =128.f;

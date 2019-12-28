@@ -16,7 +16,6 @@
 #include "scene/orb/orb.h"
 #include "scene/qsphere/qsphere.h"
 #include "scene/stripes/stripes.h"
-// #include "scene/touchdesigner/touchdesigner.h"
 #include "scene/walking/walking.h"
 #include "scene/xflash/xflash.h"
 #include "scene/zcoming/zcoming.h"
@@ -39,11 +38,10 @@ void ofApp::setup() {
     win_cache_ = std::make_shared<ofRectangle>();
     win_cache_->setSize(ofGetWidth(), ofGetHeight());
 
-    nano_kon_.setup(true);
     color_controller_.setup();
+    param_controller_.setup();
     setupOsc();
 
-    // setup scene
     createScenes();
     setupScenes();
 
@@ -65,22 +63,13 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 void ofApp::update() {
     pfft_->update();
-    nano_kon_.update();
     color_controller_.update();
+    param_controller_.update();
     updateOsc();
 
-    // changeScene();
     updateSceneParam();
     updateScene();
     clearSceneParam();
-}
-
-void ofApp::changeScene() {
-    for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        if (nano_kon_.nanokon2_items.buttonsSolo.at(index)) {
-            active_scene_lsit_.at(index) = selecting_scene_no_;
-        }
-    }
 }
 
 void ofApp::updateScene() {
@@ -90,17 +79,21 @@ void ofApp::updateScene() {
     }
 }
 
+// TODO
 void ofApp::updateSceneParam() {
     for (size_t index = 0; index < kDrawableSceneNum; ++index) {
-        updateTriggerState(nano_kon_.nanokon2_items.buttonsMute.at(index),
+        ParamController::Param param = param_controller_.get(index);
+        updateTriggerState(param.mode,
                            scenen_params_.at(index).change_mode_);
-        updateTriggerState(nano_kon_.nanokon2_items.buttonsRec.at(index),
+        updateTriggerState(param.reset,
                            scenen_params_.at(index).reset_);
-        scenen_params_.at(index).alpha_     = nano_kon_.nanokon2_items.sliders.at(index) * kControlResolution;
-        scenen_params_.at(index).level_     = nano_kon_.nanokon2_items.knobs.at(index)   * kControlResolution;
-        // scenen_params_.at(index).color_     = nano_kon_.nanokon2_items.sliders.at(kSystemControlOffset + index) * kControlResolution;
-        scenen_params_.at(index).color_     = color_controller_.get().getHue() * kColorResolution;
-        scenen_params_.at(index).threshold_ = nano_kon_.nanokon2_items.knobs.at(kSystemControlOffset + index)   * kControlResolution;
+        // scenen_params_.at(index).alpha_     = nano_kon_.nanokon2_items.sliders.at(index) * kControlResolution;
+
+        scenen_params_.at(index).level_ = param.level;
+        scenen_params_.at(index).speed_ = param.speed;
+        scenen_params_.at(index).gain_  = param.gain;
+
+        scenen_params_.at(index).color_ = color_controller_.get().getHue() * kColorResolution;
     }
 }
 
@@ -227,9 +220,6 @@ void ofApp::createScenes() {
 
     scene_list_.push_back(std::make_unique<StripesScene>());
     key_vs_scene_no_.emplace('s', scene_list_.size() - 1);
-
-    //scene_list_.push_back(std::make_unique<TouchDesignerScene>());
-    //key_vs_scene_no_.emplace('t', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<WalkingScene>());
     key_vs_scene_no_.emplace('w', scene_list_.size() - 1);

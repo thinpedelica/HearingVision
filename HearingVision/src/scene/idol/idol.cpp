@@ -65,7 +65,7 @@ void IdolScene::update(SceneParam scene_param) {
 
     drawer_prt_list_.at(draw_list_index_)->setColor(scene_param.color_);
     drawer_prt_list_.at(draw_list_index_)->setLevel(scene_param.level_);
-    drawer_prt_list_.at(draw_list_index_)->setThreshold(scene_param.threshold_);
+    drawer_prt_list_.at(draw_list_index_)->setThreshold(scene_param.gain_);
     drawer_prt_list_.at(draw_list_index_)->update();
 }
 
