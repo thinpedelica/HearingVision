@@ -10,6 +10,7 @@
 #include "scene/util/next_scene.h"
 #include "colorController/color_controller.h"
 #include "paramController/param_controller.h"
+#include "sceneController/scene_controller.h"
 #include <map>
 #include <vector>
 #include <memory>
@@ -24,23 +25,19 @@ public:
     NextScene& getNextScene(const int index);
 
     void keyPressed(int key);
-    void sceneSelect(const int key, const int scene_index);
     void windowResized(int w, int h);
 
 private:
     static constexpr size_t kDrawableSceneNum    = 2;
     static constexpr size_t kSystemControlOffset = 6;
-    static constexpr float  kColorResolution   = 1.f / 255.f;
-
-    static constexpr int kOscListenPort = 9300;
-    static const std::string kLabelKeyBoard;
+    static constexpr float  kColorResolution     = 1.f / 255.f;
 
 
     void createScenes();
     void setupScenes();
     void resizeScenes();
-    void changeScene();
     void updateScene();
+    void selectScene();
 
     void updateSceneParam();
     void clearSceneParam();
@@ -48,10 +45,6 @@ private:
     void updateTriggerState(const bool button,
                             SceneParam::TriggerState& state);
     void clearTriggerState(SceneParam::TriggerState& state);
-
-    void setupOsc();
-    void setupKeyMap();
-    void updateOsc();
 
     using ScenePtr  = std::unique_ptr<BaseScene>;
     using SceneList = std::vector<ScenePtr>;
@@ -68,8 +61,8 @@ private:
     std::shared_ptr<ofRectangle> win_cache_;
     ColorController color_controller_;
     ParamController param_controller_;
-    ofxOscReceiver osc_receiver_;
-    std::map<int, int> key_map_;
+    SceneController scene_controller_;
+
 
     std::map<std::string, std::unique_ptr<ofxSpout2::Sender>> name_vs_spout_sender_;
 };

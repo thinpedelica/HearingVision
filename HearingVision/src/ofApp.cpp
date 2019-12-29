@@ -20,8 +20,6 @@
 #include "scene/xflash/xflash.h"
 #include "scene/zcoming/zcoming.h"
 
-const std::string ofApp::kLabelKeyBoard = "/KeyBoard";
-
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetVerticalSync(true);
@@ -40,7 +38,7 @@ void ofApp::setup() {
 
     color_controller_.setup();
     param_controller_.setup();
-    setupOsc();
+    scene_controller_.setup();
 
     createScenes();
     setupScenes();
@@ -65,7 +63,9 @@ void ofApp::update() {
     pfft_->update();
     color_controller_.update();
     param_controller_.update();
-    updateOsc();
+    scene_controller_.update();
+
+    selectScene();
 
     updateSceneParam();
     updateScene();
@@ -160,10 +160,14 @@ void ofApp::keyPressed(int key) {
     }
 }
 
-void ofApp::sceneSelect(const int key, const int scene_index) {
-    if ((key >= 'a') && (key <= 'z') && (scene_index < kDrawableSceneNum)) {
-        if (key_vs_scene_no_.count(key)) {
-            active_scene_lsit_.at(scene_index) = key_vs_scene_no_.at(key);
+void ofApp::selectScene() {
+    for (size_t index = 0; index < kDrawableSceneNum; ++index) {
+        int scene_id = scene_controller_.get(index);
+
+        if ((scene_id >= 'a') && (scene_id <= 'z')) {
+            if (key_vs_scene_no_.count(scene_id)) {
+                active_scene_lsit_.at(index) = key_vs_scene_no_.at(scene_id);
+            }
         }
     }
 }
@@ -241,31 +245,5 @@ void ofApp::setupScenes() {
 void ofApp::resizeScenes() {
     for (auto& scene : scene_list_) {
         scene->resize();
-    }
-}
-
-void ofApp::setupOsc() {
-    osc_receiver_.setup(kOscListenPort);
-    setupKeyMap();
-}
-
-void ofApp::setupKeyMap() {
-    int key = 'a';
-    for (int i = 0; i < 26; ++i) {
-        key_map_[i] = key;
-        ++key;
-    }
-}
-
-void ofApp::updateOsc() {
-    while (osc_receiver_.hasWaitingMessages()) {
-        ofxOscMessage msg;
-        osc_receiver_.getNextMessage(msg);
-        std::string addr = msg.getAddress();
-        if (addr == kLabelKeyBoard) {
-            int key_index   = msg.getArgAsInt32(0);
-            int scene_index = msg.getArgAsInt32(1);
-            sceneSelect(key_map_.at(key_index), scene_index);
-        }
     }
 }
