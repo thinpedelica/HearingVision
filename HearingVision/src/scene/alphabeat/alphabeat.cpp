@@ -131,7 +131,7 @@ void AlphabeatScene::updateMode() {
 
 void AlphabeatScene::updateFont() {
     if (level_ > 0.2) {
-        current_font_ = static_cast<size_t>(ofMap(pfft_->getLowVal(), 0.f, 0.2f, 0.f, font_list_.size() - 1, true));
+        current_font_ = static_cast<size_t>(ofMap(pfft_->getLowVal(), 0.f, 0.6f, 0.f, font_list_.size() - 1, true));
     }
 }
 
