@@ -16,7 +16,7 @@
 #include "scene/orb/orb.h"
 #include "scene/qsphere/qsphere.h"
 #include "scene/stripes/stripes.h"
-#include "scene/walking/walking.h"
+// #include "scene/walking/walking.h"
 #include "scene/xflash/xflash.h"
 #include "scene/zcoming/zcoming.h"
 
@@ -225,8 +225,8 @@ void ofApp::createScenes() {
     scene_list_.push_back(std::make_unique<StripesScene>());
     key_vs_scene_no_.emplace('s', scene_list_.size() - 1);
 
-    scene_list_.push_back(std::make_unique<WalkingScene>());
-    key_vs_scene_no_.emplace('w', scene_list_.size() - 1);
+    //scene_list_.push_back(std::make_unique<WalkingScene>());
+    //key_vs_scene_no_.emplace('w', scene_list_.size() - 1);
 
     scene_list_.push_back(std::make_unique<XFlashScene>());
     key_vs_scene_no_.emplace('x', scene_list_.size() - 1);

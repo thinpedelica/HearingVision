@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,29 +22,30 @@
     <ProjectGuid>{7FD42DF7-442E-479A-BA76-D0022F99702A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HearingVision</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
@@ -168,7 +169,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>c:\openframeworks\apps\HearingVision\HearingVision\src\ofxAssimpModelLoader\libs\assimp\lib\vs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -233,6 +234,7 @@
     <ClCompile Include="src\ofxSpout2\src\ofxSpout2Receiver.cpp" />
     <ClCompile Include="src\ofxSpout2\src\ofxSpout2Sender.cpp" />
     <ClCompile Include="src\paramController\param_controller.cpp" />
+    <ClCompile Include="src\sceneController\scene_controller.cpp" />
     <ClCompile Include="src\scene\alphabeat\alphabeat.cpp" />
     <ClCompile Include="src\scene\box\box.cpp" />
     <ClCompile Include="src\scene\box\box_drawer.cpp" />
@@ -257,7 +259,6 @@
     <ClCompile Include="src\scene\tousle\tousle.cpp" />
     <ClCompile Include="src\scene\util\next_scene.cpp" />
     <ClCompile Include="src\scene\util\particle.cpp" />
-    <ClCompile Include="src\scene\walking\walking.cpp" />
     <ClCompile Include="src\scene\xflash\xflash.cpp" />
     <ClCompile Include="src\scene\zcoming\zcoming.cpp" />
   </ItemGroup>
@@ -345,6 +346,7 @@
     <ClInclude Include="src\ofxSpout2\src\ofxSpout2Receiver.h" />
     <ClInclude Include="src\ofxSpout2\src\ofxSpout2Sender.h" />
     <ClInclude Include="src\paramController\param_controller.h" />
+    <ClInclude Include="src\sceneController\scene_controller.h" />
     <ClInclude Include="src\scene\alphabeat\alphabeat.h" />
     <ClInclude Include="src\scene\base_scene.h" />
     <ClInclude Include="src\scene\box\box.h" />
@@ -372,7 +374,6 @@
     <ClInclude Include="src\scene\util\counter.h" />
     <ClInclude Include="src\scene\util\next_scene.h" />
     <ClInclude Include="src\scene\util\particle.h" />
-    <ClInclude Include="src\scene\walking\walking.h" />
     <ClInclude Include="src\scene\xflash\xflash.h" />
     <ClInclude Include="src\scene\zcoming\zcoming.h" />
   </ItemGroup>
