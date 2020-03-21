@@ -4,9 +4,3 @@
 [submodule "HearingVision/src/ofxMidi"]
 	path = HearingVision/src/ofxMidi
 	url = https://github.com/danomatika/ofxMidi
-[submodule "HearingVision/src/ofxRollingCam"]
-	path = HearingVision/src/ofxRollingCam
-	url = https://github.com/saebashi/ofxRollingCam
-[submodule "HearingVision/src/ofcPostGlitch"]
-	path = HearingVision/src/ofxPostGlitch
-	url = https://github.com/maxillacult/ofxPostGlitch.git
